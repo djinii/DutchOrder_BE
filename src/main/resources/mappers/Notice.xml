@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dutchOrder.server.NoticeMapper">
+
+	<select id="mapNoticeList" parameterType="Notice" resultType="Notice">
+		SELECT *
+    	FROM notice
+    	ORDER BY nonum; 
+	</select>
+
+	<select id="mapNoticeDetail" parameterType="int" resultType="Notice">
+		SELECT * 
+		FROM notice 
+		WHERE nonum = #{nonum};
+	</select>
+</mapper>
