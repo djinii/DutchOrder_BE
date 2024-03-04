@@ -2,5 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <typeAliases>
+   		<typeAlias alias="MwOrderSpec" type="com.dutchOrder.server.model.MwOrderSpec"/>
+   		<typeAlias alias="MwMenu" type="com.dutchOrder.server.model.MwMenu"/>
+   		<typeAlias alias="MwEmailModel" type="com.dutchOrder.server.model.MwEmailModel"/>
    </typeAliases>
 </configuration>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.MwEmailModelMapper">
+	<insert id="ecSave" parameterType="MwEmailModel">
+		insert into email_code
+		values((select coalesce(max(a.ecnum), 1000)+1 from email_code a), #{email}, #{eccode}, 1);
+	</insert>
+</mapper>

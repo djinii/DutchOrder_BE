@@ -1,6 +1,12 @@
 server:
   port: 8888
 
+# OpenAI API
+chatgpt:
+  api:
+    key: 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
+    endpoint: https://api.openai.com/v1/chat/completions
+
 # Oracle Connect
 spring:
 
@@ -29,10 +35,13 @@ spring:
           starttls.enable:  true
              
 # Mybatis
+mybatis:
   config-location: classpath:configuration.xml
-#  mapper-locations: classpath:mappers/*.xml      
+  mapper-locations: classpath:mappers/*.xml      
   
 logging.level:
-  org.hibernate.SQL: debug   # logger를 통해 하이버네이트 실행 SQL        
+  org.hibernate.SQL: debug   # logger를 통해 하이버네이트 실행 SQL
+  
+        
       
       

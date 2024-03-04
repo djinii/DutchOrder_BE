@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.MwMenuMapper">
+	<select id="manyBreakfastMenu" resultType="mwmenu">
+		SELECT fname
+		FROM menu
+		WHERE fnum = (
+    					SELECT fnum
+    					FROM order_spec
+    					WHERE time(osdate) BETWEEN '08:00:00' AND '11:00:00'
+    					GROUP BY fnum
+    					ORDER BY COUNT(*) DESC
+    					LIMIT 1
+					);
+	</select>
+	
+	<select id="manyLunchMenu" resultType="mwmenu">
+		SELECT fname
+		FROM menu
+		WHERE fnum = (
+    					SELECT fnum
+    					FROM order_spec
+    					WHERE time(osdate) BETWEEN '11:00:01' AND '15:00:00'
+    					GROUP BY fnum
+    					ORDER BY COUNT(*) DESC
+    					LIMIT 1
+					);
+	</select>
+	
+	<select id="manyDinnerMenu" resultType="mwmenu">
+		SELECT fname
+		FROM menu
+		WHERE fnum = (
+    					SELECT fnum
+    					FROM order_spec
+    					WHERE time(osdate) BETWEEN '15:00:01' AND '23:59:59'
+    					GROUP BY fnum
+    					ORDER BY COUNT(*) DESC
+    					LIMIT 1
+					);
+	</select>
+</mapper>
