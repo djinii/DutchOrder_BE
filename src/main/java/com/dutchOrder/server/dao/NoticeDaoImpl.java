@@ -39,7 +39,34 @@ public class NoticeDaoImpl implements NoticeDao {
 		} catch (Exception e) {
 			System.out.println("NoticeDaoImpl NoticeDetail Exception -> " + e.getMessage());
 		}
+		
 		return notice;
+	}
+
+	@Override
+	public int writeNotice(Notice notice) {
+		System.out.println("NoticeDaoImpl writeNotice Start...");
+		int noticeWrite = 0;
+		try {
+			noticeWrite = session.insert("mapNoticeWrite", notice);
+		} catch (Exception e) {
+			System.out.println("NoticeDaoImpl writeNotice Exception -> " + e.getMessage());
+		}
+		
+		return noticeWrite;
+	}
+
+	@Override
+	public int modifyNotice(Notice notice) {
+		System.out.println("NoticeDaoImpl modifyNotice Start...");
+		int noticeModify = 0;
+		try {
+			noticeModify = session.update("mapNoticeModify", notice);
+		} catch (Exception e) {
+			System.out.println("NoticeDaoImpl modifyNotice Exception -> " + e.getMessage());
+		}
+		
+		return noticeModify;
 	}
 
 }

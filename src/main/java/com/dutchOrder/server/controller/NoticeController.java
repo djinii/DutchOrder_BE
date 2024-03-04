@@ -19,7 +19,7 @@ public class NoticeController {
 	
 	private final NoticeService ns;
 	
-	// 공지사항 리스트 -클라이언트-
+	/** 공지사항 리스트 불러오기 -클라이언트- */
 	@ResponseBody
 	@PostMapping("/JY_C_NoticeList")
 	public List<Notice> clNoticeList(@RequestBody Notice notice) {
@@ -31,7 +31,7 @@ public class NoticeController {
 		return listNotice;
 	}
 	
-	// 공지사항 세부내용 -클라이언트-
+	/** 공지사항 세부내용 -클라이언트- */
 	@ResponseBody
 	@PostMapping("/JY_C_NoticeDetails")
 	public Notice clNoticeDetails(@RequestBody Notice notice) {
@@ -41,5 +41,51 @@ public class NoticeController {
 		
 		return noticeDetail;
 	}
+	
+	/** 공지사항 리스트 불러오기 -관리자- */
+		@ResponseBody
+		@PostMapping("/JY_A_NoticeList")
+		public List<Notice> adNoticeList(@RequestBody Notice notice) {
+			System.out.println("NoticeController Start adNoticeList ... ");	
+			System.out.println("NoticeController adNoticeList notice "+notice);
+			List<Notice> listNotice = ns.listNotice(notice);
+			System.out.println("NoticeController List listNotice.size() -> " + listNotice.size());
+			
+			return listNotice;
+		}
+		
+		/** 공지사항 세부내용 -관리자- */
+		@ResponseBody
+		@PostMapping("/JY_A_NoticeDetails")
+		public Notice adNoticeDetails(@RequestBody Notice notice) {
+			System.out.println("NoticeController Start adNoticeDetails...");
+			System.out.println("NoticeController adNoticeDetails notice " + notice);
+			Notice noticeDetail = ns.noticeDetail(notice.getNonum());
+			
+			return noticeDetail;
+		}
+		
+		/** 공지사항 작성 -관리자- */
+		@ResponseBody
+		@PostMapping("/JY_A_NoticeWrite")
+		public int adNoticeWrite(@RequestBody Notice notice) {
+			System.out.println("NoticeController Start adNoticeWrite...");
+			System.out.println("NoticeCOntroller adNoticeWrite notice " + notice);
+			int writeNotice = ns.writeNotice(notice);
+			
+			return writeNotice;
+		}
+		
+		/** 공지사항 수정 -관리자- */
+		@ResponseBody
+		@PostMapping("/JY_A_NoticeModify")
+		public int adNoticeModify(@RequestBody Notice notice) {
+			System.out.println("NoticeController Start adNoticeModify");
+			System.out.println("NoticeController adNoticeModify notice " + notice);
+			int modifyNotice = ns.modifyNotice(notice);
+			System.out.println("NoticeController ns.noticeModify modifyNotice -> " + modifyNotice);
+			
+			return modifyNotice;
+		}
 
 }

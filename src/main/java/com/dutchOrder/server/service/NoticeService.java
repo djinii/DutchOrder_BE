@@ -12,4 +12,8 @@ public interface NoticeService {
 
 	Notice noticeDetail(int nonum);
 
+	int writeNotice(Notice notice);
+
+	int modifyNotice(Notice notice);
+
 }

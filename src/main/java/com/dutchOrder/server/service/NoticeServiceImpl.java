@@ -36,4 +36,22 @@ public class NoticeServiceImpl implements NoticeService {
 		return notice;
 	}
 
+	@Override
+	public int writeNotice(Notice notice) {
+		int noticeWrite = 0;
+		System.out.println("NoticeServiceImpl writeNotice Start...");
+		noticeWrite = nd.writeNotice(notice);
+		
+		return noticeWrite;
+	}
+
+	@Override
+	public int modifyNotice(Notice notice) {
+		int noticeModify = 0;
+		System.out.println("NoticeServiceImpl noticeModify Start...");
+		noticeModify= nd.modifyNotice(notice);
+		
+		return noticeModify;
+	}
+
 }

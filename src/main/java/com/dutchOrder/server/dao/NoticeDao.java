@@ -10,4 +10,8 @@ public interface NoticeDao {
 
 	Notice noticeDetail(int nonum);
 
+	int writeNotice(Notice notice);
+
+	int modifyNotice(Notice notice);
+
 }

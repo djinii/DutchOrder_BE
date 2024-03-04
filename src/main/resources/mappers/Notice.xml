@@ -14,4 +14,14 @@
 		FROM notice 
 		WHERE nonum = #{nonum};
 	</select>
+	
+	<insert id="mapNoticeWrite" parameterType="Notice">
+		INSERT INTO notice VALUES (#{nonum}, #{mnum}, #{notitle}, #{nocon}, #{nodate});
+	</insert>
+	
+	<update id="mapNoticeModify" parameterType="Notice">
+		UPDATE notice 
+		SET notitle=#{notitle}, nocon=#{nocon}, nodate=#{nodate} 
+		WHERE  nonum=#{nonum};
+	</update>
 </mapper>
