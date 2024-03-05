@@ -14,4 +14,6 @@ public interface NoticeDao {
 
 	int modifyNotice(Notice notice);
 
+	int deleteNotice(int nonum);
+
 }

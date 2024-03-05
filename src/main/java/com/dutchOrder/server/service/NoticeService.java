@@ -16,4 +16,6 @@ public interface NoticeService {
 
 	int modifyNotice(Notice notice);
 
+	int deleteNotice(int nonum);
+
 }

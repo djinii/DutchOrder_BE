@@ -69,4 +69,17 @@ public class NoticeDaoImpl implements NoticeDao {
 		return noticeModify;
 	}
 
+	@Override
+	public int deleteNotice(int nonum) {
+		System.out.println("NoticeDaoImpl deleteNotice Start...");
+		int noticeDelete = 0;
+		try {
+			noticeDelete = session.delete("mapNoticeDelete", nonum);
+		} catch (Exception e) {
+			System.out.println("NoticeDaoImpl deleteNotice Exception -> " + e.getMessage());
+		}
+		
+		return noticeDelete;
+	}
+
 }

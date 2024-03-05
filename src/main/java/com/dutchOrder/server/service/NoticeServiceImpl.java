@@ -48,10 +48,19 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int modifyNotice(Notice notice) {
 		int noticeModify = 0;
-		System.out.println("NoticeServiceImpl noticeModify Start...");
+		System.out.println("NoticeServiceImpl modifyNotice Start...");
 		noticeModify= nd.modifyNotice(notice);
 		
 		return noticeModify;
+	}
+
+	@Override
+	public int deleteNotice(int nonum) {
+		int noticeDelete = 0;
+		System.out.println("NoticeServiceImpl deleteNotice Start...");
+		noticeDelete = nd.deleteNotice(nonum);
+		
+		return noticeDelete;
 	}
 
 }

@@ -38,6 +38,9 @@ public class NoticeController {
 		System.out.println("NoticeController Start clNoticeDetails...");
 		System.out.println("NoticeController clNoticeDetails notice " + notice);
 		Notice noticeDetail = ns.noticeDetail(notice.getNonum());
+		System.out.println("NoticeController clNoticeDetails noticeDetail -> " + noticeDetail);
+		
+		
 		
 		return noticeDetail;
 	}
@@ -83,9 +86,20 @@ public class NoticeController {
 			System.out.println("NoticeController Start adNoticeModify");
 			System.out.println("NoticeController adNoticeModify notice " + notice);
 			int modifyNotice = ns.modifyNotice(notice);
-			System.out.println("NoticeController ns.noticeModify modifyNotice -> " + modifyNotice);
+			System.out.println("NoticeController ns.modifyNotice modifyNotice -> " + modifyNotice);
 			
 			return modifyNotice;
+		}
+		
+		/** 공지사항 삭제 -관리자- */
+		@ResponseBody
+		@PostMapping("/JY_A_NoticeDelete")
+		public int adNoticeDelete(@RequestBody Notice notice) {
+			System.out.println("NoticeController Start adNoticeDelete");
+			System.out.println("NoticeController adNoticeDelete notice " + notice);
+			int deleteNotice = ns.deleteNotice(notice.getNonum());
+			
+			return deleteNotice;
 		}
 
 }
