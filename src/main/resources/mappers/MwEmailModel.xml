@@ -5,4 +5,10 @@
 		insert into email_code
 		values((select coalesce(max(a.ecnum), 1000)+1 from email_code a), #{email}, #{eccode}, 1);
 	</insert>
+	
+	<update id="confirmEc" parameterType="MwEmailModel">
+		update email_code
+		set verified = 2
+		where ecmail = #{email} and eccode = #{eccode} and verified = 1;
+	</update>
 </mapper>

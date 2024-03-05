@@ -24,4 +24,18 @@ public class MwEmailDaoImpl implements MwEmailDao {
 		session.insert("ecSave", emailModel);
 	}
 
+	@Override
+	public int confirmEc(MwEmailModel mwEmailModel) {
+		System.out.println("MwEmailDaoImpl confirmEc Start...");
+		int result = 0;
+		String email = mwEmailModel.getEmail();
+		String eccode = mwEmailModel.getEccode();
+		System.out.println("MwEmailDaoImpl confirmEc getEmail->"+email);
+		System.out.println("MwEmailDaoImpl confirmEc getEccode->"+eccode);
+		result = session.update("confirmEc", mwEmailModel);
+		System.out.println("MwEmailDaoImpl confirmEc result-->"+result);
+		
+		return result;
+	}
+
 }

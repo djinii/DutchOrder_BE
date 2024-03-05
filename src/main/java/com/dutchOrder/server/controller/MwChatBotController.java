@@ -88,10 +88,15 @@ public class MwChatBotController {
         // Jackson ObjectMapper를 사용하여 JSON 문자열을 처리
         ObjectMapper objectMapper = new ObjectMapper();
         try {
+        	// HTTP응답을 JSON 트리로 읽음(JSON 데이터를 자바 객체로 변환할 수 있음)
             JsonNode jsonResponse = objectMapper.readTree(response.getBody());
+            // choices 라는 키에 해당하는 배열을 가져옴
             JsonNode choices = jsonResponse.get("choices");
+            // choices 배열의 첫번째 요소를 가져옴
             JsonNode firstChoice = choices.get(0);
+            // 첫번째 요소에서 message 키에 해당하는 값을 가져옴
             JsonNode message = firstChoice.get("message");
+            // message 객체에서 content키의 값을 가져와 asText()메소드로 문자열로 변환
             String content = message.get("content").asText();
             return content;
         } catch (Exception e) {
