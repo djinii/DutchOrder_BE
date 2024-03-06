@@ -28,6 +28,10 @@ spring:
           auth: true
           starttls.enable:  true
              
+# 수정사항 생길시 자동 재빌드를 위한 코드
+#  devtools:
+#    livereload.enabled: true
+#    restart.enabled=true
 # Mybatis
   config-location: classpath:configuration.xml
 #  mapper-locations: classpath:mappers/*.xml      
@@ -35,4 +39,4 @@ spring:
 logging.level:
   org.hibernate.SQL: debug   # logger를 통해 하이버네이트 실행 SQL        
       
-      
+
