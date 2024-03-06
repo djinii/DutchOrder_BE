@@ -40,8 +40,6 @@ public class NoticeController {
 		Notice noticeDetail = ns.noticeDetail(notice.getNonum());
 		System.out.println("NoticeController clNoticeDetails noticeDetail -> " + noticeDetail);
 		
-		
-		
 		return noticeDetail;
 	}
 	

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dutchOrder.server.ReivewMapper">
+	<select id="mapReviewList" parameterType="Review" resultType="Review">
+		SELECT rnum,  review.mnum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
+			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
+    	FROM review
+    	INNER JOIN member ON review.mnum = member.mnum
+    	ORDER BY rnum;
+	</select>
+	
+	<select id="mapReviewComment" parameterType="int" resultType="Review">
+		SELECT rnum,  review.mnum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
+			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
+    	FROM review
+    	INNER JOIN member ON review.mnum = member.mnum 
+		WHERE rnum = #{rnum};
+	</select>
+	
+	<update id="mapCommentWrite" parameterType="Notice">
+		UPDATE review 
+		SET rstatus_mikey=#{rstatus_mikey}, rcomment=#{rcomment}
+		WHERE  rnum=#{rnum};
+	</update>
+</mapper>
