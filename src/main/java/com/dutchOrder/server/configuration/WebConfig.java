@@ -17,3 +17,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true); // 인증 정보 허용
     }
 }
+
+
