@@ -8,12 +8,8 @@ import com.dutchOrder.server.model.MsShop;
 
 public interface MsMenuDao {
 
-
-	List<MsMenu> MsSelectMenu(MsMenu msMenu);
-
-
 	List<MsShop> ShopCategoryLi();
 
-
+	List<MsMenu> MenuList();
 
 }

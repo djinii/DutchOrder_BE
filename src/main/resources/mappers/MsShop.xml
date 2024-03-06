@@ -13,7 +13,7 @@
 -->
 
 	<select id="msShopList" resultType="MsShop">
-		select sname, start_time, end_time
+		select sname, start_time, end_time,bnum
 		from shop;
 	</select>
 </mapper>
