@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.MsOrderDao">
+
+	<select id="msOrderList"
+		resultType="com.dutchOrder.server.model.MsOrderSpec">
+		
+		<!-- 주문 테이블에서 최신 주문 정보와 해당 주문에 대한 상세 정보를 가져오고, 최신 주문일자를 기준으로 내림차순으로 정렬하여 반환 -->
+		SELECT
+		od.odate, od.bnum, od.ostatus_mikey, os.osnum
+		FROM
+		ordering od
+		JOIN
+		(
+		SELECT
+		MAX(odate) AS max_date, onum
+		FROM
+		ordering
+		GROUP BY onum
+		) AS latest_orders ON od.onum = latest_orders.onum
+		JOIN
+		order_spec os ON os.osnum = latest_orders.onum
+		ORDER BY od.odate DESC;
+
+
+
+	</select>
+	<!-- <select id="msOrderStatusList" resultType="com.dutchOrder.server.model.MsOrderSpec"> 
+		SELECT * FROM ordering WHERE ostatus_mikey; </select> -->
+
+</mapper>
