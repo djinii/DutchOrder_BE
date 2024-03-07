@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.C_MainDao">
+	<select id="mapShopList" parameterType="string" resultType="com.dutchOrder.server.model.Shop">
+		select sname, start_time, end_time, bnum
+		from shop
+		where fcategory_mikey = #{fcategory_mikey};
+	</select>
+</mapper>

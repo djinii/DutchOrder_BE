@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class CartController {
 
-	
-		
-		
 		@ResponseBody
 		@PostMapping("/connectTest")
 		public String test() {

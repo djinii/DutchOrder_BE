@@ -43,12 +43,4 @@ public class MsMenuController {
 		System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
 		return msMenulist;
 	}
-
-
-	@ResponseBody
-	@PostMapping("/connectTest")
-	public String test1() {
-		System.out.println("CartController");
-		return "connected";
-	}
 }
