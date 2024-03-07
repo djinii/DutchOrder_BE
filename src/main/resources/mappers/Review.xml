@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dutchOrder.server.ReivewMapper">
 	<select id="mapReviewList" parameterType="Review" resultType="Review">
-		SELECT rnum,  review.mnum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
+		SELECT rnum,  review.mnum, onum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
 			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
     	FROM review
     	INNER JOIN member ON review.mnum = member.mnum
@@ -11,16 +11,45 @@
 	</select>
 	
 	<select id="mapReviewComment" parameterType="int" resultType="Review">
-		SELECT rnum,  review.mnum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
+		SELECT rnum,  review.mnum, onum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
 			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
     	FROM review
     	INNER JOIN member ON review.mnum = member.mnum 
 		WHERE rnum = #{rnum};
 	</select>
 	
-	<update id="mapCommentWrite" parameterType="Notice">
+	<update id="mapCommentWrite" parameterType="Review">
 		UPDATE review 
 		SET rstatus_mikey=#{rstatus_mikey}, rcomment=#{rcomment}
 		WHERE  rnum=#{rnum};
 	</update>
+	
+	<select id="mapClReviewList" parameterType="OrderInfo" resultType="OrderInfo">
+		SELECT o.mnum, o.bnum, o.onum, o.oaddr, o.otel, o.omsg, o.odate, o.ostatus_makey, o.ostatus_mikey,   
+        	DATE_FORMAT(o.odate, '%Y-%m-%d  %H:%i')  strOdate,
+       		r.rnum, r.rstatus_makey, r.rstatus_mikey,
+        	s.simg1, s.sname
+	    FROM ordering o
+	    LEFT JOIN review r ON o.onum = r.onum
+	    LEFT JOIN shop s ON o.bnum = s.bnum
+	    ORDER BY o.onum;
+	</select>
+	
+	<select id="mapMyReview" parameterType="int" resultType="Review">
+		SELECT rnum,  review.mnum, onum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
+			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
+    	FROM review
+    	INNER JOIN member ON review.mnum = member.mnum 
+		WHERE rnum = #{rnum};
+	</select>
+	
+	<insert id="mapReviewWrite" parameterType="Review">
+		INSERT INTO review VALUES ((SELECT coalesce(max(a.rnum), 0)+1 FROM review a), #{mnum}, #{bnum}, #{onum}, #{rcontent}, #{rstar}, #{rdate}, #{rimg}, #{rstatus_makey}, #{rstatus_mikey}, #{rcomment});
+	</insert>
+	
+	<select id="mapWriteInfo" parameterType="int" resultType="Review">
+		SELECT mnum, bnum, onum
+	    FROM ordering
+	    WHERE onum = #{onum};
+	</select>
 </mapper>

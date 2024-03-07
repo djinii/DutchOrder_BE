@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.dutchOrder.server.model.OrderInfo;
 import com.dutchOrder.server.model.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -54,6 +55,61 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		
 		return commentWrite;
+	}
+
+	@Override
+	public List<OrderInfo> clListReview(OrderInfo orderInfo) {
+		List<OrderInfo> clReviewList = null;
+		System.out.println("ReviewDaoImpl clListReview Start...");
+		try {
+			clReviewList = session.selectList("mapClReviewList", orderInfo);
+			System.out.println("ReviewDaoImpl clListReview clReviewList.size() -> " + clReviewList.size());
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl clReviewList Exception -> " + e.getMessage());
+		}
+		
+		return clReviewList;
+	}
+
+	@Override
+	public Review reviewMy(int rnum) {
+		System.out.println("ReviewDaoImpl reviewMy Start...");
+		Review review = new Review();
+		try {
+			review = session.selectOne("mapMyReview", rnum);
+			System.out.println("ReviewDaoImpl reviewMy getRnum -> " + review.getRnum());
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl reviewMy Exception -> " + e.getMessage());
+		}
+		
+		return review;
+	}
+
+	@Override
+	public int writeReview(Review review) {
+		System.out.println("ReviewDaoImpl writeReview Start...");
+		int reviewWrite = 0;
+		try {
+			reviewWrite = session.insert("mapReviewWrite", review);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl writeReview Exception -> " + e.getMessage());
+		}
+		
+		return reviewWrite;
+	}
+
+	@Override
+	public Review writeInfo(int onum) {
+		System.out.println("ReviewDaoImpl writeInfo Start...");
+		Review review = new Review();
+		try {
+			review = session.selectOne("mapWriteInfo", onum);
+			System.out.println("ReviewDaoImpl writeInfo getOnum -> " + review.getOnum());
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl writeInfo Exception -> " + e.getMessage());
+		}
+		
+		return review;
 	}
 
 }
