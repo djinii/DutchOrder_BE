@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.dutchOrder.server.dao.C_MainDaoImpl;
+import com.dutchOrder.server.model.Menu;
 import com.dutchOrder.server.model.Shop;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,16 @@ public class C_MainServiceImpl implements C_MainService {
 		 System.out.println("Service listShop.size() -> " + shopList.size());
 		 
 		return shopList;
+	}
+
+	@Override
+	public Shop shopInfo(String sname) {
+		System.out.println("[serveice] start ~~~ ");
+		Shop shopInfo = md.shopInfo(sname);
+		shopInfo.setCntLi(1); // 나중에 dao의 노티스 컨트롤러로 가져와야함
+//		List<Menu> listMenus = md.listMenu(shopInfo.getBnum());
+//		shopInfo.setMenuList(md.listMenu(shopInfo.getBnum()));
+		return shopInfo;
 	}
 
 }
