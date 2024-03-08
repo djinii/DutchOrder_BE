@@ -17,10 +17,10 @@ public class ReviewServiceImpl implements ReviewService {
 	private final ReviewDao rd;
 
 	@Override
-	public List<Review> listReview(Review review) {
+	public List<Review> listReview(int mnum) {
 		List<Review> reviewList = null;
 		System.out.println("ReviewServiceImpl listReview Start...");
-		reviewList = rd.listReview(review);
+		reviewList = rd.listReview(mnum);
 		System.out.println("ReviewServiceImpl listReview reviewList.size() -> " + reviewList.size());
 		
 		return reviewList;
@@ -47,10 +47,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<OrderInfo> clListReview(OrderInfo orderInfo) {
+	public List<OrderInfo> clListReview(int mnum) {
 		List<OrderInfo> clReviewList = null;
 		System.out.println("ReviewServiceImpl clListReview Start...");
-		clReviewList = rd.clListReview(orderInfo);
+		clReviewList = rd.clListReview(mnum);
 		System.out.println("ReviewServiceImpl clListReview clReviewList.size() -> " + clReviewList.size());
 		
 		return clReviewList;

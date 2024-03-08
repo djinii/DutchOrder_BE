@@ -7,13 +7,13 @@ import com.dutchOrder.server.model.Review;
 
 public interface ReviewService {
 
-	List<Review> listReview(Review review);
+	List<Review> listReview(int mnum);
 
 	Review commentReview(int rnum);
 
 	int writeComment(Review review);
 
-	List<OrderInfo> clListReview(OrderInfo orderInfo);
+	List<OrderInfo> clListReview(int mnum);
 
 	Review reviewMy(int rnum);
 

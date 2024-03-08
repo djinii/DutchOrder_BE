@@ -26,7 +26,7 @@ public class ReviewController {
 	public List<Review> buReviewList(@RequestBody Review review) {
 		System.out.println("ReviewController Start buReviewList ... ");	
 		System.out.println("ReviewController buReviewList review "+review);
-		List<Review> listReview = rs.listReview(review);
+		List<Review> listReview = rs.listReview(review.getMnum());
 		System.out.println("ReviewController List listReview.size() -> " + listReview.size());
 		System.out.println("ReviewController buReviewList last check review "+review);
 		
@@ -63,7 +63,7 @@ public class ReviewController {
 	public List<OrderInfo> clReviewList(@RequestBody OrderInfo orderInfo) {
 		System.out.println("ReviewController Start clReviewList ... ");	
 		System.out.println("ReviewController clReviewList orderInfo "+orderInfo);
-		List<OrderInfo> clListReview = rs.clListReview(orderInfo);
+		List<OrderInfo> clListReview = rs.clListReview(orderInfo.getMnum());
 		System.out.println("ReviewController List clListReview.size() -> " + clListReview.size());
 		System.out.println("ReviewController clReviewList last check orderInfo "+orderInfo);
 		

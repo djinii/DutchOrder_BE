@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dutchOrder.server.ReivewMapper">
-	<select id="mapReviewList" parameterType="Review" resultType="Review">
+	<select id="mapReviewList" parameterType="int" resultType="Review">
 		SELECT rnum,  review.mnum, onum, bnum, rcontent, rstar, rdate, rimg, rstatus_makey, rstatus_mikey, rcomment,   
 			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
     	FROM review
@@ -24,7 +24,7 @@
 		WHERE  rnum=#{rnum};
 	</update>
 	
-	<select id="mapClReviewList" parameterType="OrderInfo" resultType="OrderInfo">
+	<select id="mapClReviewList" parameterType="int" resultType="OrderInfo">
 		SELECT o.mnum, o.bnum, o.onum, o.oaddr, o.otel, o.omsg, o.odate, o.ostatus_makey, o.ostatus_mikey,   
         	DATE_FORMAT(o.odate, '%Y-%m-%d  %H:%i')  strOdate,
        		r.rnum, r.rstatus_makey, r.rstatus_mikey,
