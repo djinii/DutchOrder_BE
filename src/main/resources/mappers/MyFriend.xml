@@ -2,4 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dutchOrder.server.MyFriendMapper">
+	<select id="mapMyData" parameterType="int" resultType="MyFriend">
+		SELECT *
+	    FROM member
+	    WHERE mnum = #{mnum};
+	</select>
+	
+	<select id="mapMyFriendList" parameterType="int" resultType="MyFriend">
+		SELECT mf.mnum, mf.mfnum, mf.mfstatus_makey, mf.mfstatus_mikey, 
+		       m.mnic, m.memail
+		FROM member_friends mf
+		JOIN member m ON mf.mnum = m.mnum
+		WHERE mf.mfstatus_mikey = 702 AND mf.mfnum = #{mfnum};
+	</select>
+	
+	<select id="mapMyFriendWait" parameterType="int" resultType="MyFriend">
+		SELECT mf.mnum, mf.mfnum, mf.mfstatus_makey, mf.mfstatus_mikey, 
+		       m.mnic, m.memail
+		FROM member_friends mf
+		JOIN member m ON mf.mnum = m.mnum
+		WHERE mf.mfstatus_mikey = 701 AND mf.mfnum = #{mfnum};
+	</select>
+	
 </mapper>
