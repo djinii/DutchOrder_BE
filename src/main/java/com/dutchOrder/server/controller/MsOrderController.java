@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dutchOrder.server.model.MsOrderSpec;
+import com.dutchOrder.server.model.MsShop;
 import com.dutchOrder.server.service.MsOrderService;
 
-import ch.qos.logback.core.model.Model;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -19,7 +20,7 @@ public class MsOrderController {
 
 	private final MsOrderService os;
 
-	// 주문현황
+	/** 주문현황 */
 	@GetMapping("/B_Ordering")
 	@ResponseBody
 	public List<MsOrderSpec> orderStatus() {
@@ -34,21 +35,31 @@ public class MsOrderController {
 
 	}
 
-	  // 주문 상태 
-		@PostMapping(value = "StatusUpdate")
-	  public String orderStatusUpdate(MsOrderSpec orderSpec, Model model) {
-			System.out.println("orderStatusUpdate Start...");
+	 /** 주문 상태 업데이트*/
+		@ResponseBody
+		@PostMapping("/StatusUpdate")
+	  public int orderStatusUpdate(@RequestBody MsOrderSpec msOrderSpec) {
+			System.out.println("MsOrderController Start updateOrderStatus");
+			System.out.println("MsOrderController updateOrderStatus msOrderSpec " + msOrderSpec);
+			int ostatusUpdate = os.updateOrderStatus(msOrderSpec);
+			System.out.println("MsOrderController os.msOrderSpec msOrderSpec -> " + msOrderSpec);
 			
-//			MsOrderSpec orderSpec = os.detailMsOrder(orderSpec.getOnum());
-			System.out.println("emp.getOnum()->" + orderSpec.getOnum());
-			System.out.println("emp.getHiredate()->" + orderSpec.getOstatus_mikey());
-			
-//			System.out.println("hiredate->" + hiredate);
-//
-//			model.addAttribute("emp", emp);
+			return ostatusUpdate;
 
-			return "StatusUpdate";
 		}
 		
+		 /** 영업 상태 업데이트*/
+		@ResponseBody
+		@PostMapping("/ShopStatusUpdate")
+	  public int ShopStatusUpdate(@RequestBody MsShop msShop) {
+			System.out.println("MsOrderController Start updateShopStatus");
+			System.out.println("MsOrderController updateShopStatus msShop " + msShop);
+			int ostatusUpdate = os.updateShopStatus(msShop);
+			System.out.println("MsOrderController os.msShop msShop -> " + msShop);
+			
+			return ostatusUpdate;
+
+		}
+
 
 }

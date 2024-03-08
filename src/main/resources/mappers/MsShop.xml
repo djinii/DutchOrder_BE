@@ -2,18 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dutchOrder.server.dao.MsShopMapper">
 
-
-<!-- 	<select id="mapShopCategoryLi" parameterType="int" resultType="MsShop">
-		
-		SELECT sname, start_time, end_time
-		FROM shop
-		WHERE fcategory_mikey = #{fcategory_mikey};
-
-	</select>
--->
-
-	<select id="msShopList" resultType="MsShop">
+	<select id="msShopList"
+		resultType="com.dutchOrder.server.model.MsShop">
 		select sname, start_time, end_time, bnum, fcategory_mikey
 		from shop;
 	</select>
+	<update id="updateShopStatus"
+		parameterType="com.dutchOrder.server.model.MsShop">
+		UPDATE shop
+		SET sstatus_mikey = #{sstatus_mikey}
+		WHERE bnum = #{bnum};
+	</update>
 </mapper>
