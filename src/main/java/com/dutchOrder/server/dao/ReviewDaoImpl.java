@@ -88,6 +88,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int writeReview(Review review) {
 		System.out.println("ReviewDaoImpl writeReview Start...");
+		System.out.println("ReviewDaoImpl writeReview review->"+review);
 		int reviewWrite = 0;
 		try {
 			reviewWrite = session.insert("mapReviewWrite", review);

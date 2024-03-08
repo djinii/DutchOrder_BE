@@ -44,7 +44,8 @@
 	</select>
 	
 	<insert id="mapReviewWrite" parameterType="Review">
-		INSERT INTO review VALUES ((SELECT coalesce(max(a.rnum), 0)+1 FROM review a), #{mnum}, #{bnum}, #{onum}, #{rcontent}, #{rstar}, #{rdate}, #{rimg}, #{rstatus_makey}, #{rstatus_mikey}, #{rcomment});
+		INSERT INTO review 
+		VALUES ((SELECT coalesce(max(a.rnum), 0)+1 FROM review a), #{mnum}, #{bnum}, #{onum}, #{rcontent}, #{rstar}, #{rdate}, #{rimg}, #{rstatus_makey}, #{rstatus_mikey}, #{rcomment});
 	</insert>
 	
 	<select id="mapWriteInfo" parameterType="int" resultType="Review">

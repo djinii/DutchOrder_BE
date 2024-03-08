@@ -6,5 +6,6 @@
    		<typeAlias alias="Notice" type="com.dutchOrder.server.model.Notice"/>
    		<typeAlias alias="Review" type="com.dutchOrder.server.model.Review"/>
    		<typeAlias alias="OrderInfo" type="com.dutchOrder.server.model.OrderInfo"/>
+   		<typeAlias alias="MyFriend" type="com.dutchOrder.server.model.MyFriend"/>
    </typeAliases>
 </configuration>
