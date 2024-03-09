@@ -10,4 +10,6 @@ public class MyFriend {
 	private int mfstatus_mikey;		// 소분류 친구상태: 701(친구요청), 702(수락완료), 703(수락거절)
 	private String mnic;					// member table: 닉네임
 	private String memail;				// member table: 회원 이메일
+	private int mstatus_makey;		// member table: 200(회원상태 분류)
+	private int mstatus_mikey; 		// member table: 201(유효회원), 202(탈퇴회원)
 }

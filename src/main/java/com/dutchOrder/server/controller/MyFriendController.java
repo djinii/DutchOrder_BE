@@ -51,4 +51,15 @@ public class MyFriendController {
 		return waitMyFriend;
 	}
 	
+	@ResponseBody
+	@PostMapping("/JH_C_MyFriendSearch")
+	public List<MyFriend> clMyFriendSearch(@RequestBody MyFriend myFriend) {
+		System.out.println("MyFriendController Start clMyFriendSearch ... ");	
+		System.out.println("MyFriendController clMyFriendSearch myFriend "+myFriend);
+		List<MyFriend> searchMyFriend = mfs.searchMyFriend(myFriend.getMnic());
+		System.out.println("MyFriendController List searchMyFriend.size() ->" + searchMyFriend.size());
+		
+		return searchMyFriend;
+	}
+	
 }

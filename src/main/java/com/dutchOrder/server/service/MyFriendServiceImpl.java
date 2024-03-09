@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.dutchOrder.server.dao.MyFriendDao;
 import com.dutchOrder.server.model.MyFriend;
-import com.dutchOrder.server.model.Review;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,6 +44,16 @@ public class MyFriendServiceImpl implements MyFriendService {
 		System.out.println("MyFriendServiceImpl myFriendWait myFriendWait.size() -> " + myFriendWait.size());
 		
 		return myFriendWait;
+	}
+
+	@Override
+	public List<MyFriend> searchMyFriend(String mnic) {
+		List<MyFriend> myFriendSearch = null;
+		System.out.println("MyFriendServiceImpl searchMyFriend Start...");
+		myFriendSearch = mfd.searchMyFriend(mnic);
+		System.out.println("MyFriendServiceImpl searchMyFriend myFriendSearch.size() -> " + myFriendSearch.size());
+		
+		return myFriendSearch;
 	}
 	
 }

@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dutchOrder.server.model.MyFriend;
-import com.dutchOrder.server.model.Review;
-
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -56,6 +54,20 @@ public class MyFriendDaoImpl implements MyFriendDao {
 		}
 		
 		return myFriendWait;
+	}
+
+	@Override
+	public List<MyFriend> searchMyFriend(String mnic) {
+		List<MyFriend> myFriendSearch = null;
+		System.out.println("MyFriendDaoImpl searchMyFriend Start...");
+		try {
+			myFriendSearch = session.selectList("mapMyFriendSearch", mnic);
+			System.out.println("MyFriendDaoImpl searchMyFriend myFriendSearch.size() -> " + myFriendSearch.size());
+		} catch (Exception e) {
+			System.out.println("MyFriendDaoImpl searchMyFriend Exception -> " + e.getMessage());
+		}
+		
+		return myFriendSearch;
 	}
 	
 }

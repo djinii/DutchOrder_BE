@@ -12,4 +12,6 @@ public interface MyFriendDao {
 
 	List<MyFriend> waitMyFriend(int mnum);
 
+	List<MyFriend> searchMyFriend(String mnic);
+
 }

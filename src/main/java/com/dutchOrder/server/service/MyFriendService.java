@@ -12,4 +12,6 @@ public interface MyFriendService {
 
 	List<MyFriend> waitMyFriend(int mnum);
 
+	List<MyFriend> searchMyFriend(String mnic);
+
 }

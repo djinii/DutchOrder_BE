@@ -24,4 +24,9 @@
 		WHERE mf.mfstatus_mikey = 701 AND mf.mfnum = #{mfnum};
 	</select>
 	
+	<select id="mapMyFriendSearch" parameterType="String" resultType="MyFriend">
+		SELECT mnum, memail, mnic, mstatus_makey, mstatus_mikey     
+		FROM member 
+		WHERE mnic = #{mnic};
+	</select>
 </mapper>
