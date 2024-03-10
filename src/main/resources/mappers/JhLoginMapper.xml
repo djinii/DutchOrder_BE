@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dutchOrder.server.dao.JhLoginDao">
+
+    <select id="login" parameterType="map" resultType="boolean">
+        SELECT * FROM member WHERE (memail, mpw) = (#{memail}, #{mpw})
+    </select>
+    
+    <select id="getUserLevel" parameterType="map" resultType="int">
+    	SELECT mgroup_mikey FROM member WHERE (memail = #{memail})
+    </select>
+
+<!--     <insert id="save">
+	    INSERT INTO member (mname, mnic, memail, mpw, mtel, mgroup_mikey, mstatus_mikey)
+	    VALUES (#{mname}, #{mnic}, #{memail}, #{mpw}, #{mtel}, #{mgroup_mikey}, #{mstatus_mikey})
+	</insert> -->
+
+
+</mapper>

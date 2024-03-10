@@ -1,13 +1,11 @@
-package com.dutchOrder.server.service;
-
-import java.util.Map;
+package com.dutchOrder.server.dao;
 
 import com.dutchOrder.server.model.JhMember;
 
-public interface JhLoginService {
+public interface JhLoginDao {
 	
 	boolean login(String memail, String mpw);
 
 	int getUserLevel(String memail);
-	
+
 }

@@ -10,11 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 public class JhMember {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private 	int 		mnum;
 	private 	String 		memail;
 	private 	String 		mpw;
@@ -26,10 +24,5 @@ public class JhMember {
 	private		int			mstatus_makey;	//
 	private		int			mstatus_mikey;	// 201 유효회원 202 탈퇴회원 
 	private		Date		hiredate;
-	
-	public String getName() {
-		return this.mname;
-	}
-	
 
 }
