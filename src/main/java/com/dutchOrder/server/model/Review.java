@@ -2,6 +2,8 @@ package com.dutchOrder.server.model;
 
 import java.sql.Timestamp;
 
+import com.mysql.cj.jdbc.Blob;
+
 import lombok.Data;
 
 @Data

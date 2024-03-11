@@ -20,7 +20,7 @@ public class MyFriendController {
 	
 	/** 내 닉네임, 이메일 정보 가져오기 */
 	@ResponseBody
-	@PostMapping("/JH_C_MyFriend")
+	@PostMapping("/JY_C_MyFriend")
 	public MyFriend clMyData(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clMyData ... ");	
 		System.out.println("MyFriendController clMyData myFriend "+myFriend);
@@ -32,7 +32,7 @@ public class MyFriendController {
 	
 	/** 내 친구목록 가져오기 */
 	@ResponseBody
-	@PostMapping("/JH_C_MyFriendList")
+	@PostMapping("/JY_C_MyFriendList")
 	public List<MyFriend> clMyFriendList(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clMyFriendList ... ");	
 		System.out.println("MyFriendController clMyFriendList myFriend "+myFriend);
@@ -44,7 +44,7 @@ public class MyFriendController {
 	
 	/** 요청대기중인 친구목록 가져오기 */
 	@ResponseBody
-	@PostMapping("/JH_C_MyFriendWait")
+	@PostMapping("/JY_C_MyFriendWait")
 	public List<MyFriend> clMyFriendWait(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clMyFriendWait ... ");	
 		System.out.println("MyFriendController clMyFriendWait myFriend "+myFriend);
@@ -56,7 +56,7 @@ public class MyFriendController {
 	
 	/** 받은요청 목록가져오기 */
 	@ResponseBody
-	@PostMapping("/JH_C_MyFriendCall")
+	@PostMapping("/JY_C_MyFriendCall")
 	public List<MyFriend> clMyFriendCall(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clMyFriendCall ... ");	
 		System.out.println("MyFriendController clMyFriendCall myFriend "+myFriend);
@@ -68,7 +68,7 @@ public class MyFriendController {
 	
 	/** 친구 닉네임으로 검색하기 */
 	@ResponseBody
-	@PostMapping("/JH_C_MyFriendSearch")
+	@PostMapping("/JY_C_MyFriendSearch")
 	public MyFriend clMyFriendSearch(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clMyFriendSearch ... ");	
 		System.out.println("MyFriendController clMyFriendSearch myFriend "+myFriend);
@@ -80,7 +80,7 @@ public class MyFriendController {
 	
 	/** 친구 추가하기 버튼클릭 메소드 */
 	@ResponseBody
-	@PostMapping("/JH_C_PlusFriend")
+	@PostMapping("/JY_C_PlusFriend")
 	public int clPlusFriend(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clPlusFriend...");
 		System.out.println("MyFriendController clPlusFriend myFriend "+myFriend);
@@ -92,7 +92,7 @@ public class MyFriendController {
 	
 	/** 친구 수락, 거절버튼 메소드 */
 	@ResponseBody
-	@PostMapping("/JH_C_UpdateFriend")
+	@PostMapping("/JY_C_UpdateFriend")
 	public int clUpdateFriend(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clUpdateFriend...");
 		System.out.println("MyFriendController clUpdateFriend myFriend "+myFriend);
