@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.dutchOrder.server.model.Menu;
 import com.dutchOrder.server.model.Shop;
 import com.dutchOrder.server.service.C_MainService;
 
@@ -33,8 +34,18 @@ public class C_ShopListController {
 		System.out.println("[controller] getShopInfo ~ " + sname);
 		
 		Shop shopInfo = ms.shopInfo(sname);
-	
+		
+		System.out.println(shopInfo + "[controller]  shop 나 여기???");
 		return shopInfo;
+	}
+	
+	@GetMapping("/item/itemView")
+	public Menu getMenuInfo(@RequestParam("f") String fname) {
+		System.out.println("[controller] getMenuInfo ~ " + fname);
+
+		Menu menuInfo = ms.menuInfo(fname);
+		System.out.println(menuInfo+"       controller");
+		return menuInfo;
 	}
 	
 	

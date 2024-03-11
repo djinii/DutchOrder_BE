@@ -1,5 +1,8 @@
 package com.dutchOrder.server.model;
 
+import lombok.Data;
+
+@Data
 public class Menu {
 	private int bnum;	// 사업자 일련번호
 	private int fnum;	// 메뉴 일련번호

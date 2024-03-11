@@ -31,10 +31,21 @@ public class C_MainServiceImpl implements C_MainService {
 	public Shop shopInfo(String sname) {
 		System.out.println("[serveice] start ~~~ ");
 		Shop shopInfo = md.shopInfo(sname);
-		shopInfo.setCntLi(1); // 나중에 dao의 노티스 컨트롤러로 가져와야함
-//		List<Menu> listMenus = md.listMenu(shopInfo.getBnum());
-//		shopInfo.setMenuList(md.listMenu(shopInfo.getBnum()));
+		shopInfo.setCntLi(1); // 나중에 dao의 노티스 컨트롤러로 가져와야함 (리뷰수)
+		shopInfo.setMenuList(md.listMenu(shopInfo.getBnum()));  // 가게 메뉴를 객체에 추가
+		
 		return shopInfo;
+	}
+
+	@Override
+	public Menu menuInfo(String fnum) {
+		
+		System.out.println("[Service] menuInfo ~~");
+		Menu menuInfo = md.menuInfo(fnum);
+		
+		System.out.println("[Service] menuInfo ~~"+ menuInfo);
+		
+		return menuInfo;
 	}
 
 }

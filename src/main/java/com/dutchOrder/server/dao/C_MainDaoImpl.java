@@ -2,6 +2,7 @@ package com.dutchOrder.server.dao;
 
 import java.util.List;
 
+import org.antlr.v4.runtime.misc.TestRig;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -49,10 +50,22 @@ public class C_MainDaoImpl implements C_MainDao {
 			listMenu = session.selectList("mapMenuList",bnum);			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
-			// TODO: handle exception
 		}
 		
 		return listMenu;
 	}
-
+	@Override
+	public Menu menuInfo(String fnum) {
+		Menu menuInfo = null;
+		System.out.println("dao_menuInfo");
+		try {
+			menuInfo = session.selectOne("mapMenuInfo", fnum);
+			System.out.println("menuinfo --> " + menuInfo);
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return menuInfo;
+		
+	}
 }
