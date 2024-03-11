@@ -47,13 +47,41 @@ public class MyFriendServiceImpl implements MyFriendService {
 	}
 
 	@Override
-	public List<MyFriend> searchMyFriend(String mnic) {
-		List<MyFriend> myFriendSearch = null;
+	public MyFriend searchMyFriend(String mnic) {
+		MyFriend myFriendSearch = null;
 		System.out.println("MyFriendServiceImpl searchMyFriend Start...");
 		myFriendSearch = mfd.searchMyFriend(mnic);
-		System.out.println("MyFriendServiceImpl searchMyFriend myFriendSearch.size() -> " + myFriendSearch.size());
+		System.out.println("MyFriendServiceImpl searchMyFriend myFriendSearch -> " + myFriendSearch);
 		
 		return myFriendSearch;
+	}
+
+	@Override
+	public int friendPlus(MyFriend myFriend) {
+		int plusFriend = 0;
+		System.out.println("MyFriendServiceImpl friendPlus Start...");
+		plusFriend = mfd.friendPlus(myFriend);
+		
+		return plusFriend;
+	}
+
+	@Override
+	public List<MyFriend> callMyFriend(int mnum) {
+		List<MyFriend> myFriendCall = null;
+		System.out.println("MyFriendServiceImpl callMyFriend Start...");
+		myFriendCall = mfd.myFriendCall(mnum);
+		System.out.println("MyFriendServiceImpl callMyFriend myFriendCall.size() -> " + myFriendCall.size());
+		
+		return myFriendCall;
+	}
+
+	@Override
+	public int updateFriend(MyFriend myFriend) {
+		int friendUpdate = 0;
+		System.out.println("MyFriendServiceImpl updateFriend Start...");
+		friendUpdate = mfd.updateFriend(myFriend);
+		
+		return friendUpdate;
 	}
 	
 }

@@ -18,6 +18,7 @@ public class MyFriendController {
 
 	private final MyFriendService mfs;
 	
+	/** 내 닉네임, 이메일 정보 가져오기 */
 	@ResponseBody
 	@PostMapping("/JH_C_MyFriend")
 	public MyFriend clMyData(@RequestBody MyFriend myFriend) {
@@ -29,6 +30,7 @@ public class MyFriendController {
 		return dataMy;
 	}
 	
+	/** 내 친구목록 가져오기 */
 	@ResponseBody
 	@PostMapping("/JH_C_MyFriendList")
 	public List<MyFriend> clMyFriendList(@RequestBody MyFriend myFriend) {
@@ -40,6 +42,7 @@ public class MyFriendController {
 		return listMyFriend;
 	}
 	
+	/** 요청대기중인 친구목록 가져오기 */
 	@ResponseBody
 	@PostMapping("/JH_C_MyFriendWait")
 	public List<MyFriend> clMyFriendWait(@RequestBody MyFriend myFriend) {
@@ -51,15 +54,52 @@ public class MyFriendController {
 		return waitMyFriend;
 	}
 	
+	/** 받은요청 목록가져오기 */
+	@ResponseBody
+	@PostMapping("/JH_C_MyFriendCall")
+	public List<MyFriend> clMyFriendCall(@RequestBody MyFriend myFriend) {
+		System.out.println("MyFriendController Start clMyFriendCall ... ");	
+		System.out.println("MyFriendController clMyFriendCall myFriend "+myFriend);
+		List<MyFriend> callMyFriend = mfs.callMyFriend(myFriend.getMnum());
+		System.out.println("MyFriendController List callMyFriend.size() -> " + callMyFriend.size());
+		
+		return callMyFriend;
+	}
+	
+	/** 친구 닉네임으로 검색하기 */
 	@ResponseBody
 	@PostMapping("/JH_C_MyFriendSearch")
-	public List<MyFriend> clMyFriendSearch(@RequestBody MyFriend myFriend) {
+	public MyFriend clMyFriendSearch(@RequestBody MyFriend myFriend) {
 		System.out.println("MyFriendController Start clMyFriendSearch ... ");	
 		System.out.println("MyFriendController clMyFriendSearch myFriend "+myFriend);
-		List<MyFriend> searchMyFriend = mfs.searchMyFriend(myFriend.getMnic());
-		System.out.println("MyFriendController List searchMyFriend.size() ->" + searchMyFriend.size());
+		MyFriend searchMyFriend = mfs.searchMyFriend(myFriend.getMnic());
+		System.out.println("MyFriendController List searchMyFriend ->" + searchMyFriend);
 		
 		return searchMyFriend;
+	}
+	
+	/** 친구 추가하기 버튼클릭 메소드 */
+	@ResponseBody
+	@PostMapping("/JH_C_PlusFriend")
+	public int clPlusFriend(@RequestBody MyFriend myFriend) {
+		System.out.println("MyFriendController Start clPlusFriend...");
+		System.out.println("MyFriendController clPlusFriend myFriend "+myFriend);
+		int friendPlus = mfs.friendPlus(myFriend);
+		System.out.println("MyFriendController clPlusFriend friendPlus-> "+friendPlus);
+	
+		return friendPlus;
+	}
+	
+	/** 친구 수락, 거절버튼 메소드 */
+	@ResponseBody
+	@PostMapping("/JH_C_UpdateFriend")
+	public int clUpdateFriend(@RequestBody MyFriend myFriend) {
+		System.out.println("MyFriendController Start clUpdateFriend...");
+		System.out.println("MyFriendController clUpdateFriend myFriend "+myFriend);
+		int updateFriend = mfs.updateFriend(myFriend);
+		System.out.println("MyFriendController mfs.clUpdateFriend acceptFriend ->" + updateFriend);
+		
+		return updateFriend;
 	}
 	
 }

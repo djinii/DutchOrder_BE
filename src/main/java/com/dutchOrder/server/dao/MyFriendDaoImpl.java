@@ -27,7 +27,7 @@ public class MyFriendDaoImpl implements MyFriendDao {
 		
 		return myData;
 	}
-
+	
 	@Override
 	public List<MyFriend> listMyFriend(int mnum) {
 		List<MyFriend> myFriendList = null;
@@ -57,17 +57,56 @@ public class MyFriendDaoImpl implements MyFriendDao {
 	}
 
 	@Override
-	public List<MyFriend> searchMyFriend(String mnic) {
-		List<MyFriend> myFriendSearch = null;
+	public MyFriend searchMyFriend(String mnic) {
+		MyFriend myFriendSearch = new MyFriend();
 		System.out.println("MyFriendDaoImpl searchMyFriend Start...");
 		try {
-			myFriendSearch = session.selectList("mapMyFriendSearch", mnic);
-			System.out.println("MyFriendDaoImpl searchMyFriend myFriendSearch.size() -> " + myFriendSearch.size());
+			myFriendSearch = session.selectOne("mapMyFriendSearch", mnic);
+			System.out.println("MyFriendDaoImpl searchMyFriend myFriendSearch -> " + myFriendSearch.getMnic());
 		} catch (Exception e) {
 			System.out.println("MyFriendDaoImpl searchMyFriend Exception -> " + e.getMessage());
 		}
 		
 		return myFriendSearch;
 	}
-	
+
+	@Override
+	public int friendPlus(MyFriend myFriend) {
+		System.out.println("MyFriendDaoImpl friendPlus Start...");
+		int plusFriend = 0;
+		try {
+			plusFriend = session.insert("mapPlusFriend", myFriend);
+		} catch (Exception e) {
+			System.out.println("MyFriendDaoImpl plusFriend Exception -> " + e.getMessage());
+			plusFriend = -1;
+		}
+		return plusFriend;
+	}
+
+	@Override
+	public List<MyFriend> myFriendCall(int mnum) {
+		List<MyFriend> callMyFriend = null;
+		System.out.println("MyFriendDaoImpl callMyFriend Start...");
+		try {
+			callMyFriend = session.selectList("mapMyFriendCall", mnum);
+			System.out.println("MyFriendDaoImpl callMyFriend callMyFriend.size() -> " + callMyFriend.size());
+		} catch (Exception e) {
+			System.out.println("MyFriendDaoImpl callMyFriend Exception -> " + e.getMessage());
+		}
+		
+		return callMyFriend;
+	}
+
+	@Override
+	public int updateFriend(MyFriend myFriend) {
+		System.out.println("MyFriendDaoImpl updateFriend Start...");
+		int friendUpdate = 0;
+		try {
+			friendUpdate = session.update("mapUpdateFriend", myFriend);
+		} catch (Exception e) {
+			System.out.println("MyFriendDaoImpl updateFriend Exception -> " + e.getMessage());
+		}
+		
+		return friendUpdate;
+	}
 }
