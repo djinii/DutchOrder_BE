@@ -1,15 +1,10 @@
 package com.dutchOrder.server.service;
 
 import com.dutchOrder.server.dao.JhLoginDao;
-import com.dutchOrder.server.model.JhMember;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +21,18 @@ public class JhLoginServiceImpl implements JhLoginService {
 	@Override
 	public int getUserLevel(String memail) {
 		int result = jhLoginDao.getUserLevel(memail);
+		return result;
+	}
+
+	@Override
+	public String findMyEmail(String mname, String mtel) {
+		String result = jhLoginDao.findMyEmail(mname, mtel);
+		return result;
+	}
+
+	@Override
+	public String findMyPw(String memail, String mtel) {
+		String result = jhLoginDao.findMyPw(memail, mtel);
 		return result;
 	}
 

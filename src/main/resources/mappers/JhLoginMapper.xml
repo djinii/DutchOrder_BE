@@ -10,6 +10,15 @@
     <select id="getUserLevel" parameterType="map" resultType="int">
     	SELECT mgroup_mikey FROM member WHERE (memail = #{memail})
     </select>
+    
+    <select id="findMyEmail" parameterType="map" resultType="String">
+        SELECT memail FROM member WHERE (mname = #{mname} AND mtel = #{mtel})
+    </select>
+    
+    <select id="findMyPw" parameterType="map" resultType="String">
+        SELECT mpw FROM member WHERE (memail = #{memail} AND mtel = #{mtel})
+    </select>
+    
 
 <!--     <insert id="save">
 	    INSERT INTO member (mname, mnic, memail, mpw, mtel, mgroup_mikey, mstatus_mikey)

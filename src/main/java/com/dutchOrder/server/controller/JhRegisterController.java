@@ -1,7 +1,5 @@
 package com.dutchOrder.server.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +26,6 @@ public class JhRegisterController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원가입에 실패했습니다.");
         }
     }
-
-    @GetMapping("/api/login/client")
-    public String success() {
-        // 로그인 성공 시 보여줄 페이지
-        return "successPage";
-    }
-
     
     // 닉네임 중복 확인
     @PostMapping("/api/check-duplicates")

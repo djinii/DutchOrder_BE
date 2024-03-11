@@ -1,10 +1,6 @@
 package com.dutchOrder.server.dao;
 
 import com.dutchOrder.server.model.JhMember;
-import com.dutchOrder.server.service.JhRegisterServiceImpl;
-
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;

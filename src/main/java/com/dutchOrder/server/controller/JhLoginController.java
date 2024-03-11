@@ -1,13 +1,8 @@
 package com.dutchOrder.server.controller;
 
-import com.dutchOrder.server.model.JhMember;
 import com.dutchOrder.server.service.JhLoginService;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -42,6 +37,29 @@ public class JhLoginController {
     	
     	int result = jhLoginService.getUserLevel(memail);
     	System.out.println(result);
+    	return result;
+    }
+    
+    @PostMapping("/findMyEmail")
+    public String findMyEmail(@RequestBody Map<String, String> request) {
+    	
+    	System.out.println(request);
+    	String mname = request.get("mname");
+    	String mtel = request.get("mtel");
+    	System.out.println(mname + mtel);
+    	
+    	String result = jhLoginService.findMyEmail(mname, mtel);
+    	return result;
+    }
+    
+    @PostMapping("/findMyPw")
+    public String findMyPw(@RequestBody Map<String, String> request) {
+    	System.out.println(request);
+    	String memail = request.get("memail");
+    	String mtel = request.get("mtel");
+    	System.out.println(memail + mtel);
+    	
+    	String result = jhLoginService.findMyPw(memail, mtel);
     	return result;
     }
     
