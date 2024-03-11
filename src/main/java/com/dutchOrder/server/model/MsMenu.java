@@ -7,9 +7,9 @@ public class MsMenu {
 
 	private int bnum;
 	private int fnum;
-	private int foption;
+	private String fname;
 	private int fprice;
 	private String fimg;
 	private String finfo;
-	private String fname;
+	private int foption;
 }

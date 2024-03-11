@@ -8,5 +8,10 @@
         
        <!--  select * from shop where fcategory_mikey = 301; 한식 카테고리 가져오는.. -->
     </select>
+    
+    <insert id="mapMenuInsert" parameterType="com.dutchOrder.server.model.MsMenu" >
+	INSERT INTO menu (bnum, fname, finfo, fprice, fimg)
+	VALUES (#{bnum}, #{fname}, #{finfo}, #{fprice}, #{fimg});
+</insert>
 
 </mapper>

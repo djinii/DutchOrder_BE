@@ -8,8 +8,17 @@ import com.dutchOrder.server.model.MsShop;
 
 public interface MsMenuDao {
 
-	List<MsShop> ShopCategoryLi();
-
 	List<MsMenu> MenuList();
 
+	int getShopStatus(int sstatus_mikey);
+
+	List<MsShop> ShopCategoryLi();
+
+	MsShop getShopDetail(int bnum);
+
+	// String updateShopTimeUpdate(MsShop msShop);
+
+	int adMenuInsert(MsMenu msMenu);
+
+	int ShopTimeUpdate(MsShop msShop);
 }

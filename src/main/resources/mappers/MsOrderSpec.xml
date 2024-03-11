@@ -25,7 +25,7 @@
 		order_spec os
 		ON
 		os.osnum = latest_orders.onum
-		ORDER BY od.odate DESC;
+		ORDER BY od.odate DESC
 
 
 
@@ -34,7 +34,7 @@
 	<update id="msOrderSpecUpdate" parameterType="com.dutchOrder.server.model.MsOrderSpec">
     UPDATE ordering
     SET ostatus_mikey = #{ostatus_mikey}
-    WHERE bnum = #{bnum} AND onum = #{onum};
+    WHERE bnum = #{bnum} AND onum = #{onum}
 </update>
 
 </mapper>
