@@ -45,15 +45,15 @@ public class MsMenuController {
 		return statusString;
 	}
 
-	// 메뉴 내용
-	@GetMapping("/C_MRcardInf") // GET 요청을 처리할 수 있도록 수정
-	@ResponseBody
-	public List<MsMenu> addMenuList() {
-		System.out.println("MsMenuController Start menuList ... ");
-		List<MsMenu> msMenulist = ms.Menulist();
-		System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
-		return msMenulist;
-	}
+	// 메뉴 내용 
+		@GetMapping("/C_MRcardInf") // GET 요청을 처리할 수 있도록 수정
+		@ResponseBody
+		public List<MsMenu> addMenuList() {
+			System.out.println("MsMenuController Start menuList ... ");
+			List<MsMenu> msMenulist = ms.Menulist(); 
+			System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
+			return msMenulist;
+		}
 
 	// 가게 내용 번호로 가져오기
 	@GetMapping("/B_ShopDetail")
@@ -63,6 +63,7 @@ public class MsMenuController {
 		System.out.println("MsMenuController Start getShopByBnum ... ");
 
 		MsShop shop = ms.ShopDetail(bnum);
+		
 
 		System.out.println("MsMenuController Shop info -> " + shop);
 
@@ -82,15 +83,34 @@ public class MsMenuController {
 		return TimeUpdate;
 	}
 
-	/** 메뉴추가하기 */
+	/** 메뉴 추가하기 */
+	@ResponseBody
 	@PostMapping("/MenuInsert")
 	public int adMenuwrite(@RequestBody MsMenu msMenu) {
+	    System.out.println("NoticeController Start adNoticeWrite...");
+	    System.out.println("NoticeCOntroller adMenuwrite msMenu " + msMenu);
+	    int adMenuInsert = ms.adMenuInsert(msMenu);
 
-		System.out.println("NoticeController Start adNoticeWrite...");
-		System.out.println("NoticeCOntroller adMenuwrite msMenu " + msMenu);
-		int adMenuInsert = ms.adMenuInsert(msMenu);
-
-		return adMenuInsert;
+	    return adMenuInsert;
+	}
+	
+	// 메뉴 내용 
+	@GetMapping("/B_MenuInfo") // GET 요청을 처리할 수 있도록 수정
+	@ResponseBody
+	public List<MsMenu> B_MenuInfo(@RequestParam("bnum") int bnum) {
+		System.out.println("MsMenuController Start B_MenuInfo ... ");
+		List<MsMenu> msMenulist = ms.MenuInfo(bnum); 
+		System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
+		return msMenulist;
+	}
+	// 메뉴 수정 내용 가져오기
+	@GetMapping("/B_MenuReInfo") // GET 요청을 처리할 수 있도록 수정
+	@ResponseBody
+	public List<MsMenu> B_MenuReInfo(@RequestParam("fnum") int fnum) {
+		System.out.println("MsMenuController Start B_MenuReInfo ... ");
+		List<MsMenu> remsMenulist = ms.MenuReInfo(fnum); 
+		System.out.println("MsMenuController List Menulist.size() -> " + remsMenulist.size());
+		return remsMenulist;
 	}
 
 }

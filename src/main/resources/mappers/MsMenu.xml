@@ -2,16 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dutchOrder.server.dao.MsMenuDao">
 
-    <select id="msMenuList" resultType="com.dutchOrder.server.model.MsMenu">
-        SELECT bnum, fnum, foption, fprice, fimg, finfo, fname
-        FROM menu;
-        
-       <!--  select * from shop where fcategory_mikey = 301; 한식 카테고리 가져오는.. -->
-    </select>
-    
-    <insert id="mapMenuInsert" parameterType="com.dutchOrder.server.model.MsMenu" >
-	INSERT INTO menu (bnum, fname, finfo, fprice, fimg)
-	VALUES (#{bnum}, #{fname}, #{finfo}, #{fprice}, #{fimg});
-</insert>
+	<select id="msMenuList"
+		resultType="com.dutchOrder.server.model.MsMenu">
+		SELECT bnum, fnum, foption, fprice, fimg, finfo, fname
+		FROM
+		menu
+
+	</select>
+
+	<insert id="mapMenuInsert"
+		parameterType="com.dutchOrder.server.model.MsMenu">
+		INSERT INTO menu (bnum, fname, fprice, finfo, fnum,
+		foption)
+		VALUES (#{bnum}, #{fname}, #{fprice}, #{finfo}, (SELECT
+		COALESCE(MAX(m.fnum), 0) + 1 FROM menu m), #{foption})
+
+	</insert>
+
+	<select id="mapMenuInfoBybnum"
+		resultType="com.dutchOrder.server.model.MsMenu">
+		SELECT * FROM menu WHERE bnum = #{bnum}
+
+	</select>
+	
+	<select id="mapMenuReInfoByfnum"
+		resultType="com.dutchOrder.server.model.MsMenu">
+		SELECT * FROM menu WHERE fnum = #{fnum}
+
+	</select>
 
 </mapper>

@@ -20,4 +20,8 @@ public interface MsMenuService {
 
 	int adMenuInsert(MsMenu msMenu);
 
+	List<MsMenu> MenuInfo(int bnum);
+
+	List<MsMenu> MenuReInfo(int fnum);
+
 }

@@ -89,7 +89,7 @@ public class MsMenuDaoImpl implements MsMenuDao {
 	}
 
 
-	
+	/**메뉴추가하기*/
 	@Override
 	public int adMenuInsert(MsMenu msMenu) {
 		 System.out.println("MsMenuDaoImpl adMenuInsert start..");
@@ -102,5 +102,31 @@ public class MsMenuDaoImpl implements MsMenuDao {
 			
 			return MenuInsert;
 	}
+
+	@Override
+	public List<MsMenu> MenuInfo(int bnum) {
+		System.out.println("MsMenuDaoImpl MenuInfo Start...");
+		List<MsMenu> msMenulist = null;
+		try {
+			msMenulist = session.selectList("mapMenuInfoBybnum", bnum);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException("가게 정보를 가져오는 데 실패했습니다.", e);
+		}
+		return msMenulist;
+	}
+
+	@Override
+	public List<MsMenu> MenuReInfo(int fnum) {
+	System.out.println("MsMenuDaoImpl MenuReInfo Start...");
+	List<MsMenu> remsMenulist = null;
+	try {
+		remsMenulist = session.selectList("mapMenuReInfoByfnum", fnum);
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+		throw new RuntimeException("가게 정보를 가져오는 데 실패했습니다.", e);
+	}
+	return remsMenulist;
+}
 
 }

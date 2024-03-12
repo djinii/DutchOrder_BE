@@ -60,6 +60,18 @@ public class MsMenuServiceImpl implements MsMenuService {
 		
 		return adMenuInsert;
 	}
+	@Override
+	public List<MsMenu> MenuInfo(int bnum) {
+		System.out.println("EmpServiceImpl MenuInfo Start...");
+		List<MsMenu> msMenulist = md.MenuInfo(bnum); 
+	      return msMenulist;
+	}
+	@Override
+	public List<MsMenu> MenuReInfo(int fnum) {
+		System.out.println("EmpServiceImpl MenuReInfo Start...");
+		List<MsMenu> remsMenulist = md.MenuReInfo(fnum); 
+	      return remsMenulist;
+	}
 	
 
 }

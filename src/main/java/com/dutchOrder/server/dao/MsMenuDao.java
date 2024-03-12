@@ -21,4 +21,8 @@ public interface MsMenuDao {
 	int adMenuInsert(MsMenu msMenu);
 
 	int ShopTimeUpdate(MsShop msShop);
+
+	List<MsMenu> MenuInfo(int bnum);
+
+	List<MsMenu> MenuReInfo(int fnum);
 }
