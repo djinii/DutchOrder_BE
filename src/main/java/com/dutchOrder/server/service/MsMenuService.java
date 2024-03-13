@@ -7,7 +7,6 @@ import com.dutchOrder.server.model.MsShop;
 
 public interface MsMenuService {
 
-
 	List<MsMenu> Menulist();
 
 	int getShopStatus(int sstatus_mikey);
@@ -22,6 +21,8 @@ public interface MsMenuService {
 
 	List<MsMenu> MenuInfo(int bnum);
 
-	List<MsMenu> MenuReInfo(int fnum);
+	int reMenuUpdate(MsMenu msMenu);
+
+	int deleteMenu(int fnum);
 
 }

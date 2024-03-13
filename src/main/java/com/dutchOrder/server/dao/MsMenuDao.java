@@ -16,13 +16,13 @@ public interface MsMenuDao {
 
 	MsShop getShopDetail(int bnum);
 
-	// String updateShopTimeUpdate(MsShop msShop);
-
 	int adMenuInsert(MsMenu msMenu);
 
 	int ShopTimeUpdate(MsShop msShop);
 
 	List<MsMenu> MenuInfo(int bnum);
 
-	List<MsMenu> MenuReInfo(int fnum);
+	int reMenuUpdate(MsMenu msMenu);
+
+	int deleteMenu(int fnum);
 }

@@ -39,7 +39,6 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		try {
 			shopList = session.selectList("mapShopDetail");
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
 		return shopList;
@@ -116,17 +115,35 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		return msMenulist;
 	}
 
+
+
 	@Override
-	public List<MsMenu> MenuReInfo(int fnum) {
-	System.out.println("MsMenuDaoImpl MenuReInfo Start...");
-	List<MsMenu> remsMenulist = null;
-	try {
-		remsMenulist = session.selectList("mapMenuReInfoByfnum", fnum);
-	} catch (Exception e) {
-		System.out.println(e.getMessage());
-		throw new RuntimeException("가게 정보를 가져오는 데 실패했습니다.", e);
+	public int reMenuUpdate(MsMenu msMenu) {
+		System.out.println("MsMenuDaoImpl reMenuUpdate start..");
+		int MenuUpdate = 0;
+		try {
+			MenuUpdate = session.update("mapMenuUpdate", msMenu);
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl reMenuUpdate Exception -> " + e.getMessage());
+		}
+		
+		return MenuUpdate;
 	}
-	return remsMenulist;
-}
+	
+	@Override
+	public int deleteMenu(int fnum) {
+		System.out.println("MsMenuDaoImpl deleteMenu Start...");
+		int MenuDelete = 0;
+		try {
+			MenuDelete = session.delete("mapMemuDelete", fnum);
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl deleteMenu Exception -> " + e.getMessage());
+		}
+		
+		return MenuDelete;
+	}
+
+	
+	
 
 }

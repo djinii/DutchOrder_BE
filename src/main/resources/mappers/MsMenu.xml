@@ -24,11 +24,24 @@
 		SELECT * FROM menu WHERE bnum = #{bnum}
 
 	</select>
-	
-	<select id="mapMenuReInfoByfnum"
-		resultType="com.dutchOrder.server.model.MsMenu">
-		SELECT * FROM menu WHERE fnum = #{fnum}
 
-	</select>
+
+	<update id="mapMenuUpdate"
+		parameterType="com.dutchOrder.server.model.MsMenu">
+		UPDATE menu
+		SET fname = #{fname},
+		finfo = #{finfo},
+		fprice = #{fprice},
+		foption = #{foption}
+		WHERE fnum = #{fnum}
+	</update>
+	
+		<delete id="mapMemuDelete" parameterType="com.dutchOrder.server.model.MsMenu">
+		DELETE
+		FROM menu
+		WHERE fnum = #{fnum}
+	</delete>
+
+
 
 </mapper>

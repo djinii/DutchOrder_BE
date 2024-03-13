@@ -55,7 +55,7 @@ public class MsMenuServiceImpl implements MsMenuService {
 	@Override
 	public int adMenuInsert(MsMenu msMenu) {
 		int adMenuInsert = 0;
-		System.out.println("NoticeServiceImpl adMenuInsert Start...");
+		System.out.println("EmpServiceImpl adMenuInsert Start...");
 		adMenuInsert = md.adMenuInsert(msMenu);
 		
 		return adMenuInsert;
@@ -66,11 +66,23 @@ public class MsMenuServiceImpl implements MsMenuService {
 		List<MsMenu> msMenulist = md.MenuInfo(bnum); 
 	      return msMenulist;
 	}
+
 	@Override
-	public List<MsMenu> MenuReInfo(int fnum) {
-		System.out.println("EmpServiceImpl MenuReInfo Start...");
-		List<MsMenu> remsMenulist = md.MenuReInfo(fnum); 
-	      return remsMenulist;
+	public int reMenuUpdate(MsMenu msMenu) {
+		int reMenuUpdate = 0;
+		System.out.println("EmpServiceImpl reMenuUpdate Start...");
+		reMenuUpdate = md.reMenuUpdate(msMenu);
+		
+		return reMenuUpdate;
+	}
+		
+	@Override
+	public int deleteMenu(int fnum) {
+		int MenuDelete = 0;
+		System.out.println("NoticeServiceImpl deleteNotice Start...");
+		MenuDelete = md.deleteMenu(fnum);
+		
+		return MenuDelete;
 	}
 	
 
