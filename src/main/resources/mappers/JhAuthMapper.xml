@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dutchOrder.server.dao.JhLoginDao">
+<mapper namespace="com.dutchOrder.server.dao.JhAuthDao">
 
     <select id="login" parameterType="map" resultType="boolean">
         SELECT * FROM member WHERE (memail, mpw) = (#{memail}, #{mpw})
@@ -9,6 +9,10 @@
     
     <select id="getUserLevel" parameterType="map" resultType="int">
     	SELECT mgroup_mikey FROM member WHERE (memail = #{memail})
+    </select>
+    
+    <select id="getUserMnum" parameterType="map" resultType="int">
+    	SELECT mnum FROM member WHERE (memail = #{memail})
     </select>
     
     <select id="findMyEmail" parameterType="map" resultType="String">
@@ -19,11 +23,14 @@
         SELECT mpw FROM member WHERE (memail = #{memail} AND mtel = #{mtel})
     </select>
     
-
-<!--     <insert id="save">
+	<insert id="save">
 	    INSERT INTO member (mname, mnic, memail, mpw, mtel, mgroup_mikey, mstatus_mikey)
 	    VALUES (#{mname}, #{mnic}, #{memail}, #{mpw}, #{mtel}, #{mgroup_mikey}, #{mstatus_mikey})
-	</insert> -->
+	</insert> 
+	
+	<select id="findUserByEmail" parameterType="map" resultType="com.dutchOrder.server.model.JhMember">
+		SELECT * FROM member WHERE memail = #{memail}
+	</select>
 
 
 </mapper>

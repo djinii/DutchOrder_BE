@@ -4,8 +4,13 @@ import com.dutchOrder.server.model.JhMember;
 
 public interface JhRegisterDao {
 	
-    void insert(JhMember jhMember);
+    void insertC(JhMember jhMember);
+	
+	void insertB(JhMember jhMember);
 
-	boolean existsByNickname(String mnic);
+	boolean isMnicDuplicate(String mnic);
+
+	boolean isMemailDuplicate(String memail);
+
 
 }

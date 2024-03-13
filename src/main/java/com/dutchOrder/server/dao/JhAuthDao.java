@@ -1,12 +1,23 @@
 package com.dutchOrder.server.dao;
 
-public interface JhLoginDao {
+import com.dutchOrder.server.dto.JhMemberDto;
+import com.dutchOrder.server.model.JhMember;
+
+public interface JhAuthDao {
 	
 	boolean login(String memail, String mpw);
 
 	int getUserLevel(String memail);
 	
+	
 	String findMyEmail(String mname, String mtel);
 
 	String findMyPw(String memail, String mtel);
+
+	int getUserMnum(String memail);
+
+
+
+	
+
 }

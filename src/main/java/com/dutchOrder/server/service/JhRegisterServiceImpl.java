@@ -1,5 +1,7 @@
 package com.dutchOrder.server.service;
 
+import java.lang.reflect.Member;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class JhRegisterServiceImpl implements JhRegisterService {
     private JhRegisterDao jhRegisterDao;
     
     @Override
-    public void insert(JhMember jhMember) {
-    	jhRegisterDao.insert(jhMember);
+    public void insertC(JhMember jhMember) {
+    	jhRegisterDao.insertC(jhMember);
     }
 
     @Autowired
@@ -22,10 +24,23 @@ public class JhRegisterServiceImpl implements JhRegisterService {
     	this.jhRegisterDao = jhRegisterDao;
     }
     
-    // 닉네임 중복 확인 
+
 	@Override
-	public boolean checkDuplicates(String mnic) {
-		return jhRegisterDao.existsByNickname(mnic);
+	public void insertB(JhMember jhMember) {
+		jhRegisterDao.insertB(jhMember);
+		
+	}
+
+	@Override
+	public boolean isMnicDuplicate(String mnic) {
+		boolean result = jhRegisterDao.isMnicDuplicate(mnic);
+		return result;
+	}
+
+	@Override
+	public boolean isMemailDuplicate(String memail) {
+		boolean result = jhRegisterDao.isMemailDuplicate(memail);
+		return result;
 	}
 
 

@@ -3,7 +3,16 @@ package com.dutchOrder.server.service;
 import com.dutchOrder.server.model.JhMember;
 
 public interface JhRegisterService {
-    void insert(JhMember jhMember);
+	
+    void insertC(JhMember jhMember);
 
-	boolean checkDuplicates(String mnic);
+	void insertB(JhMember jhMember);
+
+	boolean isMnicDuplicate(String mnic);
+
+	boolean isMemailDuplicate(String memail);
+	
+
+
+
 }

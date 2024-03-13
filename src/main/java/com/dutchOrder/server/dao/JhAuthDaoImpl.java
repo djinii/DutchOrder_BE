@@ -3,17 +3,26 @@ package com.dutchOrder.server.dao;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock.Catch;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.dutchOrder.server.dto.JhMemberDto;
+import com.dutchOrder.server.model.JhMember;
+
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
 @Repository
-@RequiredArgsConstructor
-public class JhLoginDaoImpl implements JhLoginDao {
+public class JhAuthDaoImpl implements JhAuthDao {
+	
 	
 	private final SqlSession sqlSession;
+	
+	public JhAuthDaoImpl(SqlSession sqlSession) {
+	    this.sqlSession = sqlSession;
+	}
 	
 	@Override
     public boolean login(String memail, String mpw) {
@@ -25,7 +34,9 @@ public class JhLoginDaoImpl implements JhLoginDao {
 		// SQL 쿼리 실행
 		boolean result = sqlSession.selectOne("login", params);
 		System.out.println(result);
-		return result;
+		 
+		return result; // Boolean 객체이므로, 직접 반환 가능
+
 	} 
 
 	@Override
@@ -36,7 +47,9 @@ public class JhLoginDaoImpl implements JhLoginDao {
 		int result = sqlSession.selectOne("getUserLevel", params);
  		return result;
 	}
+	
 
+	
 	@Override
 	public String findMyEmail(String mname, String mtel) {
 		Map<String, Object> params = new HashMap<>();
@@ -58,6 +71,14 @@ public class JhLoginDaoImpl implements JhLoginDao {
 		return result;
 	}
 
-
+	@Override
+	public int getUserMnum(String memail) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("memail", memail);
+		
+		int result = sqlSession.selectOne("getUserMnum", params);
+		
+		return result;
+	}
 
 }
