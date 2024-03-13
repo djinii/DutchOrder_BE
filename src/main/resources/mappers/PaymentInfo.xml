@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.PaymentInfoMapper">
+	<select id="paymentInfoList" resultType="PaymentInfo">
+		select mnum, memail, mname, onum, dpprice, mtel
+		from member inner join dutchpay
+		on member.mnic = dutchpay.dpmem
+		where dutchpay.onum = 1001;
+	</select>
+	
+	<update id="callUpdatePayDate" parameterType="PaymentInfo" statementType="CALLABLE">
+		{call UpdatePayDate(#{onum, mode=IN, jdbcType=INTEGER}, #{mname, mode=IN, jdbcType=VARCHAR})}
+	</update>
+	
+</mapper>

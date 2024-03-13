@@ -28,33 +28,20 @@ public class MwChatBotServiceImpl implements MwChatBotService {
         String menu;
 
         // 시간대에 따라 다른 추천 메뉴를 선택합니다.
-        if (time.isBefore(LocalTime.of(11, 0))) {
+        if (time.isBefore(LocalTime.of(8, 0))) {
             // 아침 시간대: 아침 메뉴 추천
-            menu = recommendBreakfastMenu();
+            menu = md.manyBreakfastOrder();
         } else if (time.isBefore(LocalTime.of(15, 0))) {
             // 점심 시간대: 점심 메뉴 추천
-            menu = recommendLunchMenu();
+            menu = md.manyLunchOrder();
         } else {
             // 저녁 시간대: 저녁 메뉴 추천
-            menu = recommendDinnerMenu();
+            menu = md.manyDinnerOrder();
         }
 
         return menu;
 	}
 
-	private String recommendDinnerMenu() {
-		String manyOrder = md.manyDinnerOrder();
-		return manyOrder;
-	}
-
-	private String recommendLunchMenu() {
-		String manyOrder = md.manyLunchOrder();
-		return manyOrder;
-	}
-
-	private String recommendBreakfastMenu() {
-		String manyOrder = md.manyBreakfastOrder();
-		return manyOrder;
-	}
+	
 	
 }

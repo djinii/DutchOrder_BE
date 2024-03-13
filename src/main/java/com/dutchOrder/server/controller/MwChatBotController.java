@@ -1,8 +1,12 @@
 package com.dutchOrder.server.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.json.JsonParser;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,6 +54,7 @@ public class MwChatBotController {
         	System.out.println("handleChatMessage message-->"+message.getMessage());
             response = chatWithGPT(message.getMessage());
         }
+        // 클라이언트에게 응답이 성공적으로 전될되었음을 알려주면서 데이터 반환
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -84,6 +89,17 @@ public class MwChatBotController {
         HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
 
         ResponseEntity<String> response = restTemplate.postForEntity(apiEndpoint, entity, String.class);
+        System.out.println("response-->"+response);
+        
+//        // JSON 데이터를 파싱하여 content 필드 추출
+//        JsonParser jsonParser = JsonParserFactory.getJsonParser();
+//        Map<String, Object> jsonResponse = jsonParser.parseMap(response);
+//
+//        // choices 배열에서 첫 번째 요소의 message 객체를 찾아서 content 필드 추출
+//        List<Map<String, Object>> choices = (List<Map<String, Object>>) jsonResponse.get("choices");
+//        String content = (String) ((Map<String, Object>) choices.get(0).get("message")).get("content");
+//
+//        System.out.println("챗봇응답: " + content);
 
         // Jackson ObjectMapper를 사용하여 JSON 문자열을 처리
         ObjectMapper objectMapper = new ObjectMapper();

@@ -5,5 +5,6 @@
    		<typeAlias alias="MwOrderSpec" type="com.dutchOrder.server.model.MwOrderSpec"/>
    		<typeAlias alias="MwMenu" type="com.dutchOrder.server.model.MwMenu"/>
    		<typeAlias alias="MwEmailModel" type="com.dutchOrder.server.model.MwEmailModel"/>
+   		<typeAlias alias="PaymentInfo" type="com.dutchOrder.server.model.PaymentInfo"/>
    </typeAliases>
 </configuration>

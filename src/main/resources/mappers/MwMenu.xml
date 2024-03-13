@@ -2,41 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dutchOrder.server.MwMenuMapper">
 	<select id="manyBreakfastMenu" resultType="mwmenu">
-		SELECT fname
-		FROM menu
-		WHERE fnum = (
-    					SELECT fnum
-    					FROM order_spec
-    					WHERE time(osdate) BETWEEN '08:00:00' AND '11:00:00'
-    					GROUP BY fnum
-    					ORDER BY COUNT(*) DESC
-    					LIMIT 1
-					);
+		SELECT m.fname
+		FROM menu m
+		JOIN (
+    			SELECT os.fnum, COUNT(*) as count
+    			FROM order_spec os
+    			WHERE os.onum IN (
+        							SELECT onum
+        							FROM ordering
+        							WHERE ostatus_mikey = 805
+        							AND TIME(odate) BETWEEN '00:00:00' AND '07:59:59'
+    							)
+    			GROUP BY os.fnum
+    			ORDER BY count DESC
+    			LIMIT 1
+			) t ON m.fnum = t.fnum;
 	</select>
 	
 	<select id="manyLunchMenu" resultType="mwmenu">
-		SELECT fname
-		FROM menu
-		WHERE fnum = (
-    					SELECT fnum
-    					FROM order_spec
-    					WHERE time(osdate) BETWEEN '11:00:01' AND '15:00:00'
-    					GROUP BY fnum
-    					ORDER BY COUNT(*) DESC
-    					LIMIT 1
-					);
+		SELECT m.fname
+		FROM menu m
+		JOIN (
+    			SELECT os.fnum, COUNT(*) as count
+    			FROM order_spec os
+    			WHERE os.onum IN (
+        							SELECT onum
+        							FROM ordering
+        							WHERE ostatus_mikey = 805
+        							AND TIME(odate) BETWEEN '08:00:00' AND '14:59:59'
+    							)
+    			GROUP BY os.fnum
+    			ORDER BY count DESC
+    			LIMIT 1
+			) t ON m.fnum = t.fnum;
 	</select>
 	
 	<select id="manyDinnerMenu" resultType="mwmenu">
-		SELECT fname
-		FROM menu
-		WHERE fnum = (
-    					SELECT fnum
-    					FROM order_spec
-    					WHERE time(osdate) BETWEEN '15:00:01' AND '23:59:59'
-    					GROUP BY fnum
-    					ORDER BY COUNT(*) DESC
-    					LIMIT 1
-					);
+		SELECT m.fname
+		FROM menu m
+		JOIN (
+    			SELECT os.fnum, COUNT(*) as count
+    			FROM order_spec os
+    			WHERE os.onum IN (
+        							SELECT onum
+        							FROM ordering
+        							WHERE ostatus_mikey = 805
+        							AND TIME(odate) BETWEEN '15:00:01' AND '23:59:59'
+    							)
+    			GROUP BY os.fnum
+    			ORDER BY count DESC
+    			LIMIT 1
+			) t ON m.fnum = t.fnum;
 	</select>
 </mapper>
