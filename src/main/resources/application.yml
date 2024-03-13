@@ -11,11 +11,18 @@ spring:
       max-request-size: 10MB
 
   dataSource:
+    initialization-mode: always
     driver-class-name:  com.mysql.cj.jdbc.Driver
-    url:  jdbc:mysql://localhost:3306/DutchOrder?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/DutchOrder?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     username: admin
     password: 1234
-
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
     # gmail Transfer
   mail:
     host: smtp.gmail.com
