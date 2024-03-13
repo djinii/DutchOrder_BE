@@ -52,26 +52,30 @@ public class MwEmailServiceImpl implements MwEmailService {
             byte[] randomBytes = new byte[16];
             // 무작위로 바이트를 생성하여 randomBytes에 할당
             secureRandom.nextBytes(randomBytes);
-
+            System.out.println("randomBytes[]-->"+randomBytes);
+            
             // 해시 값을 계산하기 위해 사용되는 클래스
             MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
             // randomBytes의 데이터를 해싱하고 반환값을 hashBytes배열에 저장
             byte[] hashBytes = digest.digest(randomBytes);
-
+            System.out.println("hashBytes[]-->"+hashBytes);
+            
             // 16진수 문자열을 저장하기 위한 객체 생성
             StringBuilder hexString = new StringBuilder();
             for (int i = 0; i < hashBytes.length; i++) {
             	// 해시된 바이트를 16진수 문자열로 변환
                 String hex = Integer.toHexString(0xff & hashBytes[i]);
+                System.out.println("hex-->"+hex);
                 // 문자열이 한자리인 경우 0을 붙여 두자리로 만들어줌
                 if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
+                System.out.println("hexString--->"+hexString);
             }
             return hexString.substring(0, CODE_LENGTH); // 6자리 인증 코드로 변환
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             System.out.println("sendCode NoSuchAlgorithmException->"+e.getMessage());
-            return null; // 예외 처리
+            return "인증코드 생성 에러"; // 예외 처리
         }
     }
 

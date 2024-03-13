@@ -7,11 +7,6 @@ chatgpt:
     key: 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
     endpoint: https://api.openai.com/v1/chat/completions
     
-# Iamport API
-iamport:
-  apiKey: 6565455370852451
-  apiSecret: RTceItSvpp3Ds8Qk6XgGdOIBWpQa9Oiy4AHxUqr2JmRdJ5a9mcC36jQpndXz877uRwxIKklRdqzICase 
-
 # Oracle Connect
 spring:
 
