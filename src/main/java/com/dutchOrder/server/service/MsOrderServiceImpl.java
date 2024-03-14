@@ -33,13 +33,13 @@ public class MsOrderServiceImpl implements MsOrderService {
 		return ostatusUpdate;
 	}
 
-	@Override
-	public int updateShopStatus(MsShop msShop) {
-		System.out.println("MsOrderServiceImpl updateShopStatus start...");
-		int shopOstatusUpdate = 0;
-		System.out.println("MsOrderServiceImpl updateShopStatus Start...");
-		shopOstatusUpdate= od.updateOrderStatus(msShop);
-		return 0;
-	}
+//	@Override
+//	public int updateShopStatus(MsShop msShop) {
+//		System.out.println("MsOrderServiceImpl updateShopStatus start...");
+//		int shopOstatusUpdate = 0;
+//		System.out.println("MsOrderServiceImpl updateShopStatus Start...");
+//		shopOstatusUpdate= od.updateOrderStatus(msShop);
+//		return 0;
+//	}
 
 }

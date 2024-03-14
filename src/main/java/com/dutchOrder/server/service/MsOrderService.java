@@ -12,7 +12,7 @@ public interface MsOrderService {
 
 	int updateOrderStatus(MsOrderSpec msOrderSpec);
 
-	int updateShopStatus(MsShop msShop);
+//	int updateShopStatus(MsShop msShop);
 
 
 

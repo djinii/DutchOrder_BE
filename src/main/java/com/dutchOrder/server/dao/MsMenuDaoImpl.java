@@ -57,20 +57,18 @@ public class MsMenuDaoImpl implements MsMenuDao {
 	}
 
 	@Override
-	public int getShopStatus(int sstatus_mikey) {
+	public MsShop getShopStatus(int sstatus_mikey) {
 		System.out.println("MsMenuDaoImpl ShopStatus Start...");
-		int shopStatus = 0; // 가게 상태 초기값 설정
+		MsShop msShop = new MsShop();
 		try {
 			// mapper ID, Parameter
-			MsShop msShop = session.selectOne("mapGetShopStatus", sstatus_mikey);
-			if (msShop != null) {
-				shopStatus = msShop.getSstatus_mikey(); // 가게 상태 값 설정
-				System.out.println("EmpDaoImpl shopStatus getSstatus_mikey->" + shopStatus);
-			}
+			 msShop = session.selectOne("mapGetShopStatus", sstatus_mikey);
+				System.out.println("MsMenuDaoImpl shopStatus getSstatus_mikey->" + msShop.getSstatus_mikey());
+			
 		} catch (Exception e) {
-			System.out.println("EmpDaoImpl detail Exception->" + e.getMessage());
+			System.out.println("MsMenuDaoImpl shopStatus Exception->" + e.getMessage());
 		}
-		return shopStatus;
+		return msShop;
 	}
 
 	/** bnum에 따라서 시간 업데이트되게하기 */
@@ -141,6 +139,47 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		}
 		
 		return MenuDelete;
+	}
+
+	@Override
+	public int updateShopStatus(MsShop msShop) {
+		System.out.println("MsMenuDaoImpl ShopStausUpdate start..");
+		int ShopStausUpdate = 0;
+		try {
+			ShopStausUpdate = session.update("mapShopStatusUpdate", msShop);
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl ShopStausUpdate Exception -> " + e.getMessage());
+		}
+		
+		return ShopStausUpdate;
+	}
+
+	@Override
+	public MsShop getshopAccept(int mnum) {
+		System.out.println("MsMenuDaoImpl getshopAccept Start...");
+		MsShop msShop = new MsShop();
+		try {
+			 msShop = session.selectOne("mapMsgetMemberStatus", mnum);
+				System.out.println("MsMenuDaoImpl getshopAccept getMnum->" + msShop.getMnum());
+			
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl getshopAccept Exception->" + e.getMessage());
+		}
+		return msShop;
+	}
+
+	@Override
+	public int RegShop(MsShop msShop) {
+		System.out.println("MsMenuDaoImpl RegShop Start...");
+		System.out.println("MsMenuDaoImpl RegShop msShop->"+msShop);
+		int ShopReg = 0;
+		try {
+			ShopReg = session.insert("mapMsShopReg", msShop);
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl RegShop Exception -> " + e.getMessage());
+		}
+		
+		return ShopReg;
 	}
 
 	

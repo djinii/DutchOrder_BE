@@ -2,37 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dutchOrder.server.dao.MsShopMapper">
 
-    <select id="mapShopDetail"
-            resultType="com.dutchOrder.server.model.MsShop">
-        SELECT sname, start_time, end_time, bnum, fcategory_mikey,
-        sstatus_mikey, stel, saddr
-        FROM shop;
-    </select>
-    
-    
-    <select id="mapShopDetailBybnum"
-            resultType="com.dutchOrder.server.model.MsShop">
-        SELECT s.sname, s.start_time, s.end_time, s.bnum,
-        s.fcategory_mikey,
-        s.sstatus_mikey, s.stel, s.saddr, m.mname
-        FROM shop s
-        JOIN member m ON s.mnum = m.mnum
-        WHERE bnum = #{bnum}
+	<select id="mapShopDetail"
+		resultType="com.dutchOrder.server.model.MsShop">
+		SELECT sname, start_time, end_time, bnum, fcategory_mikey,
+		sstatus_mikey, stel, saddr
+		FROM shop;
+	</select>
 
-    </select>
 
-    <select id="mapGetShopStatus" parameterType="java.lang.Integer"
-            resultType="com.dutchOrder.server.model.MsShop">
-        SELECT sstatus_mikey, bnum
-        FROM shop
-        WHERE bnum = #{bnum}
-    </select>
+	<select id="mapShopDetailBybnum"
+		resultType="com.dutchOrder.server.model.MsShop">
+		SELECT s.sname, s.start_time, s.end_time, s.bnum,
+		s.fcategory_mikey,
+		s.sstatus_mikey, s.stel, s.saddr, m.mname
+		FROM shop s
+		JOIN member m ON s.mnum = m.mnum
+		WHERE bnum = #{bnum}
 
-    <update id="updateShopTime" parameterType="com.dutchOrder.server.model.MsShop">
-        UPDATE shop
-        SET start_time = #{start_time},
-            end_time = #{end_time}
-        WHERE bnum = #{bnum}
-    </update>
+	</select>
+
+	<select id="mapGetShopStatus" parameterType="int"
+		resultType="com.dutchOrder.server.model.MsShop">
+		SELECT sstatus_mikey, bnum
+		FROM shop
+		WHERE bnum = #{bnum}
+	</select>
+
+	<update id="mapShopStatusUpdate"
+		parameterType="com.dutchOrder.server.model.MsShop">
+		UPDATE shop SET sstatus_mikey = #{sstatus_mikey} WHERE
+		bnum = #{bnum}
+	</update>
+
+	<update id="updateShopTime"
+		parameterType="com.dutchOrder.server.model.MsShop">
+		UPDATE shop
+		SET start_time = #{start_time},
+		end_time =
+		#{end_time}
+		WHERE bnum = #{bnum}
+	</update>
+
+
+	<select id="mapMsgetMemberStatus" parameterType="int"
+		resultType="com.dutchOrder.server.model.MsShop">
+		SELECT bstaus_makey,
+		bstaus_mikey, mnum from shop where mnum
+		= #{mnum}
+	</select>
+
+		<insert id="mapMsShopReg"
+			parameterType="com.dutchOrder.server.model.MsShop">
+			INSERT INTO shop (bnum, fcategory_makey, fcategory_mikey, saddr, stel,
+			sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid,
+			bstaus_makey, bstaus_mikey, simg1, simg2, simg3, confirm)
+			VALUES (
+			#{mnum},
+			#{fcategory_makey},
+			#{fcategory_mikey},
+			#{saddr},
+			#{stel},
+			#{sname},
+			#{start_time},
+			#{end_time},
+			#{sstatus_makey},
+			#{sstatus_mikey},
+			#{mnum},
+			#{bid},
+			#{bstaus_makey},
+			#{bstaus_mikey},
+			#{simg1},
+			#{simg2},
+			#{simg3},
+			#{confirm}
+			);
+		</insert>
+
 
 </mapper>

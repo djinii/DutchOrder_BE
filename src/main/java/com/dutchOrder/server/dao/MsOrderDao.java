@@ -11,7 +11,7 @@ public interface MsOrderDao {
 
 	int updateOrderStatus(MsOrderSpec msOrderSpec);
 
-	int updateOrderStatus(MsShop msShop);
+//	int updateOrderStatus(MsShop msShop);
 
 
 }

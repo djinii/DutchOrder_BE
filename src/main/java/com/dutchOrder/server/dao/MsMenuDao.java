@@ -10,7 +10,7 @@ public interface MsMenuDao {
 
 	List<MsMenu> MenuList();
 
-	int getShopStatus(int sstatus_mikey);
+	MsShop getShopStatus(int sstatus_mikey);
 
 	List<MsShop> ShopCategoryLi();
 
@@ -25,4 +25,10 @@ public interface MsMenuDao {
 	int reMenuUpdate(MsMenu msMenu);
 
 	int deleteMenu(int fnum);
+
+	int updateShopStatus(MsShop msShop);
+
+	MsShop getshopAccept(int mnum);
+
+	int RegShop(MsShop msShop);
 }

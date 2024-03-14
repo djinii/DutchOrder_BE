@@ -35,14 +35,27 @@ public class MsMenuController {
 
 	}
 
-	@GetMapping("/ShopStatus")
+	@PostMapping("/ShopStatus")
 	@ResponseBody
-	public String getShopStatus(@RequestParam("bnum") int bnum) {
+	public MsShop getShopStatus(@RequestBody MsShop msShop) {
 		System.out.println("MsMenuController Start ShopStatus ... ");
-		int shopStatus = ms.getShopStatus(bnum); // bnum에 해당하는 가게의 상태 조회
-		String statusString = String.valueOf(shopStatus); // int를 문자열로 변환
-		System.out.println("MsMenuController ShopStatus -> " + statusString);
-		return statusString;
+		System.out.println("MsMenuController getShopStatus msShop " + msShop);
+		MsShop shopStatus = ms.getShopStatus(msShop.getBnum()); // bnum에 해당하는 가게의 상태 조회
+		System.out.println("MsMenuController ShopStatus -> " + shopStatus);
+
+		return shopStatus;
+	}
+
+	/** 영업상태 업데이트 */
+	@PostMapping("/ShopStatusUpdate")
+	@ResponseBody
+	public int UpdateShopStatus(@RequestBody MsShop msShop) {
+		System.out.println("MsMenuController Start UpdateShopStatus");
+		System.out.println("MsMenuController UpdateShopStatus msShop " + msShop);
+		int ShopStatusUpdate = ms.updateShopStatus(msShop);
+		System.out.println("MsMenuController os.msShop msShop -> " + msShop);
+
+		return ShopStatusUpdate;
 	}
 
 	// 메뉴 내용
@@ -123,5 +136,28 @@ public class MsMenuController {
 		int deleteMenu = ms.deleteMenu(msMenu.getFnum());
 
 		return deleteMenu;
+	}
+
+	@PostMapping("/ShopAcceptStatus")
+	@ResponseBody
+	public MsShop ShopAcceptStatus(@RequestBody MsShop msShop) {
+		System.out.println("MsMenuController Start ShopStatus ... ");
+		System.out.println("MsMenuController getShopStatus msShop " + msShop);
+		System.out.println("MsMenuController getShopStatus msShop " + msShop);
+		MsShop shopAccept = ms.getshopAccept(msShop.getMnum()); // Mnum에 해당하는 가게의 상태 조회
+		System.out.println("MsMenuController ShopStatus -> " + shopAccept);
+
+		return shopAccept;
+	}
+	
+	/** 가게 등록 페이지*/
+	@ResponseBody
+	@PostMapping("/ShopReg")
+	public int ShopReg(@RequestBody MsShop MsShop) {
+		System.out.println("MsMenuController Start ShopReg...");
+		System.out.println("MsMenuController ShopReg MsShop " + MsShop);
+		int RegShop = ms.RegShop(MsShop);
+		
+		return RegShop;
 	}
 }

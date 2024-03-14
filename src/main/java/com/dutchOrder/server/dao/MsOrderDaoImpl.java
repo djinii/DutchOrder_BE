@@ -43,17 +43,17 @@ public class MsOrderDaoImpl implements MsOrderDao {
 
 	}
 
-	@Override
-	public int updateOrderStatus(MsShop msShop) {
-		System.out.println("MsOrderDaoImpl updateOrderStatus start..");
-		int shopOstatusUpdate= 0;
-		try {
-			session.update("updateShopStatus", msShop);
-
-		} catch (Exception e) {
-			System.out.println("updateOrderStatus Exception->" + e.getMessage());
-			e.printStackTrace();
-		}
-		return shopOstatusUpdate;
-	}
+//	@Override
+//	public int updateOrderStatus(MsShop msShop) {
+//		System.out.println("MsOrderDaoImpl updateOrderStatus start..");
+//		int shopOstatusUpdate= 0;
+//		try {
+//			session.update("updateShopStatus", msShop);
+//
+//		} catch (Exception e) {
+//			System.out.println("updateOrderStatus Exception->" + e.getMessage());
+//			e.printStackTrace();
+//		}
+//		return shopOstatusUpdate;
+//	}
 }

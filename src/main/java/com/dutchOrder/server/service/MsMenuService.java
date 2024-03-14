@@ -9,8 +9,6 @@ public interface MsMenuService {
 
 	List<MsMenu> Menulist();
 
-	int getShopStatus(int sstatus_mikey);
-
 	List<MsShop> ShopCategoryLi();
 
 	MsShop ShopDetail(int bnum);
@@ -24,5 +22,13 @@ public interface MsMenuService {
 	int reMenuUpdate(MsMenu msMenu);
 
 	int deleteMenu(int fnum);
+
+	MsShop getShopStatus(int sstatus_mikey);
+
+	int updateShopStatus(MsShop msShop);
+
+	MsShop getshopAccept(int mnum);
+
+	int RegShop(MsShop msShop);
 
 }

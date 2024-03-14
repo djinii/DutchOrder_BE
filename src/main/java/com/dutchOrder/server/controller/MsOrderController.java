@@ -49,18 +49,18 @@ public class MsOrderController {
 
 		}
 		
-		 /** 영업 상태 업데이트*/
-		@ResponseBody
-		@PostMapping("/ShopStatusUpdate")
-	  public int ShopStatusUpdate(@RequestBody MsShop msShop) {
-			System.out.println("MsOrderController Start updateShopStatus");
-			System.out.println("MsOrderController updateShopStatus msShop " + msShop);
-			int ostatusUpdate = os.updateShopStatus(msShop);
-			System.out.println("MsOrderController os.msShop msShop -> " + msShop);
-			
-			return ostatusUpdate;
-
-		}
+//		 /** 영업 상태 업데이트*/
+//		@ResponseBody
+//		@PostMapping("/ShopStatusUpdate")
+//	  public int ShopStatusUpdate(@RequestBody MsShop msShop) {
+//			System.out.println("MsOrderController Start updateShopStatus");
+//			System.out.println("MsOrderController updateShopStatus msShop " + msShop);
+//			int ostatusUpdate = os.updateShopStatus(msShop);
+//			System.out.println("MsOrderController os.msShop msShop -> " + msShop);
+//			
+//			return ostatusUpdate;
+//
+//		}
 
 
 }
