@@ -25,34 +25,40 @@ public class JhAuthServiceImpl implements JhAuthService {
 	@Override
 	public int getUserLevel(String memail) {
 		int result = jhAuthDao.getUserLevel(memail);
-		System.out.println(result);
-		
 		return result;
 	}
 	
 	@Override
 	public String findMyEmail(String mname, String mtel) {
 		String result = jhAuthDao.findMyEmail(mname, mtel);
-		System.out.println(result);
 		return result;
 	}
 
 	@Override
 	public String findMyPw(String memail, String mtel) {
 		String result = jhAuthDao.findMyPw(memail, mtel);
-		System.out.println(result);
 		return result;
 	}
 
 	@Override
 	public int getUserMnum(String memail) {
 		int result = jhAuthDao.getUserMnum(memail);
-		System.out.println(result);
 		return result;
 	}
 
+	@Override
+	public JhMemberDto findUserInfoByMnum(String mnum) {
+		return jhAuthDao.findUserInfoByMnum(mnum);
+	}
 
+	@Override
+	public void updateUserInfo(String mnum, JhMemberDto jhMemberDto) {
+		jhAuthDao.updateUserInfoByMnum(mnum, jhMemberDto);
+	}
 
-
-
+	@Override
+	public void deleteAccount(String mnum) {
+		jhAuthDao.deleteAccount(mnum);
+	}
+	
 }

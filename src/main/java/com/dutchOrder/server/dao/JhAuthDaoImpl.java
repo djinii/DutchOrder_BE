@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 @Repository
 public class JhAuthDaoImpl implements JhAuthDao {
 	
-	
 	private final SqlSession sqlSession;
 	
 	public JhAuthDaoImpl(SqlSession sqlSession) {
@@ -32,11 +31,14 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		params.put("mpw", mpw);
 		
 		// SQL 쿼리 실행
-		boolean result = sqlSession.selectOne("login", params);
+		Boolean result = sqlSession.selectOne("login", params);
 		System.out.println(result);
+		
+		if (result == null) {
+			return false;		
+		}
 		 
-		return result; // Boolean 객체이므로, 직접 반환 가능
-
+		return result.booleanValue(); 
 	} 
 
 	@Override
@@ -47,8 +49,6 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		int result = sqlSession.selectOne("getUserLevel", params);
  		return result;
 	}
-	
-
 	
 	@Override
 	public String findMyEmail(String mname, String mtel) {
@@ -67,7 +67,6 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		params.put("mtel", mtel);
 		
 		String result = sqlSession.selectOne("findMyPw", params);
-				
 		return result;
 	}
 
@@ -77,8 +76,26 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		params.put("memail", memail);
 		
 		int result = sqlSession.selectOne("getUserMnum", params);
-		
 		return result;
+	}
+
+	@Override
+	public JhMemberDto findUserInfoByMnum(String mnum) {
+		return sqlSession.selectOne("findUserInfoByMnum", mnum);
+	}
+
+	@Override
+	public void updateUserInfoByMnum(String mnum, JhMemberDto jhMemberDto) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("mnum", mnum);
+		params.put("jhMemberDto", jhMemberDto);
+		
+		sqlSession.update("updateUserInfoByMnum", params);
+	}
+
+	@Override
+	public void deleteAccount(String mnum) {
+		sqlSession.delete("deleteAccount", mnum);
 	}
 
 }

@@ -31,6 +31,26 @@
 	<select id="findUserByEmail" parameterType="map" resultType="com.dutchOrder.server.model.JhMember">
 		SELECT * FROM member WHERE memail = #{memail}
 	</select>
+	
+	<select id="findUserInfoByMnum" resultType="com.dutchOrder.server.dto.JhMemberDto">
+		SELECT mname, mnic, memail, mpw, mtel FROM member WHERE mnum = #{mnum}
+	</select>
+	
+	<update id="updateUserInfoByMnum" parameterType="map">
+		UPDATE member
+		SET 
+				mname = #{jhMemberDto.mname}, 
+				mnic = #{jhMemberDto.mnic}, 
+				memail = #{jhMemberDto.memail},
+				mpw = #{jhMemberDto.mpw}, 
+				mtel = #{jhMemberDto.mtel} 
+		WHERE 
+				mnum = #{mnum}		
+	</update>
+	
+	<delete id="deleteAccount" parameterType="String">
+		DELETE FROM member WHERE mnum = #{mnum}
+	</delete>
 
 
 </mapper>

@@ -17,10 +17,10 @@ public interface JhAuthService {
 
 	int getUserMnum(String memail);
 
+	JhMemberDto findUserInfoByMnum(String mnum);
 
+	void updateUserInfo(String mnum, JhMemberDto jhMemberDto);
 
+	void deleteAccount(String mnum);
 
-
-	
-	
 }
