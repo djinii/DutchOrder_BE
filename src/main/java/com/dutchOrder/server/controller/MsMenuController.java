@@ -153,11 +153,34 @@ public class MsMenuController {
 	/** 가게 등록 페이지*/
 	@ResponseBody
 	@PostMapping("/ShopReg")
-	public int ShopReg(@RequestBody MsShop MsShop) {
+	public int ShopReg(@RequestBody MsShop msShop) {
 		System.out.println("MsMenuController Start ShopReg...");
-		System.out.println("MsMenuController ShopReg MsShop " + MsShop);
-		int RegShop = ms.RegShop(MsShop);
+		System.out.println("MsMenuController ShopReg MsShop " + msShop);
+		int RegShop = ms.RegShop(msShop);
 		
 		return RegShop;
+	}
+	
+	/**파일 등록시 bfileDetail select*/
+	@ResponseBody
+	@PostMapping("/BFileDetail")
+	public MsShop BFileSelect(@RequestBody MsShop msShop) {
+		System.out.println("MsMenuController Start BFileSelect ... ");
+		System.out.println("MsMenuController BFileSelect msShop " + msShop);
+		MsShop getFileDetail = ms.getFileDetail(msShop.getMnum()); // bnum에 해당하는 가게의 상태 조회
+		System.out.println("MsMenuController BFileSelect -> " + getFileDetail);
+
+		return getFileDetail;
+	}
+	
+	/**파일 등록시 */
+	@ResponseBody
+	@PostMapping("/BFileInsert")
+	public int BFileInsert(@RequestBody MsShop msShop) {
+		System.out.println("MsMenuController Start BFileSelect ... ");
+		System.out.println("MsMenuController BFileSelect msShop " + msShop);
+		int InsertBfile = ms.InsertBfile(msShop);
+
+		return InsertBfile;
 	}
 }

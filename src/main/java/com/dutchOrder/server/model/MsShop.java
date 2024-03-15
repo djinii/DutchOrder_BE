@@ -25,8 +25,13 @@ public class MsShop {
 	private String simg3;
 	private String sconfirm;
 	
-	// 멤버
-	//private String mname;
+	private int bfnum;
+	private int bftype_makey;
+	private int bftype_mikey;
+	private String bfimg1;
+	private String bfimg2;
+	
+	
 	
 	
 	

@@ -21,7 +21,7 @@ public class MsOrderController {
 	private final MsOrderService os;
 
 	/** 주문현황 */
-	@GetMapping("/B_Ordering")
+	@GetMapping("/business/B_Ordering")
 	@ResponseBody
 	public List<MsOrderSpec> orderStatus() {
 
@@ -38,7 +38,7 @@ public class MsOrderController {
 
 	 /** 주문 상태 업데이트*/
 		@ResponseBody
-		@PostMapping("/StatusUpdate")
+		@PostMapping("/OrderStatusUpdate")
 	  public int orderStatusUpdate(@RequestBody MsOrderSpec msOrderSpec) {
 			System.out.println("MsOrderController Start updateOrderStatus");
 			System.out.println("MsOrderController updateOrderStatus msOrderSpec " + msOrderSpec);

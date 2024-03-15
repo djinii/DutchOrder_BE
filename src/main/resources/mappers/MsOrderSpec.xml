@@ -22,7 +22,7 @@
 		) AS
 		latest_orders ON od.onum = latest_orders.onum
 		JOIN
-		order_spec os
+		order_spec os	
 		ON
 		os.osnum = latest_orders.onum
 		ORDER BY od.odate DESC

@@ -31,4 +31,8 @@ public interface MsMenuDao {
 	MsShop getshopAccept(int mnum);
 
 	int RegShop(MsShop msShop);
+
+	MsShop getBFileDetail(int mnum);
+
+	int bFileInsert(MsShop msShop);
 }

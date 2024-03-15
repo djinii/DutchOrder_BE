@@ -12,9 +12,9 @@
 
 	<insert id="mapMenuInsert"
 		parameterType="com.dutchOrder.server.model.MsMenu">
-		INSERT INTO menu (bnum, fname, fprice, finfo, fnum,
+		INSERT INTO menu (bnum, fname, fprice, finfo, fimg, fnum, 
 		foption)
-		VALUES (#{bnum}, #{fname}, #{fprice}, #{finfo}, (SELECT
+		VALUES (#{bnum}, #{fname}, #{fprice}, #{finfo}, #{fimg},(SELECT
 		COALESCE(MAX(m.fnum), 0) + 1 FROM menu m), #{foption})
 
 	</insert>
@@ -29,14 +29,17 @@
 	<update id="mapMenuUpdate"
 		parameterType="com.dutchOrder.server.model.MsMenu">
 		UPDATE menu
-		SET fname = #{fname},
+		SET
+		fname = #{fname},
 		finfo = #{finfo},
 		fprice = #{fprice},
-		foption = #{foption}
+		foption = #{foption},
+		fimg = #{fimg}
 		WHERE fnum = #{fnum}
 	</update>
-	
-		<delete id="mapMemuDelete" parameterType="com.dutchOrder.server.model.MsMenu">
+
+	<delete id="mapMemuDelete"
+		parameterType="com.dutchOrder.server.model.MsMenu">
 		DELETE
 		FROM menu
 		WHERE fnum = #{fnum}

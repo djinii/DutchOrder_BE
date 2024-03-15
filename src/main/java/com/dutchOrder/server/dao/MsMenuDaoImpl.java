@@ -174,12 +174,41 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		System.out.println("MsMenuDaoImpl RegShop msShop->"+msShop);
 		int ShopReg = 0;
 		try {
+			//System.out.println("MsMenuDaoImpl RegShop msShop!!!!!!!!!!!!!!->"+msShop);
 			ShopReg = session.insert("mapMsShopReg", msShop);
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl RegShop Exception -> " + e.getMessage());
 		}
 		
 		return ShopReg;
+	}
+
+	@Override
+	public MsShop getBFileDetail(int mnum) {
+		System.out.println("MsMenuDaoImpl getBFileDetail Start...");
+		MsShop ListShop = null;
+		try {
+			ListShop = session.selectOne("mapBFileSelect", mnum);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("MsMenuDaoImpl getBFileDetail Exception -> " + e.getMessage());
+		}
+		return ListShop;
+	}
+
+	@Override
+	public int bFileInsert(MsShop msShop) {
+		System.out.println("MsMenuDaoImpl bFileInsert Start...");
+		System.out.println("MsMenuDaoImpl bFileInsert msShop->"+msShop);
+		int bFileInsert = 0;
+		try {
+			//System.out.println("MsMenuDaoImpl RegShop msShop!!!!!!!!!!!!!!->"+msShop);
+			bFileInsert = session.insert("mapBFileInsert", msShop);
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl bFileInsert Exception -> " + e.getMessage());
+		}
+		
+		return bFileInsert;
 	}
 
 	

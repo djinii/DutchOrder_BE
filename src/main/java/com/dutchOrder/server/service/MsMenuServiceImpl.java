@@ -112,4 +112,21 @@ public class MsMenuServiceImpl implements MsMenuService {
 		return ShopReg;
 	}
 
+	@Override
+	public MsShop getFileDetail(int mnum) {
+		System.out.println("MsMenuServiceImpl getFileDetail Start...");
+		MsShop msShop = md.getBFileDetail(mnum);
+		return msShop;
+	}
+
+	@Override
+	public int InsertBfile(MsShop msShop) {
+		int bFileInsert = 0;
+		
+		System.out.println("MsMenuServiceImpl RegShop Start...");
+		bFileInsert = md.bFileInsert(msShop);
+		
+		return bFileInsert;
+	}
+
 }
