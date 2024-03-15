@@ -2,19 +2,19 @@ package com.dutchOrder.server.dto;
 
 public class MenuItemDto {
     private Integer fnum; // 메뉴번호
-    private String fName; // 메뉴명
-    private Integer fCount; // 메뉴수량
-    private Integer osPrice; // 메뉴별 금액
+    private String fname; // 메뉴명
+    private Integer fcount; // 메뉴수량
+    private Integer osprice; // 메뉴별 금액
 
     // Constructors, Getters, and Setters
     public MenuItemDto() {
     }
 
-    public MenuItemDto(Integer fnum, String fName, Integer fCount, Integer osPrice) {
+    public MenuItemDto(Integer fnum, String fname, Integer fcount, Integer osprice) {
         this.fnum = fnum;
-        this.fName = fName;
-        this.fCount = fCount;
-        this.osPrice = osPrice;
+        this.fname = fname;
+        this.fcount = fcount;
+        this.osprice = osprice;
     }
 
     // Getters and Setters
@@ -26,27 +26,27 @@ public class MenuItemDto {
         this.fnum = fnum;
     }
 
-    public String getFName() {
-        return fName;
+    public String getFname() {
+        return fname;
     }
 
-    public void setFName(String fName) {
-        this.fName = fName;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public Integer getFCount() {
-        return fCount;
+    public Integer getFcount() {
+        return fcount;
     }
 
-    public void setFCount(Integer fCount) {
-        this.fCount = fCount;
+    public void setFcount(Integer fcount) {
+        this.fcount = fcount;
     }
 
-    public Integer getOsPrice() {
-        return osPrice;
+    public Integer getOsprice() {
+        return osprice;
     }
 
-    public void setOsPrice(Integer osPrice) {
-        this.osPrice = osPrice;
+    public void setOsprice(Integer osprice) {
+        this.osprice = osprice;
     }
 }

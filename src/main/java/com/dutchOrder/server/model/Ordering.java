@@ -24,45 +24,98 @@ public class Ordering {
     @Column(name = "onum")
     private Integer onum; // 주문 일련번호
 
+
     @Column(name = "oaddr", nullable = false)
-    private String oAddr; // 배달주소
+    private String oaddr; // 배달주소
 
     @Column(name = "otel", nullable = false)
-    private String oTel; // 주문용 연락처
+    private String otel; // 주문용 연락처
 
     @Column(name = "omsg")
-    private String oMsg; // 요청사항
+    private String omsg; // 요청사항
 
     @Column(name = "odate")
-    private Timestamp oDate; // 주문날짜
+    private Timestamp odate; // 주문날짜
 
     @Column(name = "ostatus_makey", nullable = false)
-    private Integer oStatusMaKey; // 상태코드 대분류
+    private Integer ostatusMaKey; // 상태코드 대분류
 
     @Column(name = "ostatus_mikey", nullable = false)
-    private Integer oStatusMiKey; // 상태코드 중분류
+    private Integer ostatusMiKey; // 상태코드 중분류
 
-    // Constructors, Getters, and Setters
     public Ordering() {
     }
 
-    public Integer getOStatusMaKey() {
-        return this.oStatusMaKey;
+    public Integer getMnum() {
+        return mnum;
     }
 
-    public Integer getOStatusMiKey() {
-        return this.oStatusMiKey;
+    public void setMnum(Integer mnum) {
+        this.mnum = mnum;
     }
 
-    public Timestamp getODate() {
-        return this.oDate;
+    public Integer getBnum() {
+        return bnum;
+    }
+
+    public void setBnum(Integer bnum) {
+        this.bnum = bnum;
     }
 
     public Integer getOnum() {
-        return this.onum;
+        return onum;
     }
 
-    public String getOAddr() {
-        return this.oAddr;
+    public void setOnum(Integer onum) {
+        this.onum = onum;
     }
+
+    public String getOaddr() {
+        return oaddr;
+    }
+
+    public void setOaddr(String oAddr) {
+        this.oaddr = oAddr;
+    }
+
+    public String getOtel() {
+        return otel;
+    }
+
+    public void setOtel(String oTel) {
+        this.otel = oTel;
+    }
+
+    public String getOmsg() {
+        return omsg;
+    }
+
+    public void setOmsg(String omsg) {
+        this.omsg = omsg;
+    }
+
+    public Timestamp getOdate() {
+        return odate;
+    }
+
+    public void setOdate(Timestamp odate) {
+        this.odate = odate;
+    }
+
+    public Integer getOstatusMaKey() {
+        return ostatusMaKey;
+    }
+
+    public void setOstatusMaKey(Integer ostatusMaKey) {
+        this.ostatusMaKey = ostatusMaKey;
+    }
+
+    public Integer getOstatusMiKey() {
+        return ostatusMiKey;
+    }
+
+    public void setOstatusMiKey(Integer ostatusMiKey) {
+        this.ostatusMiKey = ostatusMiKey;
+    }
+
 }

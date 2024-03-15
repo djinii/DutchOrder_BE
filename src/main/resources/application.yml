@@ -13,7 +13,7 @@ spring:
   dataSource:
     initialization-mode: always
     driver-class-name:  com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/DutchOrder?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/DutchOrder?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     username: admin
     password: 1234
   jpa:
@@ -22,13 +22,17 @@ spring:
     show-sql: true
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
+  sql:
+    init:
+      mode: always
     # gmail Transfer
   mail:
     host: smtp.gmail.com
     port: 587
     username: dutchOrder4@gmail.com
-    password: qllk rswi swps ezyq
+    password: 'qllk rswi swps ezyq'
     properties:
       mail:
         smtp:
@@ -42,4 +46,11 @@ spring:
 logging.level:
   org.hibernate.SQL: debug   # logger를 통해 하이버네이트 실행 SQL        
       
-      
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          datasource:
+            init:
+              ScriptUtils: DEBUG
