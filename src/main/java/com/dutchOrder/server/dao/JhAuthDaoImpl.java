@@ -2,25 +2,17 @@ package com.dutchOrder.server.dao;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.mindrot.jbcrypt.BCrypt;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.dutchOrder.server.dto.JhMemberDto;
-import com.dutchOrder.server.model.JhMember;
 
-import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 
 @Repository
 public class JhAuthDaoImpl implements JhAuthDao {
 	
 	private final SqlSession sqlSession;
     
-    @Autowired
     public JhAuthDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }

@@ -1,16 +1,11 @@
 package com.dutchOrder.server.controller;
 
-import java.lang.reflect.Member;
-import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
-
-import com.dutchOrder.server.dto.JhMemberDto;
 import com.dutchOrder.server.model.JhMember;
 import com.dutchOrder.server.service.JhRegisterService;
 
@@ -19,30 +14,24 @@ public class JhRegisterController {
 
     private final JhRegisterService jhRegisterService;
     
-    private final BCryptPasswordEncoder passwordEncoder;
-    
-   
-    public JhRegisterController(JhRegisterService jhRegisterService, BCryptPasswordEncoder passwordEncoder) {
+    public JhRegisterController(JhRegisterService jhRegisterService) {
         this.jhRegisterService = jhRegisterService;
-        this.passwordEncoder = passwordEncoder;
     }
     
-	// 회원가입 시 비밀번호 해시화
-    private String hashPassword(String mpw, int rounds) {
-    	
+    // 회원가입 시 비밀번호 해시화
+    private String hashPassword(String mpw) {
         // 입력된 비밀번호를 BCrypt를 사용하여 해시화합니다.
-    	return new BCryptPasswordEncoder(rounds).encode(mpw);
+        return BCrypt.hashpw(mpw, BCrypt.gensalt());
     }
-    
     
 
     @PostMapping("/client/join")
     public ResponseEntity<String> registerClient(@RequestBody JhMember jhMember) {
         try {
-            // 비밀번호를 BCrypt로 해시화
-        	String hashedPassword = hashPassword(jhMember.getMpw(), 10);
+        	 // 비밀번호를 BCrypt로 해시화
+            String hashedPassword = hashPassword(jhMember.getMpw());
             jhMember.setMpw(hashedPassword);
-            
+        	
             // 회원 정보를 저장합니다.
             jhRegisterService.insertC(jhMember);
             return ResponseEntity.ok("회원가입이 완료되었습니다.");
@@ -55,9 +44,11 @@ public class JhRegisterController {
     @PostMapping("/business/join")
     public ResponseEntity<String> registerBusiness(@RequestBody JhMember jhMember) {
         try {
-            // 비밀번호를 BCrypt로 해시화
-        	String hashedPassword = hashPassword(jhMember.getMpw(), 10);
+            
+        	// 비밀번호를 BCrypt로 해시화
+            String hashedPassword = hashPassword(jhMember.getMpw());
             jhMember.setMpw(hashedPassword);
+            
             
             // 회원 정보를 저장합니다.
             jhRegisterService.insertB(jhMember);

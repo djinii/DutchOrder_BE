@@ -1,7 +1,5 @@
 package com.dutchOrder.server.service;
 
-import java.lang.reflect.Member;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,6 @@ public class JhRegisterServiceImpl implements JhRegisterService {
     	jhRegisterDao.insertC(jhMember);
     }
 
-    @Autowired
     public JhRegisterServiceImpl(JhRegisterDao jhRegisterDao) {
     	this.jhRegisterDao = jhRegisterDao;
     }
