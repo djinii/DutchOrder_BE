@@ -15,8 +15,9 @@ public class JhAuthController {
 
     @Autowired
     private JhAuthService jhAuthService;
+    
 
-
+    @Autowired
     public JhAuthController(JhAuthService jhAuthService) {
         this.jhAuthService = jhAuthService;
     }
@@ -32,7 +33,7 @@ public class JhAuthController {
     	boolean result = jhAuthService.login(memail,mpw);
     	return result;
     }
-    
+
     @PostMapping("/getUserLevel")
     public int getUserLevel(@RequestBody Map<String, String> request) {
     	
@@ -91,10 +92,10 @@ public class JhAuthController {
     	return ResponseEntity.ok().build();
     }
     
-    @DeleteMapping("/deleteAccount/{mnum}")
-    public ResponseEntity<?> deleteUser(@PathVariable("mnum") String mnum) {
+    @PutMapping("/updateAccountStatus/{mnum}")
+    public ResponseEntity<?> updateAccountStatus(@PathVariable("mnum") String mnum) {
     	try {
-			jhAuthService.deleteAccount(mnum);
+			jhAuthService.updateAccountStatus(mnum);
 			return ResponseEntity.ok().build();
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body("계정 삭제 중 오류 발생");

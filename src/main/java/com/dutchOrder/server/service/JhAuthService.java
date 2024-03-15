@@ -9,7 +9,6 @@ public interface JhAuthService {
 	boolean login(String memail, String mpw);
 
 	int getUserLevel(String memail);
-	
 
 	String findMyEmail(String mname, String mtel);
 
@@ -21,6 +20,11 @@ public interface JhAuthService {
 
 	void updateUserInfo(String mnum, JhMemberDto jhMemberDto);
 
-	void deleteAccount(String mnum);
+	void updateAccountStatus(String mnum);
+
+	String getEncryptedPassword(String memail);
+
+	
+	
 
 }

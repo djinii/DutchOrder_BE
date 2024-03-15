@@ -19,6 +19,8 @@ public interface JhAuthDao {
 
 	void updateUserInfoByMnum(String mnum, JhMemberDto jhMemberDto);
 
-	void deleteAccount(String mnum);
+	void updateAccountStatus(String mnum);
+
+	String getEncryptedPassword(String memail);
 
 }

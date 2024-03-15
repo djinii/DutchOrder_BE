@@ -2,25 +2,40 @@ package com.dutchOrder.server.service;
 
 import com.dutchOrder.server.dao.JhAuthDao;
 import com.dutchOrder.server.dto.JhMemberDto;
-import com.dutchOrder.server.model.JhMember;
 
-import lombok.RequiredArgsConstructor;
-
-import org.apache.catalina.User;
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class JhAuthServiceImpl implements JhAuthService {
 	
 	private final JhAuthDao jhAuthDao;
+    private final BCryptPasswordEncoder passwordEncoder;
+
 	
-	@Override
-	public boolean login(String memail, String mpw) {
-		boolean result = jhAuthDao.login(memail, mpw);
-		return result;
-	}
+    public JhAuthServiceImpl(JhAuthDao jhAuthDao, BCryptPasswordEncoder passwordEncoder) {
+        this.jhAuthDao = jhAuthDao;
+        this.passwordEncoder = passwordEncoder;
+     }
+
+    @Override
+    public boolean login(String memail, String mpw) {
+        // 데이터베이스에서 사용자의 암호화된 비밀번호를 가져옴
+        String encryptedPassword = getEncryptedPassword(memail);
+        
+        // 사용자가 입력한 비밀번호를 BCrypt 알고리즘을 사용하여 해싱
+        String hashedPassword = mpw;
+
+
+        // 데이터베이스에서 가져온 비밀번호와 사용자가 입력한 비밀번호를 비교합니다.
+        boolean result = BCrypt.checkpw(mpw, encryptedPassword);
+        System.out.println("Passwords match: " + result);
+
+        // 사용자가 입력한 비밀번호와 데이터베이스에서 가져온 암호화된 비밀번호 비교
+        return result;
+    }
 
 	@Override
 	public int getUserLevel(String memail) {
@@ -57,8 +72,13 @@ public class JhAuthServiceImpl implements JhAuthService {
 	}
 
 	@Override
-	public void deleteAccount(String mnum) {
-		jhAuthDao.deleteAccount(mnum);
+	public void updateAccountStatus(String mnum) {
+		jhAuthDao.updateAccountStatus(mnum);
+	}
+
+	@Override
+	public String getEncryptedPassword(String memail) {
+		return jhAuthDao.getEncryptedPassword(memail);
 	}
 	
 }

@@ -3,9 +3,13 @@
 
 <mapper namespace="com.dutchOrder.server.dao.JhAuthDao">
 
-    <select id="login" parameterType="map" resultType="boolean">
-        SELECT * FROM member WHERE (memail, mpw) = (#{memail}, #{mpw})
-    </select>
+	<select id="getEncryptedPassword" parameterType="map" resultType="String">
+    SELECT mpw FROM member WHERE memail = #{memail}
+	</select>
+
+<!--     <select id="getEncryptedPassword" parameterType="map" resultType="String">
+    	SELECT mpw FROM member WHERE memail = #{memail}
+	</select> -->
     
     <select id="getUserLevel" parameterType="map" resultType="int">
     	SELECT mgroup_mikey FROM member WHERE (memail = #{memail})
@@ -42,15 +46,14 @@
 				mname = #{jhMemberDto.mname}, 
 				mnic = #{jhMemberDto.mnic}, 
 				memail = #{jhMemberDto.memail},
-				mpw = #{jhMemberDto.mpw}, 
 				mtel = #{jhMemberDto.mtel} 
 		WHERE 
 				mnum = #{mnum}		
 	</update>
 	
-	<delete id="deleteAccount" parameterType="String">
-		DELETE FROM member WHERE mnum = #{mnum}
-	</delete>
+	<update id="updateAccountStatus" parameterType="String">
+		UPDATE member SET mstatus_mikey = '202' WHERE mnum = #{mnum}
+	</update>
 
 
 </mapper>

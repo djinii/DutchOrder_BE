@@ -2,9 +2,10 @@ package com.dutchOrder.server.dao;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,19 +19,17 @@ import lombok.RequiredArgsConstructor;
 public class JhAuthDaoImpl implements JhAuthDao {
 	
 	private final SqlSession sqlSession;
-	
-	public JhAuthDaoImpl(SqlSession sqlSession) {
-	    this.sqlSession = sqlSession;
-	}
-	
+    
+    @Autowired
+    public JhAuthDaoImpl(SqlSession sqlSession) {
+        this.sqlSession = sqlSession;
+    }
+    
 	@Override
     public boolean login(String memail, String mpw) {
-		// 사용자 인증을 위한 파라미터 맵 생성
 		Map<String, Object> params = new HashMap<>();
 		params.put("memail", memail);
 		params.put("mpw", mpw);
-		
-		// SQL 쿼리 실행
 		Boolean result = sqlSession.selectOne("login", params);
 		System.out.println(result);
 		
@@ -40,6 +39,7 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		 
 		return result.booleanValue(); 
 	} 
+	
 
 	@Override
 	public int getUserLevel(String memail) {
@@ -94,8 +94,18 @@ public class JhAuthDaoImpl implements JhAuthDao {
 	}
 
 	@Override
-	public void deleteAccount(String mnum) {
-		sqlSession.delete("deleteAccount", mnum);
+	public void updateAccountStatus(String mnum) {
+		sqlSession.update("updateAccountStatus", mnum);
+	}
+
+	@Override
+	public String getEncryptedPassword(String memail) {
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("memail", memail);
+	   
+	    
+	    // 데이터베이스에서 사용자의 암호화된 비밀번호를 가져옴
+	    return sqlSession.selectOne("getEncryptedPassword", params);
 	}
 
 }
