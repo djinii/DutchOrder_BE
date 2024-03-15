@@ -79,6 +79,7 @@ public class OrderService {
             case 805: return "배달완료";
             default: return "알 수 없음";
         }
+        
     }
 
     public OrderInfoDto getOrderInfo(Integer mnum, Integer bnum, Integer onum) {
