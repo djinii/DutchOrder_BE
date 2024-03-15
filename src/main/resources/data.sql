@@ -1,36 +1,36 @@
---    -- menu query ¸Ş´º
---    insert into menu values(1001, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ºñºö¹ä', 7000, 'D:\\dbimg\\la.jpg', '³ª¹°ÀÌ µé¾î°£ ºñºö¹ä', 1);
---    insert into menu values(1001, (select coalesce(max(a.fnum), 0)+1 from menu a), '±èÄ¡Âî°³', 8000, 'D:\\dbimg\\gi.jpg', '¹¬ÀºÁö°¡ µé¾î°£ Âî°³', 1);
---    insert into menu values(1002, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ÀÚÀå¸é', 10000, 'D:\\dbimg\\la.jpg', 'ÁÁÀº±â°è·Î »ÌÀº ÀÚÀå¸é', 2);
---    insert into menu values(1002, (select coalesce(max(a.fnum), 0)+1 from menu a), 'Â«»Í', 10000, 'D:\\dbimg\\gi.jpg', '¾óÅ«ÇÑ Â«»Í', 2);
---    insert into menu values(1003, (select coalesce(max(a.fnum), 0)+1 from menu a), '¿¬¾îÃÊ¹ä', 7000, 'D:\\dbimg\\bi.jpg', '¾ÆÄí¾Æ¸®¿ò¿¡¼­ Àâ¾Æ¿Â ¿¬¾î·Î ¸¸µç ÃÊ¹ä', 1);
---    insert into menu values(1003, (select coalesce(max(a.fnum), 0)+1 from menu a), '³Ã¼Ò¹Ù', 8000, 'D:\\dbimg\\ggi.jpg', '½Ã¿øÇÑ ¼Ò¹Ù', 1);
---    insert into menu values(1004, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ººÀ½¹ä', 8000, 'D:\\dbimg\\ja.jpg', 'ÀßººÀº ¹ä', 1);
---    insert into menu values(1004, (select coalesce(max(a.fnum), 0)+1 from menu a), 'Æé½ÃÁ¦·Î', 2000, 'D:\\dbimg\\jjam.jpg', '¹«¼³ÅÁ Äİ¶ó', 1);
---
---    -- ordering query ÁÖ¹®
---    insert into ordering values(1001, 1001, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'ÀÌ´ë', '000-0000-0000', null, null, 800, 805);
---    insert into ordering values(1001, 1001, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'È«´ë', '000-0000-0000', null, null, 800, 805);
---    insert into ordering values(1002, 1002, (select coalesce(max(a.onum), 1000)+1 from ordering a), '½ÅÃÌ', '000-0000-0000', null, null, 800, 805);
---    insert into ordering values(1002, 1002, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'ÀÌ´ë', '000-0000-0000', null, null, 800, 805);
---
---    -- order_spec query ÁÖ¹®»ó¼¼
---    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 1, 1100, 1101, 1, 7000);
---    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 2, 1100, 1101, 2, 16000);
---    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 3, 1100, 1102, 1, 11000);
---    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 4, 1100, 1102, 1, 11000);
---
---    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
---    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 301, 'ÀÌ´ë¿ª', '000-0000-0000', 'À°¼ö´ç', '09:00', '20:00', 400, 401, 1006,
---    '1234-01-1234', 500, 502, 'D:\\dbimg\\bu1.jpg');
---    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
---    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 302, 'ÀÌ´ë¿ª', '000-0000-0000', '¹«¸ªµµ¿ø', '09:00', '20:00', 400, 401, 1007,
---    '1234-01-1235', 500, 502, 'D:\\dbimg\\bu2.jpg');
---    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
---    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 303, 'ÀÌ´ë¿ª', '000-0000-0000', 'ÇÑ³¢¸¶³¢', '09:00', '20:00', 400, 401, 1008,
---    '1234-01-1236', 500, 502, 'D:\\dbimg\\ko1.jpg');
---    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
---    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 304, 'ÀÌ´ë¿ª', '000-0000-0000', 'ÃµÁøºĞ½Ä', '09:00', '20:00', 400, 401, 1009,
---    '1234-01-1237', 500, 502, 'D:\\dbimg\\cu1.jpg');
+    -- menu query ë©”ë‰´
+    insert into menu values(1001, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ë¹„ë¹”ë°¥', 7000, 'D:\\dbimg\\la.jpg', 'ë‚˜ë¬¼ì´ ë“¤ì–´ê°„ ë¹„ë¹”ë°¥', 1);
+    insert into menu values(1001, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ê¹€ì¹˜ì°Œê°œ', 8000, 'D:\\dbimg\\gi.jpg', 'ë¬µì€ì§€ê°€ ë“¤ì–´ê°„ ì°Œê°œ', 1);
+    insert into menu values(1002, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ìì¥ë©´', 10000, 'D:\\dbimg\\la.jpg', 'ì¢‹ì€ê¸°ê³„ë¡œ ë½‘ì€ ìì¥ë©´', 2);
+    insert into menu values(1002, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ì§¬ë½•', 10000, 'D:\\dbimg\\gi.jpg', 'ì–¼í°í•œ ì§¬ë½•', 2);
+    insert into menu values(1003, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ì—°ì–´ì´ˆë°¥', 7000, 'D:\\dbimg\\bi.jpg', 'ì•„ì¿ ì•„ë¦¬ì›€ì—ì„œ ì¡ì•„ì˜¨ ì—°ì–´ë¡œ ë§Œë“  ì´ˆë°¥', 1);
+    insert into menu values(1003, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ëƒ‰ì†Œë°”', 8000, 'D:\\dbimg\\ggi.jpg', 'ì‹œì›í•œ ì†Œë°”', 1);
+    insert into menu values(1004, (select coalesce(max(a.fnum), 0)+1 from menu a), 'ë³¶ìŒë°¥', 8000, 'D:\\dbimg\\ja.jpg', 'ì˜ë³¶ì€ ë°¥', 1);
+    insert into menu values(1004, (select coalesce(max(a.fnum), 0)+1 from menu a), 'í©ì‹œì œë¡œ', 2000, 'D:\\dbimg\\jjam.jpg', 'ë¬´ì„¤íƒ• ì½œë¼', 1);
+
+    -- ordering query ì£¼ë¬¸
+    insert into ordering values(1001, 1001, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'ì´ëŒ€', '000-0000-0000', null, null, 800, 805);
+    insert into ordering values(1001, 1001, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'í™ëŒ€', '000-0000-0000', null, null, 800, 805);
+    insert into ordering values(1002, 1002, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'ì‹ ì´Œ', '000-0000-0000', null, null, 800, 805);
+    insert into ordering values(1002, 1002, (select coalesce(max(a.onum), 1000)+1 from ordering a), 'ì´ëŒ€', '000-0000-0000', null, null, 800, 805);
+
+    -- order_spec query ì£¼ë¬¸ìƒì„¸
+    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 1, 1100, 1101, 1, 7000);
+    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 2, 1100, 1101, 2, 16000);
+    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 3, 1100, 1102, 1, 11000);
+    insert into order_spec values(1001, (select coalesce(max(a.osnum), 1000)+1 from order_spec a), 4, 1100, 1102, 1, 11000);
+
+    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
+    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 301, 'ì´ëŒ€ì—­', '000-0000-0000', 'ìœ¡ìˆ˜ë‹¹', '09:00', '20:00', 400, 401, 1006,
+    '1234-01-1234', 500, 502, 'D:\\dbimg\\bu1.jpg');
+    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
+    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 302, 'ì´ëŒ€ì—­', '000-0000-0000', 'ë¬´ë¦‰ë„ì›', '09:00', '20:00', 400, 401, 1007,
+    '1234-01-1235', 500, 502, 'D:\\dbimg\\bu2.jpg');
+    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
+    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 303, 'ì´ëŒ€ì—­', '000-0000-0000', 'í•œë¼ë§ˆë¼', '09:00', '20:00', 400, 401, 1008,
+    '1234-01-1236', 500, 502, 'D:\\dbimg\\ko1.jpg');
+    insert into shop(bnum, fcategory_makey, fcategory_mikey, saddr, stel, sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid, bstaus_makey, bstaus_mikey, simg1)
+    values((select coalesce(max(a.bnum), 1000)+1 from shop a), 300, 304, 'ì´ëŒ€ì—­', '000-0000-0000', 'ì²œì§„ë¶„ì‹', '09:00', '20:00', 400, 401, 1009,
+    '1234-01-1237', 500, 502, 'D:\\dbimg\\cu1.jpg');
 
 SET foreign_key_checks = 1;
