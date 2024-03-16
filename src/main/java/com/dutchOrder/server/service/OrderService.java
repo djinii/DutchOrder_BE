@@ -88,12 +88,72 @@ public class OrderService {
         Shop shop = shopRepository.findById(bnum)
                 .orElseThrow(() -> new RuntimeException("Shop not found"));
 
+        List<OrderSpec> orderSpecs = orderSpecRepository.findByOnum(onum);
+        List<MenuItemDto> menuItems = orderSpecs.stream().flatMap(spec -> {
+            MenuId menuId = new MenuId(ordering.getBnum(), spec.getFnum());
+            return menuRepository.findById(menuId).map(menu ->
+                    Stream.of(new MenuItemDto(spec.getFnum(), menu.getFname(), spec.getFcount(), spec.getOsprice()))
+            ).orElseGet(() -> {
+                System.out.println("Menu item not found for bnum: " + ordering.getBnum() + ", fnum: " + spec.getFnum());
+                return Stream.empty();
+            });
+        }).collect(Collectors.toList());
+
+        Integer totalAmount = menuItems.stream().mapToInt(MenuItemDto::getOsprice).sum();
+
         String formattedDate = Optional.ofNullable(ordering.getOdate())
                 .map(Timestamp::toLocalDateTime)
                 .map(localDateTime -> localDateTime.toString())
                 .orElse("날짜 정보 없음");
 
-        return new OrderInfoDto(shop.getSname(), ordering.getOnum(), formattedDate);
+        return new OrderInfoDto(
+                shop.getSname(),
+                ordering.getOnum(),
+                formattedDate,
+                menuItems,
+                totalAmount,
+                ordering.getOaddr(),
+                ordering.getOmsg()
+        );
+    }
+
+
+    public List<OrderInfoDto> getOrdersByMember(Integer mnum) {
+        List<Ordering> orders = orderRepository.findAllByMnum(mnum);
+
+        return orders.stream().map(order -> {
+            Shop shop = shopRepository.findById(order.getBnum())
+                    .orElseThrow(() -> new RuntimeException("Shop not found for order: " + order.getOnum()));
+
+            List<OrderSpec> orderSpecs = orderSpecRepository.findByOnum(order.getOnum());
+            List<MenuItemDto> menuItems = orderSpecs.stream().flatMap(spec -> {
+                MenuId menuId = new MenuId(order.getBnum(), spec.getFnum());
+                return menuRepository.findById(menuId).map(menu ->
+                        Stream.of(new MenuItemDto(spec.getFnum(), menu.getFname(), spec.getFcount(), spec.getOsprice()))
+                ).orElseGet(() -> {
+                    System.out.println("Menu item not found for bnum: " + order.getBnum() + ", fnum: " + spec.getFnum());
+                    return Stream.empty();
+                });
+            }).collect(Collectors.toList());
+
+
+            Integer totalAmount = menuItems.stream().mapToInt(MenuItemDto::getOsprice).sum();
+
+            String formattedDate = Optional.ofNullable(order.getOdate())
+                    .map(Timestamp::toLocalDateTime)
+                    .map(localDateTime -> localDateTime.toString())
+                    .orElse("날짜 정보 없음");
+
+            return new OrderInfoDto(
+                    shop.getSname(),
+                    order.getOnum(),
+                    formattedDate,
+                    menuItems,
+                    totalAmount,
+                    order.getOaddr(),
+                    order.getOmsg()
+            );
+        }).collect(Collectors.toList());
     }
 
 }

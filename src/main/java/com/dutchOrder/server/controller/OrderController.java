@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
@@ -38,5 +40,12 @@ public class OrderController {
         OrderInfoDto orderInfo = orderService.getOrderInfo(mnum, bnum, onum);
         return ResponseEntity.ok(orderInfo);
     }
+
+    @GetMapping("/member/{mnum}")
+    public ResponseEntity<List<OrderInfoDto>> getOrdersByMember(@PathVariable("mnum") Integer mnum) {
+        List<OrderInfoDto> orders = orderService.getOrdersByMember(mnum);
+        return ResponseEntity.ok(orders);
+    }
+
 
 }

@@ -16,7 +16,6 @@ public class MenuItemDto {
         this.fcount = fcount;
         this.osprice = osprice;
     }
-
     // Getters and Setters
     public Integer getFnum() {
         return fnum;
