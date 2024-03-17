@@ -35,4 +35,6 @@ public interface MsMenuDao {
 	MsShop getBFileDetail(int mnum);
 
 	int bFileInsert(MsShop msShop);
+
+
 }

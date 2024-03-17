@@ -149,19 +149,19 @@ public class MsMenuController {
 
 		return shopAccept;
 	}
-	
-	/** 가게 등록 페이지*/
+
+	/** 가게 등록 페이지 */
 	@ResponseBody
 	@PostMapping("/ShopReg")
 	public int ShopReg(@RequestBody MsShop msShop) {
 		System.out.println("MsMenuController Start ShopReg...");
 		System.out.println("MsMenuController ShopReg MsShop " + msShop);
 		int RegShop = ms.RegShop(msShop);
-		
+
 		return RegShop;
 	}
-	
-	/**파일 등록시 bfileDetail select*/
+
+	/** 파일 등록시 bfileDetail select */
 	@ResponseBody
 	@PostMapping("/BFileDetail")
 	public MsShop BFileSelect(@RequestBody MsShop msShop) {
@@ -172,8 +172,8 @@ public class MsMenuController {
 
 		return getFileDetail;
 	}
-	
-	/**파일 등록시 */
+
+	/** 파일 등록시 */
 	@ResponseBody
 	@PostMapping("/BFileInsert")
 	public int BFileInsert(@RequestBody MsShop msShop) {
@@ -183,4 +183,5 @@ public class MsMenuController {
 
 		return InsertBfile;
 	}
+
 }

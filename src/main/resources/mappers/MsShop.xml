@@ -14,7 +14,7 @@
 		resultType="com.dutchOrder.server.model.MsShop">
 		SELECT s.sname, s.start_time, s.end_time, s.bnum,
 		s.fcategory_mikey,
-		s.sstatus_mikey, s.stel, s.saddr, s.simg1,	 m.mname
+		s.sstatus_mikey, s.stel, s.saddr, s.simg1, m.mname
 		FROM shop s
 		JOIN member m ON s.mnum = m.mnum
 		WHERE bnum = #{bnum}
@@ -51,42 +51,46 @@
 		= #{mnum}
 	</select>
 
-		<insert id="mapMsShopReg"
-			parameterType="com.dutchOrder.server.model.MsShop">
-			INSERT INTO shop (bnum, fcategory_makey, fcategory_mikey, saddr, stel,
-			sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid,
-			bstaus_makey, bstaus_mikey, simg1, simg2, simg3, sconfirm)
-			VALUES (
-			#{bnum},
-			#{fcategory_makey},
-			#{fcategory_mikey},
-			#{saddr},
-			#{stel},
-			#{sname},
-			#{start_time},
-			#{end_time},
-			#{sstatus_makey},
-			#{sstatus_mikey},
-			#{mnum},
-			#{bid},
-			#{bstaus_makey},
-			#{bstaus_mikey},
-			#{simg1},
-			#{simg2},
-			#{simg3},
-			#{sconfirm}
-			);
-		</insert>
-		
-		<select id="mapBFileSelect" resultType="com.dutchOrder.server.model.MsShop">
-		SELECT mnum, bfnum, bftype_makey, bftype_mikey FROM business_file WHERE mnum = #{mnum}
-		</select>
-		
-		<insert id="mapBFileInsert" parameterType="com.dutchOrder.server.model.MsShop">
-			INSERT INTO business_file (mnum, bfnum, bftype_makey, bftype_mikey, bfimg1)
-			values ( #{mnum}, #{bfnum}, #{bftype_makey}, #{bftype_mikey}, #{bfimg1});
-		
-		</insert>
+	<insert id="mapMsShopReg"
+		parameterType="com.dutchOrder.server.model.MsShop">
+		INSERT INTO shop (bnum, fcategory_makey, fcategory_mikey, saddr, stel,
+		sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid,
+		bstaus_makey, bstaus_mikey, simg1, simg2, simg3, sconfirm)
+		VALUES (
+		#{bnum},
+		#{fcategory_makey},
+		#{fcategory_mikey},
+		#{saddr},
+		#{stel},
+		#{sname},
+		#{start_time},
+		#{end_time},
+		#{sstatus_makey},
+		#{sstatus_mikey},
+		#{mnum},
+		#{bid},
+		#{bstaus_makey},
+		#{bstaus_mikey},
+		#{simg1},
+		#{simg2},
+		#{simg3},
+		#{sconfirm}
+		);
+	</insert>
+
+	<select id="mapBFileSelect" resultType="com.dutchOrder.server.model.MsShop">
+		SELECT mnum, bfnum, bftype_makey, bftype_mikey FROM business_file WHERE
+		mnum = #{mnum}
+	</select>
+
+	<insert id="mapBFileInsert"
+		parameterType="com.dutchOrder.server.model.MsShop">
+		INSERT INTO business_file (mnum, bfnum, bftype_makey, bftype_mikey,
+		bfimg1)
+		values ( #{mnum}, #{bfnum}, #{bftype_makey}, #{bftype_mikey},
+		#{bfimg1});
+
+	</insert>
 
 
 </mapper>

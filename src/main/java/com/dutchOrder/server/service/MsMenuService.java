@@ -35,4 +35,6 @@ public interface MsMenuService {
 
 	int InsertBfile(MsShop msShop);
 
+
+
 }
