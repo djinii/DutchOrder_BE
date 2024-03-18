@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.misc.TestRig;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.dutchOrder.server.model.Address;
 import com.dutchOrder.server.model.Menu;
 import com.dutchOrder.server.model.Shop;
 
@@ -67,5 +68,16 @@ public class C_MainDaoImpl implements C_MainDao {
 		}
 		return menuInfo;
 		
+	}
+	@Override
+	public List<Address> listAddr(String mnum) {
+		List<Address> listAddr = null;
+		try {
+			listAddr = session.selectList("mapAddrList", mnum);
+			System.out.println("dao -> " + listAddr);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return listAddr;
 	}
 }

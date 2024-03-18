@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.dutchOrder.server.dao.C_MainDaoImpl;
+import com.dutchOrder.server.model.Address;
 import com.dutchOrder.server.model.Menu;
 import com.dutchOrder.server.model.Shop;
 
@@ -46,6 +47,14 @@ public class C_MainServiceImpl implements C_MainService {
 		System.out.println("[Service] menuInfo ~~"+ menuInfo);
 		
 		return menuInfo;
+	}
+
+	@Override
+	public List<Address> listAddr(String mnum) {
+		System.out.println(mnum + "mainService +  " + mnum);
+		List<Address> listAddr = md.listAddr(mnum);
+		System.out.println("finished  listAddr --> " + listAddr);
+		return listAddr;
 	}
 
 }
