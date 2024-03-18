@@ -14,7 +14,7 @@ public interface MsMenuDao {
 
 	List<MsShop> ShopCategoryLi();
 
-	MsShop getShopDetail(int bnum);
+	MsShop getShopDetail(int mnum);
 
 	int adMenuInsert(MsMenu msMenu);
 
@@ -35,6 +35,8 @@ public interface MsMenuDao {
 	MsShop getBFileDetail(int mnum);
 
 	int bFileInsert(MsShop msShop);
+
+	int getUserBnum(int mnum);
 
 
 }

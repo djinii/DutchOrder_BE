@@ -11,7 +11,7 @@ public interface MsMenuService {
 
 	List<MsShop> ShopCategoryLi();
 
-	MsShop ShopDetail(int bnum);
+	MsShop ShopDetail(int mnum);
 
 	int updateShopTimeUpdate(MsShop msShop);
 
@@ -34,6 +34,8 @@ public interface MsMenuService {
 	MsShop getFileDetail(int mnum);
 
 	int InsertBfile(MsShop msShop);
+
+	int getUserBnum(int mnum);
 
 
 

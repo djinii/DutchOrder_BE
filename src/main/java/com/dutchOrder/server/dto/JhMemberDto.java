@@ -57,6 +57,9 @@ public class JhMemberDto {
 		this.mtel = mtel;
 	}
 
+	public void setPassword(String newPassword) {
+		
+	}
 
 
 }

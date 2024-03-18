@@ -18,9 +18,9 @@ public class MsMenuServiceImpl implements MsMenuService {
 	private final MsMenuDao md;
 
 	@Override
-	public MsShop ShopDetail(int bnum) {
+	public MsShop ShopDetail(int mnum) {
 		System.out.println("MsMenuServiceImpl ShopCategoryLi Start...");
-		MsShop shop = md.getShopDetail(bnum);
+		MsShop shop = md.getShopDetail(mnum);
 		return shop;
 	}
 
@@ -64,8 +64,11 @@ public class MsMenuServiceImpl implements MsMenuService {
 
 	@Override
 	public List<MsMenu> MenuInfo(int bnum) {
+		List<MsMenu> msMenulist = null;
 		System.out.println("MsMenuServiceImpl MenuInfo Start...");
-		List<MsMenu> msMenulist = md.MenuInfo(bnum);
+		msMenulist = md.MenuInfo(bnum);
+
+		System.out.println("MsMenuServiceImpl MenuInfo msMenulist.size() -> " + msMenulist.size());
 		return msMenulist;
 	}
 
@@ -108,7 +111,7 @@ public class MsMenuServiceImpl implements MsMenuService {
 		int ShopReg = 0;
 		System.out.println("MsMenuServiceImpl RegShop Start...");
 		ShopReg = md.RegShop(msShop);
-		
+
 		return ShopReg;
 	}
 
@@ -122,12 +125,17 @@ public class MsMenuServiceImpl implements MsMenuService {
 	@Override
 	public int InsertBfile(MsShop msShop) {
 		int bFileInsert = 0;
-		
+
 		System.out.println("MsMenuServiceImpl RegShop Start...");
 		bFileInsert = md.bFileInsert(msShop);
-		
+
 		return bFileInsert;
 	}
 
+	@Override
+	public int getUserBnum(int mnum) {
+	    int result = md.getUserBnum(mnum);
+	    return result;
+	}
 
 }

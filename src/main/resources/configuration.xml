@@ -5,5 +5,6 @@
    		<typeAlias alias="MsMenu" type="com.dutchOrder.server.model.MsMenu"/>
    		<typeAlias alias="MsShop" type="com.dutchOrder.server.model.MsShop"/>
    		<typeAlias alias="MsOrderSpec" type="com.dutchOrder.server.model.MsOrderSpec"/>
+   		<typeAlias alias="JhMember" type="com.dutchOrder.server.model.JhMember"/>
    </typeAliases>
 </configuration>

@@ -2,6 +2,8 @@ package com.dutchOrder.server.model;
 
 import java.util.Date;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -20,11 +22,5 @@ public class JhMember {
 	private		int			mstatus_makey;	//
 	private		int			mstatus_mikey;	// 201 유효회원 202 탈퇴회원 
 	private		Date		hiredate;
-	
-	
-//	/**Ms business_file*/
-//	private int bftype_makey;
-//	private int bftype_mikey; // 601 사업자등록증 602 영업신고증 
-//	private String bfimg1;
 
 }

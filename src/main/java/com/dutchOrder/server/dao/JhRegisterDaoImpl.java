@@ -1,9 +1,9 @@
 package com.dutchOrder.server.dao;
 
+import com.dutchOrder.server.model.JhMember;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-
-import com.dutchOrder.server.model.JhMember;
 
 @Repository
 public class JhRegisterDaoImpl implements JhRegisterDao {
@@ -20,14 +20,10 @@ public class JhRegisterDaoImpl implements JhRegisterDao {
             System.out.println("JhRegisterDaoImpl insertC Start...");
             sqlSession.insert("com.dutchOrder.server.dao.JhRegisterDao.insertC", jhMember);
         } catch (Exception e) {
-            // 예외 발생 시 로그 출력
             e.printStackTrace();
-            // 클라이언트에게 오류 메시지 반환
             throw new RuntimeException("회원가입에 실패했습니다.");
         }
-
     }
-
 
 	@Override
 	public void insertB(JhMember jhMember) {
@@ -35,9 +31,7 @@ public class JhRegisterDaoImpl implements JhRegisterDao {
 	            System.out.println("JhRegisterDaoImpl insertB Start...");
 	            sqlSession.insert("com.dutchOrder.server.dao.JhRegisterDao.insertB", jhMember);
 	        } catch (Exception e) {
-	            // 예외 발생 시 로그 출력
 	            e.printStackTrace();
-	            // 클라이언트에게 오류 메시지 반환
 	            throw new RuntimeException("회원가입에 실패했습니다.");
 	        }		
 	}

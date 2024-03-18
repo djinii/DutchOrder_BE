@@ -1,3 +1,4 @@
+
 package com.dutchOrder.server.dao;
 
 import com.dutchOrder.server.model.JhMember;
@@ -11,6 +12,5 @@ public interface JhRegisterDao {
 	boolean isMnicDuplicate(String mnic);
 
 	boolean isMemailDuplicate(String memail);
-
 
 }

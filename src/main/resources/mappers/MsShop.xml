@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dutchOrder.server.dao.MsShopMapper">
 
+	<select id="getUserBnum" parameterType="int" resultType="int">
+		SELECT bnum FROM shop WHERE mnum = #{value}
+	</select>
+
 	<select id="mapShopDetail"
 		resultType="com.dutchOrder.server.model.MsShop">
 		SELECT sname, start_time, end_time, bnum, fcategory_mikey,
@@ -10,14 +14,14 @@
 	</select>
 
 
-	<select id="mapShopDetailBybnum"
+	<select id="mapShopDetailByMnum"
 		resultType="com.dutchOrder.server.model.MsShop">
 		SELECT s.sname, s.start_time, s.end_time, s.bnum,
 		s.fcategory_mikey,
-		s.sstatus_mikey, s.stel, s.saddr, s.simg1, m.mname
+		s.sstatus_mikey, s.stel, s.saddr, s.simg1 , m.mname
 		FROM shop s
 		JOIN member m ON s.mnum = m.mnum
-		WHERE bnum = #{bnum}
+		WHERE s.mnum = #{mnum}
 
 	</select>
 
@@ -40,7 +44,7 @@
 		SET start_time = #{start_time},
 		end_time =
 		#{end_time}
-		WHERE bnum = #{bnum}
+		WHERE mnum = #{mnum}
 	</update>
 
 
@@ -53,11 +57,15 @@
 
 	<insert id="mapMsShopReg"
 		parameterType="com.dutchOrder.server.model.MsShop">
-		INSERT INTO shop (bnum, fcategory_makey, fcategory_mikey, saddr, stel,
-		sname, start_time, end_time, sstatus_makey, sstatus_mikey, mnum, bid,
-		bstaus_makey, bstaus_mikey, simg1, simg2, simg3, sconfirm)
+		INSERT INTO shop (bnum, fcategory_makey,
+		fcategory_mikey, saddr, stel,
+		sname, start_time, end_time,
+		sstatus_makey, sstatus_mikey, mnum, bid,
+		bstaus_makey, bstaus_mikey,
+		simg1, simg2, simg3, sconfirm)
 		VALUES (
-		#{bnum},
+		(SELECT COALESCE(MAX(a.bnum),0)
+		+ 1 FROM shop a),
 		#{fcategory_makey},
 		#{fcategory_mikey},
 		#{saddr},
@@ -78,16 +86,20 @@
 		);
 	</insert>
 
-	<select id="mapBFileSelect" resultType="com.dutchOrder.server.model.MsShop">
-		SELECT mnum, bfnum, bftype_makey, bftype_mikey FROM business_file WHERE
+	<select id="mapBFileSelect"
+		resultType="com.dutchOrder.server.model.MsShop">
+		SELECT mnum, bfnum, bftype_makey, bftype_mikey FROM
+		business_file WHERE
 		mnum = #{mnum}
 	</select>
 
 	<insert id="mapBFileInsert"
 		parameterType="com.dutchOrder.server.model.MsShop">
-		INSERT INTO business_file (mnum, bfnum, bftype_makey, bftype_mikey,
+		INSERT INTO business_file (mnum, bfnum, bftype_makey,
+		bftype_mikey,
 		bfimg1)
-		values ( #{mnum}, #{bfnum}, #{bftype_makey}, #{bftype_mikey},
+		values ( #{mnum}, (SELECT COALESCE(MAX(a.bfnum),0)
+		+ 1 FROM business_file a), #{bftype_makey}, #{bftype_mikey},
 		#{bfimg1});
 
 	</insert>

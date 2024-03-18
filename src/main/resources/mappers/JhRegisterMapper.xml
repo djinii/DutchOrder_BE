@@ -3,55 +3,36 @@
 
 <mapper namespace="com.dutchOrder.server.dao.JhRegisterDao">
 
-	<!-- 회원가입 일반회원 -->
-	<insert id="insertC">
-		INSERT INTO member (mnum, memail, mpw, mname, mtel,
-		mnic,
-		mgroup_makey, mgroup_mikey, mstatus_makey, mstatus_mikey,
-		hiredate)
-		VALUES (
-		(SELECT COALESCE(MAX(a.mnum), 1000) + 1 FROM member
-		a),
-		#{memail}, #{mpw}, #{mname}, #{mtel}, #{mnic},
-		#{mgroup_makey},
-		#{mgroup_mikey}, #{mstatus_makey}, #{mstatus_mikey}, CURRENT_DATE
-		);
-	</insert>
-
-	<!-- 회원가입 사업자 -->
-	<insert id="insertB">
-		INSERT INTO member (mnum, memail, mpw, mname, mtel,
-		mnic,
-		mgroup_makey, mgroup_mikey, mstatus_makey, mstatus_mikey,
-		hiredate)
-		VALUES (
-		(SELECT COALESCE(MAX(a.mnum), 1000) + 1 FROM member
-		a),
-		#{memail}, #{mpw}, #{mname}, #{mtel}, null,
-		#{mgroup_makey},
-		#{mgroup_mikey}, #{mstatus_makey}, #{mstatus_mikey}, CURRENT_DATE
-		);
-
+	<!-- 회원가입 일반회원-->
+    <insert id="insertC">
+    INSERT INTO member (mnum, memail, mpw, mname, mtel, mnic, 
+    					mgroup_makey, mgroup_mikey, mstatus_makey, mstatus_mikey, hiredate)
+	VALUES (
+    (SELECT COALESCE(MAX(a.mnum), 1000) + 1 FROM member a),
+    #{memail}, #{mpw}, #{mname}, #{mtel}, #{mnic}, 
+    #{mgroup_makey}, #{mgroup_mikey}, #{mstatus_makey}, #{mstatus_mikey}, CURRENT_DATE
+	);
 	</insert>
 	
-
+	<!-- 회원가입 사업자-->
+    <insert id="insertB">
+    INSERT INTO member (mnum, memail, mpw, mname, mtel, mnic, 
+    					mgroup_makey, mgroup_mikey, mstatus_makey, mstatus_mikey, hiredate)
+	VALUES (
+    (SELECT COALESCE(MAX(a.mnum), 1000) + 1 FROM member a),
+    #{memail}, #{mpw}, #{mname}, #{mtel}, null, 
+    #{mgroup_makey}, #{mgroup_mikey}, #{mstatus_makey}, #{mstatus_mikey}, CURRENT_DATE
+	);
+	</insert>
 	
-<!-- 	<insert id="insertFils">
-		INSERT INTO business_file (bftype_makey, bftype_mikey, bfimg1) 
-		VALUES (#{bftype_mikey},#{bfimg1});
-	</insert> -->
+    <!-- 닉네임 중복 검사 -->
+    <select id="findMnicCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM member WHERE mnic = #{mnic}
+    </select>
 
-	<!-- 닉네임 중복 검사 쿼리 -->
-	<select id="findMnicCount" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM
-		member WHERE mnic = #{mnic}
-	</select>
-
-	<!-- 이메일 중복 검사 쿼리 -->
-	<select id="findMemailCount" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM
-		member WHERE memail = #{memail}
-	</select>
-
+    <!-- 이메일 중복 검사 -->
+    <select id="findMemailCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM member WHERE memail = #{memail}
+    </select>
 
 </mapper>

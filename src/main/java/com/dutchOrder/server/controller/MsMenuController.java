@@ -1,6 +1,7 @@
 package com.dutchOrder.server.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,11 +72,11 @@ public class MsMenuController {
 	// 가게 내용 번호로 가져오기
 	@GetMapping("/B_ShopDetail")
 	@ResponseBody
-	public MsShop getShopDetail(@RequestParam("bnum") int bnum) {
+	public MsShop getShopDetail(@RequestParam("mnum") int mnum) {
 
 		System.out.println("MsMenuController Start getShopByBnum ... ");
 
-		MsShop shop = ms.ShopDetail(bnum);
+		MsShop shop = ms.ShopDetail(mnum);
 
 		System.out.println("MsMenuController Shop info -> " + shop);
 
@@ -107,11 +108,11 @@ public class MsMenuController {
 	}
 
 	// 메뉴 내용
-	@GetMapping("/B_MenuInfo") // GET 요청을 처리할 수 있도록 수정
+	@PostMapping("/B_MenuInfo") // GET 요청을 처리할 수 있도록 수정
 	@ResponseBody
-	public List<MsMenu> B_MenuInfo(@RequestParam("bnum") int bnum) {
+	public List<MsMenu> B_MenuInfo(@RequestBody MsMenu msMenu) {
 		System.out.println("MsMenuController Start B_MenuInfo ... ");
-		List<MsMenu> msMenulist = ms.MenuInfo(bnum);
+		List<MsMenu> msMenulist = ms.MenuInfo(msMenu.getBnum());
 		System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
 		return msMenulist;
 	}
@@ -182,6 +183,16 @@ public class MsMenuController {
 		int InsertBfile = ms.InsertBfile(msShop);
 
 		return InsertBfile;
+	}
+
+	@PostMapping("/getUserBnum")
+	public int getUserBnum(@RequestBody Map<Integer, String> request) {
+	    int mnum = Integer.parseInt(request.get("mnum"));
+	    System.out.println("mnum: " + mnum);
+
+	    int result = ms.getUserBnum(mnum);
+	    System.out.println("/getUserBnum(bnum): " + result);
+	    return result;
 	}
 
 }

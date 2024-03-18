@@ -1,7 +1,9 @@
 
 package com.dutchOrder.server.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -20,11 +22,11 @@ public class MsMenuDaoImpl implements MsMenuDao {
 
 	/** bnum에 따른 가게 정보 */
 	@Override
-	public MsShop getShopDetail(int bnum) {
+	public MsShop getShopDetail(int mnum) {
 		System.out.println("MsMenuDaoImpl getShopDetail Start...");
 		MsShop shopList = null;
 		try {
-			shopList = session.selectOne("mapShopDetailBybnum", bnum);
+			shopList = session.selectOne("mapShopDetailByMnum", mnum);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new RuntimeException("가게 정보를 가져오는 데 실패했습니다.", e);
@@ -102,13 +104,13 @@ public class MsMenuDaoImpl implements MsMenuDao {
 
 	@Override
 	public List<MsMenu> MenuInfo(int bnum) {
-		System.out.println("MsMenuDaoImpl MenuInfo Start...");
 		List<MsMenu> msMenulist = null;
+		System.out.println("MsMenuDaoImpl MenuInfo Start...");
 		try {
-			msMenulist = session.selectList("mapMenuInfoBybnum", bnum);
+			msMenulist = session.selectOne("mapMenuInfoBybnum", bnum);
+			System.out.println("MsMenuDaoImpl MenuInfo msMenulist.size() -> " + msMenulist.size());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			throw new RuntimeException("가게 정보를 가져오는 데 실패했습니다.", e);
 		}
 		return msMenulist;
 	}
@@ -209,6 +211,15 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		}
 		
 		return bFileInsert;
+	}
+
+	@Override
+	public int getUserBnum(int mnum) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("mnum", mnum);
+		
+		int result = session.selectOne("getUsetBnum", params);
+		return result;
 	}
 
 
