@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dutchOrder.server.dao.JhAuthDao">
+
+	<select id="getEncryptedPassword" parameterType="map" resultType="String">
+    SELECT mpw FROM member WHERE memail = #{memail}
+	</select>
+    
+    <select id="getUserLevel" parameterType="map" resultType="int">
+    	SELECT mgroup_mikey FROM member WHERE (memail = #{memail})
+    </select>
+    
+    <select id="getUserMnum" parameterType="map" resultType="int">
+    	SELECT mnum FROM member WHERE (memail = #{memail})
+    </select>
+    
+    <select id="findMyEmail" parameterType="map" resultType="String">
+        SELECT memail FROM member WHERE (mname = #{mname} AND mtel = #{mtel})
+    </select>
+
+	<insert id="save">
+	    INSERT INTO member (mname, mnic, memail, mpw, mtel, mgroup_mikey, mstatus_mikey)
+	    VALUES (#{mname}, #{mnic}, #{memail}, #{mpw}, #{mtel}, #{mgroup_mikey}, #{mstatus_mikey})
+	</insert> 
+	
+	<select id="findUserByEmail" parameterType="map" resultType="com.dutchOrder.server.model.JhMember">
+		SELECT * FROM member WHERE memail = #{memail}
+	</select>
+	
+	<select id="findUserInfoByMnum" resultType="com.dutchOrder.server.dto.JhMemberDto">
+		SELECT mname, mnic, memail, mpw, mtel FROM member WHERE mnum = #{mnum}
+	</select>
+	
+	<update id="updateUserInfoByMnum" parameterType="map">
+		UPDATE member
+		SET 
+				mname = #{jhMemberDto.mname}, 
+				mnic = #{jhMemberDto.mnic}, 
+				memail = #{jhMemberDto.memail},
+				mtel = #{jhMemberDto.mtel} 
+		WHERE 
+				mnum = #{mnum}		
+	</update>
+	
+	<!-- 탈퇴하기 -->
+	<update id="updateAccountStatus" parameterType="String">
+		UPDATE member SET mstatus_mikey = '202' WHERE mnum = #{mnum}
+	</update>
+	
+	<!--  비밀번호 초기화 및 변경 -->
+	<select id="findUserByMemail" parameterType="map" resultType="com.dutchOrder.server.dto.JhMemberDto">
+	    SELECT * FROM member WHERE memail = #{memail}
+	</select>
+
+    <update id="updatePassword" parameterType="com.dutchOrder.server.dto.JhMemberDto">
+        UPDATE member
+        SET mpw = #{mpw}
+        WHERE memail = #{memail}
+    </update>
+	
+
+
+</mapper>

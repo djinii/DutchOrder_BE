@@ -12,9 +12,9 @@ spring:
 
   dataSource:
     driver-class-name:  com.mysql.cj.jdbc.Driver
-    url:  jdbc:mysql://localhost:3306/DutchOrder?serverTimezone=Asia/Seoul
-    username: admin
-    password: 1234
+    url:  jdbc:mysql://localhost:3306/dutchOrder?serverTimezone=Asia/Seoul
+    username: root
+    password: root
 
     # gmail Transfer
   mail:
@@ -29,10 +29,11 @@ spring:
           starttls.enable:  true
              
 # Mybatis
+mybatis:
   config-location: classpath:configuration.xml
-#  mapper-locations: classpath:mappers/*.xml      
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.dutchOrder.server       
+     
   
 logging.level:
   org.hibernate.SQL: debug   # logger를 통해 하이버네이트 실행 SQL        
-      
-      
