@@ -24,6 +24,7 @@ public class MwEmailController {
 		// 이메일 전송 로직
 		System.out.println("MwEmailController sendVerificationEmail Start...");
 		String sendEmail = email.getEmail();
+		System.out.println(sendEmail);
         try {
             mes.sendEmail(sendEmail);
             return ResponseEntity.ok("이메일이 성공적으로 전송되었습니다.");

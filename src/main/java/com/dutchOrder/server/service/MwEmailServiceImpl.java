@@ -71,6 +71,7 @@ public class MwEmailServiceImpl implements MwEmailService {
                 hexString.append(hex);
                 System.out.println("hexString--->"+hexString);
             }
+            System.out.println(hexString.substring(0, CODE_LENGTH));
             return hexString.substring(0, CODE_LENGTH); // 6자리 인증 코드로 변환
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

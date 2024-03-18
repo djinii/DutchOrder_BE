@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dutchOrder.server.MyFriendMapper">
+	<select id="mapMyData" parameterType="int" resultType="MyFriend">
+		SELECT *
+	    FROM member
+	    WHERE mnum = #{mnum};
+	</select>
+	
+	<select id="mapMyFriendList" parameterType="int" resultType="MyFriend">
+		SELECT mf.mnum, mf.mfnum, mf.mfstatus_makey, mf.mfstatus_mikey, mf.from_id,
+		       m.mnic, m.memail
+		FROM member_friends mf
+		JOIN member m ON mf.mnum = m.mnum
+		WHERE mf.mfstatus_mikey = 702 AND mf.mfnum = #{mfnum};
+	</select>
+	
+	<select id="mapMyFriendWait" parameterType="int" resultType="MyFriend">
+		SELECT mf.mnum, mf.mfnum, mf.mfstatus_makey, mf.mfstatus_mikey, mf.from_id,
+		       m.mnic, m.memail
+		FROM member_friends mf
+		JOIN member m ON mf.mnum = m.mnum
+		WHERE mf.mfstatus_mikey = 701 AND mf.mfnum = #{mfnum} AND mf.from_id = #{mnum};
+	</select>
+	
+	<select id="mapMyFriendCall" parameterType="int" resultType="MyFriend">
+		SELECT mf.mnum, mf.mfnum, mf.mfstatus_makey, mf.mfstatus_mikey, mf.from_id,
+       			m.mnic, m.memail
+		FROM member_friends mf
+		JOIN member m ON mf.mnum = m.mnum
+		WHERE mf.mfstatus_mikey = 701 AND mf.mfnum = #{mfnum} AND mf.from_id != #{mnum};
+	</select>
+	
+	<select id="mapMyFriendSearch" parameterType="String" resultType="MyFriend">
+		SELECT mnum, memail, mnic, mstatus_makey, mstatus_mikey     
+		FROM member 
+		WHERE mnic = #{mnic};
+	</select>
+	
+	<insert id="mapPlusFriend" parameterType="MyFriend">
+	    INSERT INTO member_friends VALUES (#{mnum}, #{mfnum}, #{mfstatus_makey}, #{mfstatus_mikey}, #{from_id}),
+	                                       (#{mfnum}, #{mnum}, #{mfstatus_makey}, #{mfstatus_mikey}, #{from_id});
+	</insert>
+	
+	<update id="mapUpdateFriend" parameterType="MyFriend">
+	    UPDATE member_friends
+	    SET mfstatus_mikey = 
+	        CASE 
+	            WHEN mnum = #{mnum} AND mfnum = #{mfnum} THEN #{mfstatus_mikey}
+	            WHEN mnum = #{mfnum} AND mfnum = #{mnum} THEN #{mfstatus_mikey}
+	        END
+	    WHERE (mnum = #{mnum} AND mfnum = #{mfnum}) OR (mnum = #{mfnum} AND mfnum = #{mnum});
+	</update>
+</mapper>
