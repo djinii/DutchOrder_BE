@@ -6,10 +6,6 @@
 	<select id="getEncryptedPassword" parameterType="map" resultType="String">
     SELECT mpw FROM member WHERE memail = #{memail}
 	</select>
-
-<!--     <select id="getEncryptedPassword" parameterType="map" resultType="String">
-    	SELECT mpw FROM member WHERE memail = #{memail}
-	</select> -->
     
     <select id="getUserLevel" parameterType="map" resultType="int">
     	SELECT mgroup_mikey FROM member WHERE (memail = #{memail})
@@ -22,11 +18,7 @@
     <select id="findMyEmail" parameterType="map" resultType="String">
         SELECT memail FROM member WHERE (mname = #{mname} AND mtel = #{mtel})
     </select>
-    
-    <select id="findMyPw" parameterType="map" resultType="String">
-        SELECT mpw FROM member WHERE (memail = #{memail} AND mtel = #{mtel})
-    </select>
-    
+
 	<insert id="save">
 	    INSERT INTO member (mname, mnic, memail, mpw, mtel, mgroup_mikey, mstatus_mikey)
 	    VALUES (#{mname}, #{mnic}, #{memail}, #{mpw}, #{mtel}, #{mgroup_mikey}, #{mstatus_mikey})
@@ -51,9 +43,22 @@
 				mnum = #{mnum}		
 	</update>
 	
+	<!-- 탈퇴하기 -->
 	<update id="updateAccountStatus" parameterType="String">
 		UPDATE member SET mstatus_mikey = '202' WHERE mnum = #{mnum}
 	</update>
+	
+	<!--  비밀번호 초기화 및 변경 -->
+	<select id="findUserByMemail" parameterType="map" resultType="com.dutchOrder.server.dto.JhMemberDto">
+	    SELECT * FROM member WHERE memail = #{memail}
+	</select>
+
+    <update id="updatePassword" parameterType="com.dutchOrder.server.dto.JhMemberDto">
+        UPDATE member
+        SET mpw = #{mpw}
+        WHERE memail = #{memail}
+    </update>
+	
 
 
 </mapper>

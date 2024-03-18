@@ -1,6 +1,7 @@
 package com.dutchOrder.server.service;
 
 import org.apache.catalina.User;
+import org.apache.ibatis.javassist.NotFoundException;
 
 import com.dutchOrder.server.dto.JhMemberDto;
 
@@ -12,8 +13,6 @@ public interface JhAuthService {
 
 	String findMyEmail(String mname, String mtel);
 
-	String findMyPw(String memail, String mtel);
-
 	int getUserMnum(String memail);
 
 	JhMemberDto findUserInfoByMnum(String mnum);
@@ -24,7 +23,6 @@ public interface JhAuthService {
 
 	String getEncryptedPassword(String memail);
 
-	
-	
+	String updatePassword(String memail, String newPassword);
 
 }

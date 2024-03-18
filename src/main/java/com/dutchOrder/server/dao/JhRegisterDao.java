@@ -12,5 +12,4 @@ public interface JhRegisterDao {
 
 	boolean isMemailDuplicate(String memail);
 
-
 }

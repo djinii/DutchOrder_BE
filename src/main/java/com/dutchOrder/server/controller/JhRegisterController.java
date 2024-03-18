@@ -20,11 +20,9 @@ public class JhRegisterController {
     
     // 회원가입 시 비밀번호 해시화
     private String hashPassword(String mpw) {
-        // 입력된 비밀번호를 BCrypt를 사용하여 해시화합니다.
         return BCrypt.hashpw(mpw, BCrypt.gensalt());
     }
     
-
     @PostMapping("/client/join")
     public ResponseEntity<String> registerClient(@RequestBody JhMember jhMember) {
         try {
@@ -32,11 +30,9 @@ public class JhRegisterController {
             String hashedPassword = hashPassword(jhMember.getMpw());
             jhMember.setMpw(hashedPassword);
         	
-            // 회원 정보를 저장합니다.
             jhRegisterService.insertC(jhMember);
             return ResponseEntity.ok("회원가입이 완료되었습니다.");
         } catch (Exception e) {
-            // 에러가 발생한 경우 에러 메시지를 반환합니다.
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원가입에 실패했습니다.");
         }
     }
@@ -49,12 +45,9 @@ public class JhRegisterController {
             String hashedPassword = hashPassword(jhMember.getMpw());
             jhMember.setMpw(hashedPassword);
             
-            
-            // 회원 정보를 저장합니다.
             jhRegisterService.insertB(jhMember);
             return ResponseEntity.ok("회원가입이 완료되었습니다.");
         } catch (Exception e) {
-            // 에러가 발생한 경우 에러 메시지를 반환합니다.
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원가입에 실패했습니다.");
         }
     }

@@ -11,8 +11,5 @@ public interface JhRegisterService {
 	boolean isMnicDuplicate(String mnic);
 
 	boolean isMemailDuplicate(String memail);
-	
-
-
 
 }

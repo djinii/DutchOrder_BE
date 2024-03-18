@@ -25,15 +25,14 @@
 	);
 	</insert>
 	
-    <!-- 닉네임 중복 검사 쿼리 -->
+    <!-- 닉네임 중복 검사 -->
     <select id="findMnicCount" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM member WHERE mnic = #{mnic}
     </select>
 
-    <!-- 이메일 중복 검사 쿼리 -->
+    <!-- 이메일 중복 검사 -->
     <select id="findMemailCount" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM member WHERE memail = #{memail}
     </select>
-	
 
 </mapper>

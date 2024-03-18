@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dutchOrder.server.dto.JhMemberDto;
-
+import com.dutchOrder.server.model.JhMember;
 
 @Repository
 public class JhAuthDaoImpl implements JhAuthDao {
@@ -31,13 +31,11 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		 
 		return result.booleanValue(); 
 	} 
-	
 
 	@Override
 	public int getUserLevel(String memail) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("memail", memail);
-		
 		int result = sqlSession.selectOne("getUserLevel", params);
  		return result;
 	}
@@ -52,15 +50,6 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		return result;
 	}
 
-	@Override
-	public String findMyPw(String memail, String mtel) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("memail", memail);
-		params.put("mtel", mtel);
-		
-		String result = sqlSession.selectOne("findMyPw", params);
-		return result;
-	}
 
 	@Override
 	public int getUserMnum(String memail) {
@@ -81,7 +70,6 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		Map<String, Object> params = new HashMap<>();
 		params.put("mnum", mnum);
 		params.put("jhMemberDto", jhMemberDto);
-		
 		sqlSession.update("updateUserInfoByMnum", params);
 	}
 
@@ -94,10 +82,17 @@ public class JhAuthDaoImpl implements JhAuthDao {
 	public String getEncryptedPassword(String memail) {
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("memail", memail);
-	   
-	    
-	    // 데이터베이스에서 사용자의 암호화된 비밀번호를 가져옴
 	    return sqlSession.selectOne("getEncryptedPassword", params);
 	}
 
+	@Override
+	public JhMemberDto findUserByMemail(String memail) {
+		return sqlSession.selectOne("findUserByMemail", memail);
+	}
+
+	@Override
+	public void updatePassword(JhMemberDto jhMemberDto) {
+		sqlSession.update("updatePassword", jhMemberDto);
+	}
+	
 }

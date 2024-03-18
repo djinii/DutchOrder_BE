@@ -11,17 +11,16 @@ public class JhRegisterServiceImpl implements JhRegisterService {
     
     @Autowired
     private JhRegisterDao jhRegisterDao;
-    
-    @Override
-    public void insertC(JhMember jhMember) {
-    	jhRegisterDao.insertC(jhMember);
-    }
 
     public JhRegisterServiceImpl(JhRegisterDao jhRegisterDao) {
     	this.jhRegisterDao = jhRegisterDao;
     }
-    
 
+    @Override
+    public void insertC(JhMember jhMember) {
+    	jhRegisterDao.insertC(jhMember);
+    }
+    
 	@Override
 	public void insertB(JhMember jhMember) {
 		jhRegisterDao.insertB(jhMember);

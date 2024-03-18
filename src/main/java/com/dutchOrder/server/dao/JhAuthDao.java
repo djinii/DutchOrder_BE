@@ -11,8 +11,6 @@ public interface JhAuthDao {
 	
 	String findMyEmail(String mname, String mtel);
 
-	String findMyPw(String memail, String mtel);
-
 	int getUserMnum(String memail);
 	
 	JhMemberDto findUserInfoByMnum(String mnum);
@@ -22,5 +20,11 @@ public interface JhAuthDao {
 	void updateAccountStatus(String mnum);
 
 	String getEncryptedPassword(String memail);
+	
+	void updatePassword(JhMemberDto jhMemberDto);
+
+	JhMemberDto findUserByMemail(String memail);
+
+
 
 }

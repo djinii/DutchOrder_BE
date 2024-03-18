@@ -22,9 +22,5 @@ public class JhMember {
 	private		int			mstatus_makey;	//
 	private		int			mstatus_mikey;	// 201 유효회원 202 탈퇴회원 
 	private		Date		hiredate;
-	
-//	public void setMpw(String mpw) {
-//		this.mpw = BCrypt.hashpw(mpw, BCrypt.gensalt(10));
-//	}
 
 }

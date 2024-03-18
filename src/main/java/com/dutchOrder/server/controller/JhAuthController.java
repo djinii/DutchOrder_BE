@@ -16,7 +16,6 @@ public class JhAuthController {
     @Autowired
     private JhAuthService jhAuthService;
     
-
     @Autowired
     public JhAuthController(JhAuthService jhAuthService) {
         this.jhAuthService = jhAuthService;
@@ -68,17 +67,6 @@ public class JhAuthController {
     	return result;
     }
     
-    @PostMapping("/findMyPw")
-    public String findMyPw(@RequestBody Map<String, String> request) {
-    	
-    	String memail = request.get("memail");
-    	String mtel = request.get("mtel");
-    	
-    	String result = jhAuthService.findMyPw(memail, mtel);
-    	return result;
-    }
-    
-    // mnum 으로 바인딩하라고 경로 변수를 지정해줌 
     @GetMapping("/updateInfo/{mnum}")
     public ResponseEntity<JhMemberDto> getUserInfo(@PathVariable("mnum") String mnum) {
     	
@@ -100,6 +88,19 @@ public class JhAuthController {
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body("계정 삭제 중 오류 발생");
 		}
+    }
+    
+    @PostMapping("/updatePassword")
+    public ResponseEntity<String> updatePassword(@RequestBody Map<String, String> requestBody) {
+        String memail = requestBody.get("memail");
+        String newPassword = requestBody.get("newPassword");
+
+        String result = jhAuthService.updatePassword(memail, newPassword);
+        if (result.equals("Success")) {
+            return ResponseEntity.ok("Password updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     
 }
