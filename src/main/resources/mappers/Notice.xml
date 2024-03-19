@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dutchOrder.server.NoticeMapper">
+
+	<select id="mapNoticeList" parameterType="Notice" resultType="Notice">
+		SELECT nonum,  mnum, notitle, nocon, nodate,   DATE_FORMAT(nodate, '%Y-%m-%d  %H:%i')  strNodate
+    	FROM notice
+    	ORDER BY nodate DESC; 
+	</select>
+
+	<select id="mapNoticeDetail" parameterType="int" resultType="Notice">
+		SELECT nonum,  mnum, notitle, nocon, nodate,  DATE_FORMAT(nodate, '%Y-%m-%d  %H:%i')  strNodate
+		FROM notice 
+		WHERE nonum = #{nonum};
+	</select>
+	
+	<insert id="mapNoticeWrite" parameterType="Notice">
+		INSERT INTO notice VALUES ((SELECT coalesce(max(a.nonum), 0)+1 FROM notice a), #{mnum}, #{notitle}, #{nocon}, #{nodate});
+	</insert>
+	
+	<update id="mapNoticeModify" parameterType="Notice">
+		UPDATE notice 
+		SET notitle=#{notitle}, nocon=#{nocon}, nodate=#{nodate} 
+		WHERE  nonum=#{nonum};
+	</update>
+	
+	<delete id="mapNoticeDelete" parameterType="Notice">
+		DELETE
+		FROM notice
+		WHERE nonum=#{nonum};
+	</delete>
+</mapper>
