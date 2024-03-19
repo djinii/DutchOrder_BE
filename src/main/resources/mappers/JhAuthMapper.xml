@@ -16,7 +16,7 @@
     </select>
     
     	<select id="getUserBnum" parameterType="map" resultType="int">
-		SELECT m.mnum, s.bnum
+		SELECT s.bnum
 		FROM member m
 		JOIN shop s ON m.mnum = s.mnum
 		WHERE m.memail = #{memail}
