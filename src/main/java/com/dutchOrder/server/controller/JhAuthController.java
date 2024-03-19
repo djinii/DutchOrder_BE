@@ -55,6 +55,18 @@ public class JhAuthController {
     	return result;
     }
     
+	@PostMapping("/getUserBnum")
+	public int getUserBnum(@RequestBody Map<String, String> request) {
+		String memail = request.get("memail");
+	    //int mnum = Integer.parseInt(request.get("mnum"));
+	    System.out.println("memail: " + memail);
+
+	    int result = jhAuthService.getUserBnum(memail);
+	    System.out.println("/getUserBnum(bnum): " + result);
+	    return result;
+	}
+
+	
     @PostMapping("/findMyEmail")
     public String findMyEmail(@RequestBody Map<String, String> request) {
     	

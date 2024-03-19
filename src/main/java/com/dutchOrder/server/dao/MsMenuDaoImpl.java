@@ -213,14 +213,6 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		return bFileInsert;
 	}
 
-	@Override
-	public int getUserBnum(int mnum) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("mnum", mnum);
-		
-		int result = session.selectOne("getUsetBnum", params);
-		return result;
-	}
 
 
 	

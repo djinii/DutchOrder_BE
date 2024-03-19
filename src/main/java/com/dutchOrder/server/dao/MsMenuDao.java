@@ -36,7 +36,7 @@ public interface MsMenuDao {
 
 	int bFileInsert(MsShop msShop);
 
-	int getUserBnum(int mnum);
+//	int getUserBnum(int mnum);
 
 
 }

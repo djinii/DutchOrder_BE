@@ -15,6 +15,13 @@
     	SELECT mnum FROM member WHERE (memail = #{memail})
     </select>
     
+    	<select id="getUserBnum" parameterType="map" resultType="int">
+		SELECT m.mnum, s.bnum
+		FROM member m
+		JOIN shop s ON m.mnum = s.mnum
+		WHERE m.memail = #{memail}
+	</select>
+    
     <select id="findMyEmail" parameterType="map" resultType="String">
         SELECT memail FROM member WHERE (mname = #{mname} AND mtel = #{mtel})
     </select>

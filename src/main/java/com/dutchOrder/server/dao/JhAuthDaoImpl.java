@@ -60,6 +60,15 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		return result;
 	}
 
+	 @Override
+	 public int getUserBnum(String memail) {
+		 Map<String, Object> params = new HashMap<>();
+			params.put("memail", memail);
+		 
+	     int result = sqlSession.selectOne("getUserBnum", params);
+	     return result;
+	 }
+	
 	@Override
 	public JhMemberDto findUserInfoByMnum(String mnum) {
 		return sqlSession.selectOne("findUserInfoByMnum", mnum);

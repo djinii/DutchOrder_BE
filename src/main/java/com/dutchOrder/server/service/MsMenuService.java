@@ -35,7 +35,7 @@ public interface MsMenuService {
 
 	int InsertBfile(MsShop msShop);
 
-	int getUserBnum(int mnum);
+	//int getUserBnum(int mnum);
 
 
 

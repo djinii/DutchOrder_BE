@@ -132,10 +132,6 @@ public class MsMenuServiceImpl implements MsMenuService {
 		return bFileInsert;
 	}
 
-	@Override
-	public int getUserBnum(int mnum) {
-	    int result = md.getUserBnum(mnum);
-	    return result;
-	}
+
 
 }

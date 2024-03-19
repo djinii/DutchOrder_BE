@@ -185,14 +185,5 @@ public class MsMenuController {
 		return InsertBfile;
 	}
 
-	@PostMapping("/getUserBnum")
-	public int getUserBnum(@RequestBody Map<Integer, String> request) {
-	    int mnum = Integer.parseInt(request.get("mnum"));
-	    System.out.println("mnum: " + mnum);
-
-	    int result = ms.getUserBnum(mnum);
-	    System.out.println("/getUserBnum(bnum): " + result);
-	    return result;
-	}
 
 }
