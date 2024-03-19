@@ -9,22 +9,23 @@
 		menu
 
 	</select>
-
-	<insert id="mapMenuInsert"
-		parameterType="com.dutchOrder.server.model.MsMenu">
-		INSERT INTO menu (bnum, fname, fprice, finfo, fimg, fnum, 
-		foption)
-		VALUES (#{bnum}, #{fname}, #{fprice}, #{finfo}, #{fimg},(SELECT
-		COALESCE(MAX(m.fnum), 0) + 1 FROM menu m), #{foption})
-
-	</insert>
-
-	<select id="mapMenuInfoBybnum"
+	<select id="mapMenuDetailBybnum" parameterType="int"
 		resultType="com.dutchOrder.server.model.MsMenu">
-		SELECT * FROM menu WHERE bnum = #{bnum}
+		SELECT * FROM menu 
+		WHERE bnum = #{bnum}
 
 	</select>
 
+	<insert id="mapMenuInsert"
+		parameterType="com.dutchOrder.server.model.MsMenu">
+		INSERT INTO menu (bnum, fname, fprice, finfo, fimg,
+		fnum,
+		foption)
+		VALUES (#{bnum}, #{fname}, #{fprice}, #{finfo},
+		#{fimg},(SELECT
+		COALESCE(MAX(m.fnum), 0) + 1 FROM menu m), #{foption})
+
+	</insert>
 
 	<update id="mapMenuUpdate"
 		parameterType="com.dutchOrder.server.model.MsMenu">
@@ -32,7 +33,8 @@
 		SET
 		fname = #{fname},
 		finfo = #{finfo},
-		fprice = #{fprice},
+		fprice =
+		#{fprice},
 		foption = #{foption},
 		fimg = #{fimg}
 		WHERE bnum = #{bnum}

@@ -8,16 +8,14 @@ import com.dutchOrder.server.model.MsShop;
 public interface MsOrderService {
 
 
-	List<MsOrderSpec> addOrderSpec();
+	//List<MsOrderSpec> addOrderSpec();
 
 	int updateOrderStatus(MsOrderSpec msOrderSpec);
 
-//	int updateShopStatus(MsShop msShop);
+	//List<MsOrderSpec> addOrderSpec(String bnum);
+	
+	  // List<MsOrderSpec> getOrdersByStatusAndBusiness(int ostatusMikey, String bnum);
 
+	List<MsOrderSpec> DetailOrder(int bnum);
+	}
 
-
-	/*
-	 * List<MsOrderSpec> getOrderStatus();
-	 */
-
-}

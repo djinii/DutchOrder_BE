@@ -17,7 +17,6 @@ public interface MsMenuService {
 
 	int adMenuInsert(MsMenu msMenu);
 
-	List<MsMenu> MenuInfo(int bnum);
 
 	int reMenuUpdate(MsMenu msMenu);
 
@@ -35,7 +34,12 @@ public interface MsMenuService {
 
 	int InsertBfile(MsShop msShop);
 
-	//int getUserBnum(int mnum);
+	List<MsMenu> DetailMenu(int bnum);
+
+	boolean issnameDuplicate(String sname);
+
+	boolean isBidDuplicate(String bid);
+
 
 
 

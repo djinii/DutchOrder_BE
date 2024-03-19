@@ -38,6 +38,19 @@ public class MsMenuServiceImpl implements MsMenuService {
 		return menuList;
 	}
 
+
+	@Override
+	public List<MsMenu> DetailMenu(int bnum) {
+		List<MsMenu> msMenu = null;
+		System.out.println("MsMenuServiceImpl DetailMenu Start...");
+		System.out.println("MsMenuServiceImpl DetailMenu bnum -> " + bnum);
+		msMenu = md.MenuDetail(bnum);
+		System.out.println("MsMenuServiceImpl DetailMenu msMenu -> " + msMenu);
+		
+		return msMenu;
+	}
+	
+
 	@Override
 	public MsShop getShopStatus(int sstatus_mikey) {
 		System.out.println("MsMenuServiceImpl getShopStatus Start...");
@@ -62,15 +75,6 @@ public class MsMenuServiceImpl implements MsMenuService {
 		return adMenuInsert;
 	}
 
-	@Override
-	public List<MsMenu> MenuInfo(int bnum) {
-		List<MsMenu> msMenulist = null;
-		System.out.println("MsMenuServiceImpl MenuInfo Start...");
-		msMenulist = md.MenuInfo(bnum);
-
-		System.out.println("MsMenuServiceImpl MenuInfo msMenulist.size() -> " + msMenulist.size());
-		return msMenulist;
-	}
 
 	@Override
 	public int reMenuUpdate(MsMenu msMenu) {
@@ -131,6 +135,20 @@ public class MsMenuServiceImpl implements MsMenuService {
 
 		return bFileInsert;
 	}
+
+	@Override
+	public boolean issnameDuplicate(String sname) {
+		boolean result = md.isSnameDuplicate(sname);
+		return result;
+	}
+
+	@Override
+	public boolean isBidDuplicate(String bid) {
+		boolean result = md.isBidDuplicate(bid);
+		return result;
+	}
+
+
 
 
 

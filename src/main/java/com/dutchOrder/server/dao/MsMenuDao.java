@@ -20,7 +20,6 @@ public interface MsMenuDao {
 
 	int ShopTimeUpdate(MsShop msShop);
 
-	List<MsMenu> MenuInfo(int bnum);
 
 	int reMenuUpdate(MsMenu msMenu);
 
@@ -36,7 +35,13 @@ public interface MsMenuDao {
 
 	int bFileInsert(MsShop msShop);
 
-//	int getUserBnum(int mnum);
+
+	List<MsMenu> MenuDetail(int bnum);
+
+	boolean isSnameDuplicate(String sname);
+
+	boolean isBidDuplicate(String bid);
+
 
 
 }

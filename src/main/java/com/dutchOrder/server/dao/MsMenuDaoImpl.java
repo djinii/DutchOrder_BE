@@ -1,6 +1,7 @@
 
 package com.dutchOrder.server.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,22 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		}
 		return menuList;
 	}
+	
+	@Override
+	public List<MsMenu> MenuDetail(int bnum) {
+		List<MsMenu> msMenu = null;
+		try {
+			System.out.println("사업자 번호: "+bnum);
+			msMenu = session.selectList("mapMenuDetailBybnum", bnum);
+			System.out.println("MsMenuDaoImpl MenuDetail getBnum -> " + bnum);
+		} catch (Exception e) {
+			System.out.println("MsMenuDaoImpl MenuDetail Exception -> " + e.getMessage());
+		}
+		
+		return msMenu;
+	}
+	
+
 
 	@Override
 	public MsShop getShopStatus(int sstatus_mikey) {
@@ -64,9 +81,9 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		MsShop msShop = new MsShop();
 		try {
 			// mapper ID, Parameter
-			 msShop = session.selectOne("mapGetShopStatus", sstatus_mikey);
-				System.out.println("MsMenuDaoImpl shopStatus getSstatus_mikey->" + msShop.getSstatus_mikey());
-			
+			msShop = session.selectOne("mapGetShopStatus", sstatus_mikey);
+			System.out.println("MsMenuDaoImpl shopStatus getSstatus_mikey->" + msShop.getSstatus_mikey());
+
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl shopStatus Exception->" + e.getMessage());
 		}
@@ -76,43 +93,29 @@ public class MsMenuDaoImpl implements MsMenuDao {
 	/** bnum에 따라서 시간 업데이트되게하기 */
 	@Override
 	public int ShopTimeUpdate(MsShop msShop) {
-	    System.out.println("MsMenuDaoImpl updateShopTimeUpdate start..");
-	    int updatedRows = 0;
-	    try {
-	        updatedRows = session.update("updateShopTime", msShop);
-	    } catch (Exception e) {
-	        System.out.println("updateShopTimeUpdate Exception->" + e.getMessage());
-	        e.printStackTrace();
-	    }
-	    return updatedRows;
+		System.out.println("MsMenuDaoImpl updateShopTimeUpdate start..");
+		int updatedRows = 0;
+		try {
+			updatedRows = session.update("updateShopTime", msShop);
+		} catch (Exception e) {
+			System.out.println("updateShopTimeUpdate Exception->" + e.getMessage());
+			e.printStackTrace();
+		}
+		return updatedRows;
 	}
 
-
-	/**메뉴추가하기*/
+	/** 메뉴추가하기 */
 	@Override
 	public int adMenuInsert(MsMenu msMenu) {
-		 System.out.println("MsMenuDaoImpl adMenuInsert start..");
-		 int MenuInsert = 0;
-			try {
-				MenuInsert = session.insert("mapMenuInsert", msMenu);
-			} catch (Exception e) {
-				System.out.println("MsMenuDaoImpl adMenuInsert Exception -> " + e.getMessage());
-			}
-			
-			return MenuInsert;
-	}
-
-	@Override
-	public List<MsMenu> MenuInfo(int bnum) {
-		List<MsMenu> msMenulist = null;
-		System.out.println("MsMenuDaoImpl MenuInfo Start...");
+		System.out.println("MsMenuDaoImpl adMenuInsert start..");
+		int MenuInsert = 0;
 		try {
-			msMenulist = session.selectOne("mapMenuInfoBybnum", bnum);
-			System.out.println("MsMenuDaoImpl MenuInfo msMenulist.size() -> " + msMenulist.size());
+			MenuInsert = session.insert("mapMenuInsert", msMenu);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("MsMenuDaoImpl adMenuInsert Exception -> " + e.getMessage());
 		}
-		return msMenulist;
+
+		return MenuInsert;
 	}
 
 
@@ -126,10 +129,10 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl reMenuUpdate Exception -> " + e.getMessage());
 		}
-		
+
 		return MenuUpdate;
 	}
-	
+
 	@Override
 	public int deleteMenu(int fnum) {
 		System.out.println("MsMenuDaoImpl deleteMenu Start...");
@@ -139,7 +142,7 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl deleteMenu Exception -> " + e.getMessage());
 		}
-		
+
 		return MenuDelete;
 	}
 
@@ -152,7 +155,7 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl ShopStausUpdate Exception -> " + e.getMessage());
 		}
-		
+
 		return ShopStausUpdate;
 	}
 
@@ -161,9 +164,9 @@ public class MsMenuDaoImpl implements MsMenuDao {
 		System.out.println("MsMenuDaoImpl getshopAccept Start...");
 		MsShop msShop = new MsShop();
 		try {
-			 msShop = session.selectOne("mapMsgetMemberStatus", mnum);
-				System.out.println("MsMenuDaoImpl getshopAccept getMnum->" + msShop.getMnum());
-			
+			msShop = session.selectOne("mapMsgetMemberStatus", mnum);
+			System.out.println("MsMenuDaoImpl getshopAccept getMnum->" + msShop.getMnum());
+
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl getshopAccept Exception->" + e.getMessage());
 		}
@@ -173,15 +176,15 @@ public class MsMenuDaoImpl implements MsMenuDao {
 	@Override
 	public int RegShop(MsShop msShop) {
 		System.out.println("MsMenuDaoImpl RegShop Start...");
-		System.out.println("MsMenuDaoImpl RegShop msShop->"+msShop);
+		System.out.println("MsMenuDaoImpl RegShop msShop->" + msShop);
 		int ShopReg = 0;
 		try {
-			//System.out.println("MsMenuDaoImpl RegShop msShop!!!!!!!!!!!!!!->"+msShop);
+			// System.out.println("MsMenuDaoImpl RegShop msShop!!!!!!!!!!!!!!->"+msShop);
 			ShopReg = session.insert("mapMsShopReg", msShop);
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl RegShop Exception -> " + e.getMessage());
 		}
-		
+
 		return ShopReg;
 	}
 
@@ -201,21 +204,32 @@ public class MsMenuDaoImpl implements MsMenuDao {
 	@Override
 	public int bFileInsert(MsShop msShop) {
 		System.out.println("MsMenuDaoImpl bFileInsert Start...");
-		System.out.println("MsMenuDaoImpl bFileInsert msShop->"+msShop);
+		System.out.println("MsMenuDaoImpl bFileInsert msShop->" + msShop);
 		int bFileInsert = 0;
 		try {
-			//System.out.println("MsMenuDaoImpl RegShop msShop!!!!!!!!!!!!!!->"+msShop);
+			// System.out.println("MsMenuDaoImpl RegShop msShop!!!!!!!!!!!!!!->"+msShop);
 			bFileInsert = session.insert("mapBFileInsert", msShop);
 		} catch (Exception e) {
 			System.out.println("MsMenuDaoImpl bFileInsert Exception -> " + e.getMessage());
 		}
-		
+
 		return bFileInsert;
+	}
+
+	@Override
+	public boolean isSnameDuplicate(String sname) {
+		Integer count = session.selectOne("findSnameCount", sname);
+        return count != null && count > 0;
+	}
+
+	@Override
+	public boolean isBidDuplicate(String bid) {
+		Integer count = session.selectOne("findBidCount", bid);
+        return count != null && count > 0;
 	}
 
 
 
-	
-	
+
 
 }

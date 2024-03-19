@@ -3,6 +3,7 @@ package com.dutchOrder.server.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,6 +69,21 @@ public class MsMenuController {
 		System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
 		return msMenulist;
 	}
+	
+	
+	@PostMapping("/B_MenuDetail")
+	@ResponseBody
+	public List<MsMenu> MenuDetail(@RequestBody MsMenu msMenu) {
+		System.out.println("MsMenuController Start menuList ... ");
+		System.out.println("MsviewController MenuDetail msMenu " + msMenu);
+		int bnum = msMenu.getBnum();
+		System.out.println("bnum-->"+bnum);
+		List<MsMenu> msMenuDetail = ms.DetailMenu(bnum);
+		
+		System.out.println("MsMenuController MenuDetail Menulist -> " + msMenuDetail);
+		return msMenuDetail;
+	}
+	
 
 	// 가게 내용 번호로 가져오기
 	@GetMapping("/B_ShopDetail")
@@ -86,7 +102,7 @@ public class MsMenuController {
 
 	/** bnum에 따라 가게 운영시간 업데이트 */
 	@ResponseBody
-	@PostMapping("/B_ShopTimeUpdate")
+	@PostMapping("/business/Modify")
 	public int ShopTimeUpdate(@RequestBody MsShop msShop) {
 		System.out.println("MsMenuController Start updateShopTime");
 		System.out.println("MsMenuController updateShopTime msShop " + msShop);
@@ -95,6 +111,8 @@ public class MsMenuController {
 
 		return TimeUpdate;
 	}
+	
+	
 
 	/** 메뉴 추가하기 */
 	@ResponseBody
@@ -105,16 +123,6 @@ public class MsMenuController {
 		int adMenuInsert = ms.adMenuInsert(msMenu);
 
 		return adMenuInsert;
-	}
-
-	// 메뉴 내용
-	@PostMapping("/B_MenuInfo") // GET 요청을 처리할 수 있도록 수정
-	@ResponseBody
-	public List<MsMenu> B_MenuInfo(@RequestBody MsMenu msMenu) {
-		System.out.println("MsMenuController Start B_MenuInfo ... ");
-		List<MsMenu> msMenulist = ms.MenuInfo(msMenu.getBnum());
-		System.out.println("MsMenuController List Menulist.size() -> " + msMenulist.size());
-		return msMenulist;
 	}
 
 	// fnum을 대한 메뉴 수정하기
@@ -161,6 +169,21 @@ public class MsMenuController {
 
 		return RegShop;
 	}
+	
+	
+	// 가게 이름 중복 확인
+    @GetMapping("/check-duplicate/sname")
+    public ResponseEntity<?> checkSnameDuplicate(@RequestParam("sname") String sname){
+        boolean isDuplicate = ms.issnameDuplicate(sname);
+        return ResponseEntity.ok().body(Map.of("isDuplicate", isDuplicate));
+    }
+    
+    // 사업자 번호, 중복 확인
+    @GetMapping("/check-duplicate/bid")
+    public ResponseEntity<?> checkBidDuplicate(@RequestParam("bid") String bid){
+    	boolean isDuplicate = ms.isBidDuplicate(bid);
+    	return ResponseEntity.ok().body(Map.of("isDuplicate", isDuplicate));
+    }
 
 	/** 파일 등록시 bfileDetail select */
 	@ResponseBody
