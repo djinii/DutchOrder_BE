@@ -25,4 +25,6 @@ public interface JhAuthService {
 
 	String updatePassword(String memail, String newPassword);
 
+	int getUserBnum(String memail);
+
 }

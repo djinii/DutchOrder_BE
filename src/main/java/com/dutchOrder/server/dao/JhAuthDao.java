@@ -25,6 +25,8 @@ public interface JhAuthDao {
 
 	JhMemberDto findUserByMemail(String memail);
 
+	int getUserBnum(String memail);
+
 
 
 }

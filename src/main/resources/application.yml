@@ -1,5 +1,11 @@
 server:
   port: 8888
+  
+# OpenAI API
+chatgpt:
+  api:
+    key: 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
+    endpoint: https://api.openai.com/v1/chat/completions
 
 # Oracle Connect
 spring:

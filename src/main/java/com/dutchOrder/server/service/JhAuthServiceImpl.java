@@ -51,6 +51,13 @@ public class JhAuthServiceImpl implements JhAuthService {
 		}
 	
 		@Override
+		public int getUserBnum(String memail) {
+			int result = jhAuthDao.getUserBnum(memail);
+			System.out.println(memail);
+			return result;
+		}
+		
+		@Override
 		public JhMemberDto findUserInfoByMnum(String mnum) {
 			return jhAuthDao.findUserInfoByMnum(mnum);
 		}
@@ -81,5 +88,6 @@ public class JhAuthServiceImpl implements JhAuthService {
 		            return "User not found";
 		        }
 		    }
+
 		}
 	

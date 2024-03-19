@@ -59,6 +59,20 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		int result = sqlSession.selectOne("getUserMnum", params);
 		return result;
 	}
+	
+	@Override
+	public int getUserBnum(String memail) {
+	Map<String, Object> params = new HashMap<>();
+		params.put("memail", memail);
+		 
+	Integer result = sqlSession.selectOne("getUserBnum", params);
+		if (result == null) {
+		// 반환된 값이 null인 경우 예외를 throw하거나 적절한 기본값을 반환합니다.
+		return -1;
+		}
+		return result.intValue();
+	 }
+	
 
 	@Override
 	public JhMemberDto findUserInfoByMnum(String mnum) {
@@ -94,5 +108,7 @@ public class JhAuthDaoImpl implements JhAuthDao {
 	public void updatePassword(JhMemberDto jhMemberDto) {
 		sqlSession.update("updatePassword", jhMemberDto);
 	}
+
+
 	
 }

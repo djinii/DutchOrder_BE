@@ -4,6 +4,8 @@
    <typeAliases>
    	<typeAlias alias="JhMember" type="com.dutchOrder.server.model.JhMember"/>
    	<typeAlias alias="MyFriend" type="com.dutchOrder.server.model.MyFriend"/>
+   	<typeAlias alias="MwOrderSpec" type="com.dutchOrder.server.model.MwOrderSpec"/>
+   	<typeAlias alias="MwMenu" type="com.dutchOrder.server.model.MwMenu"/>
    </typeAliases>
 </configuration>
 
