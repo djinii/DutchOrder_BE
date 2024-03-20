@@ -10,5 +10,6 @@
    		<typeAlias alias="OrderSpec" type="com.dutchOrder.server.model.OrderSpec"/>
    		<typeAlias alias="MyFriend" type="com.dutchOrder.server.model.MyFriend"/>
    		<typeAlias alias="Member" type="com.dutchOrder.server.model.Member"/>
+   		<typeAlias alias="MwOrdering" type="com.dutchOrder.server.model.MwOrdering"/>
    </typeAliases>
 </configuration>

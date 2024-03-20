@@ -12,5 +12,6 @@ public class OrderSpec {
 	private int foption_mikey;
 	private int fcount;		// 해당메뉴 수량
 	private int osprice;	// 메뉴별 금액 
-
+	private String fname;
+	private String keyvalue;
 }

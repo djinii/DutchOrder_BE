@@ -21,7 +21,7 @@ public class DJMainController {
 
 	private final DJMainService ms;
 	
-	@GetMapping("/main")
+	@GetMapping("/client/home")
 	List<Address> getUserAddr(@CookieValue("mnum") int mnum){
 		System.out.println("MainController - /main");
 		List<Address> listAddr = null;
