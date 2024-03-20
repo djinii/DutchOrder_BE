@@ -8,5 +8,7 @@
    		<typeAlias alias="OrderInfo" type="com.dutchOrder.server.model.OrderInfo"/>
    		<typeAlias alias="MyFriend" type="com.dutchOrder.server.model.MyFriend"/>
    		<typeAlias alias="JhMember" type="com.dutchOrder.server.model.JhMember"/>
+   		<typeAlias alias="MwOrderSpec" type="com.dutchOrder.server.model.MwOrderSpec"/>
+   		<typeAlias alias="MwOrdering" type="com.dutchOrder.server.model.MwOrdering"/>
    </typeAliases>
 </configuration>
