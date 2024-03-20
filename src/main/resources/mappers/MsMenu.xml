@@ -37,7 +37,7 @@
 		#{fprice},
 		foption = #{foption},
 		fimg = #{fimg}
-		WHERE bnum = #{bnum}
+		WHERE fnum = #{fnum}
 	</update>
 
 	<delete id="mapMemuDelete"

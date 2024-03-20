@@ -7,7 +7,8 @@
 		SELECT o.*, os.osnum
 		FROM ordering o
 		JOIN order_spec os ON o.onum = os.osnum
-		WHERE o.bnum = #{bnum};
+		WHERE o.bnum = #{bnum}
+		ORDER BY o.odate DESC;
 
 	</select>
 
@@ -15,7 +16,7 @@
 		parameterType="com.dutchOrder.server.model.MsOrderSpec">
 		UPDATE ordering
 		SET ostatus_mikey = #{ostatus_mikey}
-		WHERE bnum = #{bnum} AND onum = #{onum}
+		WHERE mnum = #{mnum}
 	</update>
 
 </mapper>
