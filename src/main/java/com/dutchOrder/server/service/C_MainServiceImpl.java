@@ -50,7 +50,7 @@ public class C_MainServiceImpl implements C_MainService {
 	}
 
 	@Override
-	public List<Address> listAddr(String mnum) {
+	public List<Address> listAddr(int mnum) {
 		System.out.println(mnum + "mainService +  " + mnum);
 		List<Address> listAddr = md.listAddr(mnum);
 		System.out.println("finished  listAddr --> " + listAddr);

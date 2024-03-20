@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.C_OrderDao">
+	<select id="mapMtel" parameterType="int" resultType="string">
+		select mtel
+		from member
+		where mnum = #{mnum};
+	</select>
+	
+	<select id="selectMaxOnum" resultType="Integer">
+    	SELECT COALESCE(MAX(onum), 1000) FROM ordering
+	</select>
+	
+	<select id="selectMaxOsnum" resultType="Integer">
+    	SELECT COALESCE(MAX(osnum), 1000) FROM order_spec
+	</select>
+	
+    
+	<insert id="insertOrder" parameterType="com.dutchOrder.server.model.Order">
+	    INSERT INTO ordering (mnum, bnum, onum, oaddr, otel, ostatus_makey, ostatus_mikey)
+	    VALUES (#{mnum}, #{bnum}, #{onum}, #{oaddr}, #{otel}, #{ostatus_makey}, #{ostatus_mikey})
+	</insert>
+
+    <insert id="insertOrderSpec" parameterType="com.dutchOrder.server.model.OrderSpec">
+        INSERT INTO order_spec (onum, cart_value) VALUES (#{onum}, #{cart_value})
+    </insert>
+</mapper>

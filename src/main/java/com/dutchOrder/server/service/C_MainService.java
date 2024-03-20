@@ -14,5 +14,5 @@ public interface C_MainService {
 
 	Menu menuInfo(String fname);
 
-	List<Address> listAddr(String mnum);
+	List<Address> listAddr(int mnum);
 }

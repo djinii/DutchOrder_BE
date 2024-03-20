@@ -1,10 +1,11 @@
-package com.dutchOrder.server.controller;
+ package com.dutchOrder.server.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class CartController {
 
 		@ResponseBody
@@ -13,5 +14,6 @@ public class CartController {
 			System.out.println("CartController");
 		    return "connected";
 		}
+		
 		
 }

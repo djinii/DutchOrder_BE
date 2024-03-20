@@ -5,10 +5,13 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Order {
+public class Ordering {
 	private int mnum;			// 회원번호
 	private int bnum;			// 사업자
 	private int onum;			// 주문번호
+	
+	private int osnum;
+	
 	
 	private String oaddr;		// 배달주소
 	private String otel;		// 배달가능 연락처
@@ -19,9 +22,10 @@ public class Order {
 								//	801(장바구니), 802(결제완료후 주문수락 대기), 
 								//	803(조리중). 804(배달시작), 805(배달완료)
 	
-	 
-	
-	
-	
-	
+	private int fnum;
+	private int foption_makey;
+	private int foption_mikey;
+	private int fcount;			// 해당메뉴 수량
+	private int osprice;
+
 }

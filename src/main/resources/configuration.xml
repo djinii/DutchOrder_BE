@@ -3,9 +3,9 @@
 <configuration>
    <typeAliases>
 
-   		<typeAlias alias="MsMenu" type="com.dutchOrder.server.model.MsMenu"/>
+   		<typeAlias alias="Menu" type="com.dutchOrder.server.model.Menu"/>
    		
-   		<typeAlias alias="MsShop" type="com.dutchOrder.server.model.MsShop"/>
+   		<typeAlias alias="Shop" type="com.dutchOrder.server.model.Shop"/>
 
    </typeAliases>
 </configuration>

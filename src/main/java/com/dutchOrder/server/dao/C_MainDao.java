@@ -20,5 +20,5 @@ public interface C_MainDao {
 
 	Menu menuInfo(String fnum);
 
-	List<Address> listAddr(String mnum);
+	List<Address> listAddr(int mnum);
 }

@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,19 +23,11 @@ public class C_MainController {
 	private final C_MainService ms;
 	
 	@GetMapping("/main")
-	List<Address> getUserAddr(HttpServletRequest request){
+	List<Address> getUserAddr(@CookieValue("mnum") int mnum){
 		System.out.println("MainController - /main");
 		List<Address> listAddr = null;
-		Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("mnum")) {
-                    String mnum = cookie.getValue();
-                    System.out.println(mnum+" controller");
-                    listAddr = ms.listAddr(mnum); // mnum에 해당하는 데이터를 가져옴
-                }
-            }
-        }
+		listAddr = ms.listAddr(mnum);
+
 		return listAddr;
 	}
 }

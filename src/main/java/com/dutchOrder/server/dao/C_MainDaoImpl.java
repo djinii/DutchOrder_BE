@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.misc.TestRig;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties.ShowSummaryOutput;
 import org.springframework.stereotype.Repository;
 
 import com.dutchOrder.server.model.Address;
@@ -70,9 +71,10 @@ public class C_MainDaoImpl implements C_MainDao {
 		
 	}
 	@Override
-	public List<Address> listAddr(String mnum) {
+	public List<Address> listAddr(int mnum) {
 		List<Address> listAddr = null;
 		try {
+			System.out.println("@@@@@@");
 			listAddr = session.selectList("mapAddrList", mnum);
 			System.out.println("dao -> " + listAddr);
 		} catch (Exception e) {
