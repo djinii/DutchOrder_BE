@@ -65,8 +65,12 @@ public class JhAuthDaoImpl implements JhAuthDao {
 		 Map<String, Object> params = new HashMap<>();
 			params.put("memail", memail);
 		 
-	     int result = sqlSession.selectOne("getUserBnum", params);
-	     return result;
+	     Integer result = sqlSession.selectOne("getUserBnum", params);
+	     if (result == null) {
+	    	 // 변환된 값이 null인 경우 예외를 throw하거나 적절한 기본값은 반환합니다
+	    	 return -1;
+	     }
+	     return result.intValue();
 	 }
 
 	@Override
