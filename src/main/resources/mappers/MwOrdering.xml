@@ -10,7 +10,7 @@
 		
 	</select>
 	
-	<select id="mwOrderspecs" parameterType="int" resultType="MwOrderSpec">
+	<select id="Orderspecs" parameterType="int" resultType="OrderSpec">
 		select onum, osnum, menu.fname, common.keyvalue, fcount, osprice
 		from order_spec 
 		join menu on order_spec.fnum = menu.fnum
