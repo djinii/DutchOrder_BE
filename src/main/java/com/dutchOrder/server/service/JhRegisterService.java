@@ -1,12 +1,12 @@
 package com.dutchOrder.server.service;
 
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 
 public interface JhRegisterService {
 	
-    void insertC(JhMember jhMember);
+    void insertC(Member Member);
 
-	void insertB(JhMember jhMember);
+	void insertB(Member Member);
 
 	boolean isMnicDuplicate(String mnic);
 

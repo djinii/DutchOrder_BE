@@ -6,8 +6,8 @@ import java.time.LocalTime;
 import org.springframework.stereotype.Service;
 
 import com.dutchOrder.server.dao.MwChatBotDao;
-import com.dutchOrder.server.model.MwMenu;
-import com.dutchOrder.server.model.MwOrderSpec;
+import com.dutchOrder.server.model.Menu;
+import com.dutchOrder.server.model.OrderSpec;
 
 import lombok.RequiredArgsConstructor;
 

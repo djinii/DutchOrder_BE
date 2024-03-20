@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dutchOrder.server.model.MwEmailModel;
+import com.dutchOrder.server.model.EmailModel;
 import com.dutchOrder.server.service.MwEmailService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class MwEmailController {
 	
 	@ResponseBody
 	@PostMapping("/sendVerificationEmail")
-    public ResponseEntity<String> sendVerificationEmail(@RequestBody MwEmailModel email) {
+    public ResponseEntity<String> sendVerificationEmail(@RequestBody EmailModel email) {
 		// 이메일 전송 로직
 		System.out.println("MwEmailController sendVerificationEmail Start...");
 		String sendEmail = email.getEmail();
@@ -37,7 +37,7 @@ public class MwEmailController {
 	
 	@ResponseBody
 	@PostMapping("/confirmVerificationCode")
-	public ResponseEntity<String> confirmVerificationCode(@RequestBody MwEmailModel mwEmailModel) {
+	public ResponseEntity<String> confirmVerificationCode(@RequestBody EmailModel mwEmailModel) {
 		// 이메일 인증코드 확인 로직
 		System.out.println("MwEmailController confirmVerificationCode Start...");
 		int result = 0;

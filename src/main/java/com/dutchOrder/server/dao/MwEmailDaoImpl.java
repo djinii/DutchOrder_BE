@@ -3,7 +3,7 @@ package com.dutchOrder.server.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.dutchOrder.server.model.MwEmailModel;
+import com.dutchOrder.server.model.EmailModel;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ public class MwEmailDaoImpl implements MwEmailDao {
 	@Override
 	public void ecSave(String email, String eccode) {
 		System.out.println("MwEmailDaoImpl ecSave Start...");
-		MwEmailModel emailModel = new MwEmailModel();
+		EmailModel emailModel = new EmailModel();
 		emailModel.setEmail(email);
 		emailModel.setEccode(eccode);
 		System.out.println("MwEmailDaoImpl ecSave getEmail->"+emailModel.getEmail());
@@ -25,7 +25,7 @@ public class MwEmailDaoImpl implements MwEmailDao {
 	}
 
 	@Override
-	public int confirmEc(MwEmailModel mwEmailModel) {
+	public int confirmEc(EmailModel mwEmailModel) {
 		System.out.println("MwEmailDaoImpl confirmEc Start...");
 		int result = 0;
 		String email = mwEmailModel.getEmail();

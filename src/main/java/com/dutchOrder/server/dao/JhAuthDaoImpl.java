@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dutchOrder.server.dto.JhMemberDto;
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 
 @Repository
 public class JhAuthDaoImpl implements JhAuthDao {

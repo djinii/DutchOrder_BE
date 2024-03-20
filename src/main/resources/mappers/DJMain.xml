@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.DJMainDao">
+	
+	<select id="mapAddrList" parameterType="int" resultType="com.dutchOrder.server.model.Address">
+		select mnum, adnum, adaddr
+		from address
+		where mnum = #{mnum};
+	</select>
+	
+	<select id="mapMtel" parameterType="int" resultType="string">
+		select mtel
+		from member
+		where mnum = #{mnum};
+	</select>
+	
+</mapper>

@@ -10,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.dutchOrder.server.dao.MwEmailDao;
-import com.dutchOrder.server.model.MwEmailModel;
+import com.dutchOrder.server.model.EmailModel;
 
 import lombok.RequiredArgsConstructor;
 
@@ -81,7 +81,7 @@ public class MwEmailServiceImpl implements MwEmailService {
     }
 
 	@Override
-	public int confirmEc(MwEmailModel mwEmailModel) {
+	public int confirmEc(EmailModel mwEmailModel) {
 		// 인증코드 확인
 		System.out.println("MwEmailServiceImpl confirmEc Start...");
 		int result = 0;

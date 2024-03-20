@@ -2,7 +2,6 @@ package com.dutchOrder.server.service;
 
 import com.dutchOrder.server.dao.JhAuthDao;
 import com.dutchOrder.server.dto.JhMemberDto;
-import com.dutchOrder.server.model.JhMember;
 
 import org.apache.catalina.User;
 import org.apache.ibatis.javassist.NotFoundException;

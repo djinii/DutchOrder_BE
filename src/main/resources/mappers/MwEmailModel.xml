@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dutchOrder.server.MwEmailModelMapper">
-	<insert id="ecSave" parameterType="MwEmailModel">
+<mapper namespace="com.dutchOrder.server.EmailModelMapper">
+	<insert id="ecSave" parameterType="EmailModel">
 		insert into email_code
 		values((select coalesce(max(a.ecnum), 1000)+1 from email_code a), #{email}, #{eccode}, 1);
 	</insert>
 	
-	<update id="confirmEc" parameterType="MwEmailModel">
+	<update id="confirmEc" parameterType="EmailModel">
 		update email_code
 		set verified = 2
 		where ecmail = #{email} and eccode = #{eccode} and verified = 1;

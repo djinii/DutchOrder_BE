@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.dutchOrder.server.model.MwChatMessage;
+import com.dutchOrder.server.model.ChatMessage;
 import com.dutchOrder.server.service.MwChatBotService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,7 +42,7 @@ public class MwChatBotController {
     @ResponseBody
     @PostMapping("/api/chat")		
     // ResponseEntity<String>: http 응답에 포함될 문자열 데이터를 나타내는 객체
-    public ResponseEntity<String> handleChatMessage(@RequestBody MwChatMessage message) {
+    public ResponseEntity<String> handleChatMessage(@RequestBody ChatMessage message) {
         // 받은 메시지를 기반으로 챗봇 로직을 수행하고, 적절한 응답을 생성하여 반환
         String response;
         
@@ -59,7 +59,7 @@ public class MwChatBotController {
     }
 
     // 챗봇 로직을 수행하여 응답을 생성하는 메소드
-    private String generateResponse(MwChatMessage message1) {
+    private String generateResponse(ChatMessage message1) {
         System.out.println("MwController generateResponse Start...");
         String userMsg = message1.getMessage();
         System.out.println("사용자 메세지: " + userMsg);

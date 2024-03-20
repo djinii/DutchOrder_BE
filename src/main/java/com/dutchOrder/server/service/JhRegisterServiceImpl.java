@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dutchOrder.server.dao.JhRegisterDao;
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 
 @Service
 public class JhRegisterServiceImpl implements JhRegisterService {
@@ -17,12 +17,12 @@ public class JhRegisterServiceImpl implements JhRegisterService {
     }
 
     @Override
-    public void insertC(JhMember jhMember) {
+    public void insertC(Member jhMember) {
     	jhRegisterDao.insertC(jhMember);
     }
     
 	@Override
-	public void insertB(JhMember jhMember) {
+	public void insertB(Member jhMember) {
 		jhRegisterDao.insertB(jhMember);
 		
 	}

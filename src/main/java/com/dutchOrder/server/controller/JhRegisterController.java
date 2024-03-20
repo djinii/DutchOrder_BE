@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 import com.dutchOrder.server.service.JhRegisterService;
 
 @RestController
@@ -24,7 +24,7 @@ public class JhRegisterController {
     }
     
     @PostMapping("/client/join")
-    public ResponseEntity<String> registerClient(@RequestBody JhMember jhMember) {
+    public ResponseEntity<String> registerClient(@RequestBody Member jhMember) {
         try {
         	 // 비밀번호를 BCrypt로 해시화
             String hashedPassword = hashPassword(jhMember.getMpw());
@@ -38,7 +38,7 @@ public class JhRegisterController {
     }
 
     @PostMapping("/business/join")
-    public ResponseEntity<String> registerBusiness(@RequestBody JhMember jhMember) {
+    public ResponseEntity<String> registerBusiness(@RequestBody Member jhMember) {
         try {
             
         	// 비밀번호를 BCrypt로 해시화

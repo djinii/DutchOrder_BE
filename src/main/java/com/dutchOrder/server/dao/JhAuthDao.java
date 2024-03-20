@@ -1,7 +1,7 @@
 package com.dutchOrder.server.dao;
 
 import com.dutchOrder.server.dto.JhMemberDto;
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 
 public interface JhAuthDao {
 	

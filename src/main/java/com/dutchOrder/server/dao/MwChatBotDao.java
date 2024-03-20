@@ -1,6 +1,6 @@
 package com.dutchOrder.server.dao;
 
-import com.dutchOrder.server.model.MwMenu;
+import com.dutchOrder.server.model.Menu;
 
 public interface MwChatBotDao {
 

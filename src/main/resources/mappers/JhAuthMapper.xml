@@ -31,7 +31,7 @@
 	    VALUES (#{mname}, #{mnic}, #{memail}, #{mpw}, #{mtel}, #{mgroup_mikey}, #{mstatus_mikey})
 	</insert> 
 	
-	<select id="findUserByEmail" parameterType="map" resultType="com.dutchOrder.server.model.JhMember">
+	<select id="findUserByEmail" parameterType="map" resultType="com.dutchOrder.server.model.Member">
 		SELECT * FROM member WHERE memail = #{memail}
 	</select>
 	

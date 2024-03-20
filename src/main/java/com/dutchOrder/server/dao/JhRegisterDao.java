@@ -1,12 +1,12 @@
 package com.dutchOrder.server.dao;
 
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 
 public interface JhRegisterDao {
 	
-    void insertC(JhMember jhMember);
+    void insertC(Member jhMember);
 	
-	void insertB(JhMember jhMember);
+	void insertB(Member jhMember);
 
 	boolean isMnicDuplicate(String mnic);
 

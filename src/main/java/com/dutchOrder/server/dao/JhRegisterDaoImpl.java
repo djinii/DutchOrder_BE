@@ -1,6 +1,6 @@
 package com.dutchOrder.server.dao;
 
-import com.dutchOrder.server.model.JhMember;
+import com.dutchOrder.server.model.Member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ public class JhRegisterDaoImpl implements JhRegisterDao {
     }
 
     @Override
-    public void insertC(JhMember jhMember) {
+    public void insertC(Member jhMember) {
         try {
             System.out.println("JhRegisterDaoImpl insertC Start...");
             sqlSession.insert("com.dutchOrder.server.dao.JhRegisterDao.insertC", jhMember);
@@ -26,7 +26,7 @@ public class JhRegisterDaoImpl implements JhRegisterDao {
     }
 
 	@Override
-	public void insertB(JhMember jhMember) {
+	public void insertB(Member jhMember) {
 		 try {
 	            System.out.println("JhRegisterDaoImpl insertB Start...");
 	            sqlSession.insert("com.dutchOrder.server.dao.JhRegisterDao.insertB", jhMember);

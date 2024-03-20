@@ -3,7 +3,7 @@ package com.dutchOrder.server.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.dutchOrder.server.model.MwMenu;
+import com.dutchOrder.server.model.Menu;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ public class MwChatBotDaoImpl implements MwChatBotDao {
 
 	@Override
 	public String manyDinnerOrder() {
-		MwMenu mwMenu = null;
+		Menu mwMenu = null;
 		System.out.println("MwDaoImpl manyDinnerMenu Start...");
 		try {
 			mwMenu = session.selectOne("manyDinnerMenu");
@@ -28,7 +28,7 @@ public class MwChatBotDaoImpl implements MwChatBotDao {
 
 	@Override
 	public String manyLunchOrder() {
-		MwMenu mwMenu = null;
+		Menu mwMenu = null;
 		System.out.println("MwDaoImpl manyLunchMenu Start...");
 		try {
 			mwMenu = session.selectOne("manyLunchMenu");
@@ -40,7 +40,7 @@ public class MwChatBotDaoImpl implements MwChatBotDao {
 
 	@Override
 	public String manyBreakfastOrder() {
-		MwMenu mwMenu = null;
+		Menu mwMenu = null;
 		System.out.println("MwDaoImpl manyBreakfastMenu Start...");
 		try {
 			mwMenu = session.selectOne("manyBreakfastMenu");
