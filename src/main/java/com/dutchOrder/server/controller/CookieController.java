@@ -1,34 +1,3 @@
-//package com.dutchOrder.server.controller;
-//
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import jakarta.servlet.http.Cookie;
-//import jakarta.servlet.http.HttpServletRequest;
-//
-//
-//@RestController
-//public class CookieController {
-//
-//    @GetMapping("/read-cookies")
-//    public String readCookies(HttpServletRequest request) {
-//        Cookie[] cookies = request.getCookies();
-//        if (cookies != null) {
-//            StringBuilder sb = new StringBuilder();
-//            for (Cookie cookie : cookies) {
-//                sb.append(String.format("Name: %s, Value: %s\n", cookie.getName(), cookie.getValue()));
-//            }
-//            return sb.toString();
-//        }
-//        return "No cookies found";
-//    }
-//    
-//    @GetMapping("/test")
-//    public String test() {
-//        return "Test successful!";
-//    }
-//
-//}
 package com.dutchOrder.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 
 import java.util.StringJoiner;
 
 @RestController
+@RequiredArgsConstructor
 public class CookieController {
 
     private static final String NO_COOKIES_FOUND = "No cookies found";

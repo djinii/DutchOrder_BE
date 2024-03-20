@@ -1,5 +1,5 @@
 package com.dutchOrder.server.dao;
 
-public interface CartDao {
+public interface C_MemberDao {
 
 }

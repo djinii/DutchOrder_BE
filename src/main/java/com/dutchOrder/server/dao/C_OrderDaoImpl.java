@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.dutchOrder.server.model.Order;
 import com.dutchOrder.server.model.OrderSpec;
-import com.dutchOrder.server.model.Ordering;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +19,6 @@ public class C_OrderDaoImpl  implements  C_OrderDao{
 		String mtel = "";
 		try {
 			mtel =session.selectOne("mapMtel",mnum);
-//			System.out.println("dao fin -> " + mtel);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		

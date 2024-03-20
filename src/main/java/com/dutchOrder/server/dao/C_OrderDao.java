@@ -7,8 +7,6 @@ public interface C_OrderDao {
 
 	String getMtel(int mnum);
 
-//	int setOrdering(Order ordering);
-
 	void insertOrdering(Order order);
 
 	void insertOrderSpec(OrderSpec orderspec);
