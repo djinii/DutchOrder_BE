@@ -7,6 +7,7 @@
 			DATE_FORMAT(rdate, '%Y-%m-%d  %H:%i')  strRdate, member.mnic 
     	FROM review
     	INNER JOIN member ON review.mnum = member.mnum
+    	WHERE bnum = #{bnum}
     	ORDER BY rnum;
 	</select>
 	
@@ -32,6 +33,7 @@
 	    FROM ordering o
 	    LEFT JOIN review r ON o.onum = r.onum
 	    LEFT JOIN shop s ON o.bnum = s.bnum
+	    WHERE o.mnum = #{mnum}
 	    ORDER BY o.onum;
 	</select>
 	

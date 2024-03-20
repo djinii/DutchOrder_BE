@@ -17,10 +17,10 @@ public class ReviewServiceImpl implements ReviewService {
 	private final ReviewDao rd;
 
 	@Override
-	public List<Review> listReview(int mnum) {
+	public List<Review> listReview(int bnum) {
 		List<Review> reviewList = null;
 		System.out.println("ReviewServiceImpl listReview Start...");
-		reviewList = rd.listReview(mnum);
+		reviewList = rd.listReview(bnum);
 		System.out.println("ReviewServiceImpl listReview reviewList.size() -> " + reviewList.size());
 		
 		return reviewList;

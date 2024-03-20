@@ -8,7 +8,7 @@ import com.dutchOrder.server.model.Review;
 
 public interface ReviewService {
 
-	List<Review> listReview(int mnum);
+	List<Review> listReview(int bnum);
 
 	Review commentReview(int rnum);
 

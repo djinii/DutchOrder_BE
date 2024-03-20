@@ -17,11 +17,11 @@ public class ReviewDaoImpl implements ReviewDao {
 	private final SqlSession session;
 
 	@Override
-	public List<Review> listReview(int mnum) {
+	public List<Review> listReview(int bnum) {
 		List<Review> reviewList = null;
 		System.out.println("ReviewDaoImpl listReview Start...");
 		try {
-			reviewList = session.selectList("mapReviewList", mnum);
+			reviewList = session.selectList("mapReviewList", bnum);
 			System.out.println("ReviewDaoImpl listReview reviewList.size() -> " + reviewList.size());
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl reviewList Exception -> " + e.getMessage());
