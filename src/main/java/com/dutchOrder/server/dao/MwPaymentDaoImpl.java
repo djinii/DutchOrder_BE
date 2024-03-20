@@ -16,9 +16,9 @@ public class MwPaymentDaoImpl implements MwPaymentDao {
 	private final SqlSession session;
 	
 	@Override
-	public List<PaymentInfo> getPaymentInfo() {
+	public List<PaymentInfo> getPaymentInfo(int onum) {
 		System.out.println("결제다오 결제정보 받아오기 시작...");
-		List<PaymentInfo> paymentInfoList = session.selectList("paymentInfoList");
+		List<PaymentInfo> paymentInfoList = session.selectList("paymentInfoList", onum);
 		System.out.println("paymentInfoList의 사이즈: "+paymentInfoList.size());
 		return paymentInfoList;
 	}

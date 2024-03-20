@@ -16,9 +16,9 @@ public class MwPaymentServiceImpl implements MwPaymentService {
 	private final MwPaymentDao paymentDao;
 
 	@Override
-	public List<PaymentInfo> getPaymentInfo() {
+	public List<PaymentInfo> getPaymentInfo(int onum) {
 		System.out.println("결제서비스 결제정보 받아오기 시작...");
-		List<PaymentInfo> paymentInfoList = paymentDao.getPaymentInfo();
+		List<PaymentInfo> paymentInfoList = paymentDao.getPaymentInfo(onum);
 		return paymentInfoList;
 	}
 

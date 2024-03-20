@@ -49,6 +49,7 @@ public class MwChatBotController {
         if (message.getMessage().contains("추천")) {
         	// 입력메세지에 추천이 포함되어있으면 메뉴추천 로직 수행
             response = generateResponse(message);
+            
         } else {
         	// 추천이 포함되어 있지 않으면 api응답 수행
         	System.out.println("handleChatMessage message-->"+message.getMessage());

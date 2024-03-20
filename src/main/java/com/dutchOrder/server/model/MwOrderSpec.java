@@ -14,4 +14,6 @@ public class MwOrderSpec {
 	private int foption_mikey;
 	private int fcount;
 	private int osprice;
+	private String fname;
+	private String keyvalue;
 }

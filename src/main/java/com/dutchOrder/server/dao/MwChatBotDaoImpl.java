@@ -20,10 +20,12 @@ public class MwChatBotDaoImpl implements MwChatBotDao {
 		System.out.println("MwDaoImpl manyDinnerMenu Start...");
 		try {
 			mwMenu = session.selectOne("manyDinnerMenu");
+			return mwMenu.getFname();
 		} catch(Exception e) {
 			System.out.println("MwDaoImpl manyDinnerMenu e.getMessage()->"+e.getMessage());
+			return "아직 데이터가 없어요";
 		}
-		return mwMenu.getFname();
+		
 	}
 
 	@Override

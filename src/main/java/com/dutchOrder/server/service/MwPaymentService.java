@@ -6,7 +6,7 @@ import com.dutchOrder.server.model.PaymentInfo;
 
 public interface MwPaymentService {
 
-	List<PaymentInfo> getPaymentInfo();
+	List<PaymentInfo> getPaymentInfo(int onum);
 
 	void payResult(PaymentInfo paymentInfo);
 

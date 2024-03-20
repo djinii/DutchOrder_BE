@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.MwOrderingMapper">
+	<select id="mwOrderings" parameterType="int" resultType="MwOrdering">
+		select shop.sname, ordering.onum, ordering.omsg, ordering.odate, common.keyvalue
+		from ordering
+		join shop on ordering.bnum = shop.bnum
+		join common on ordering.ostatus_mikey = common.miner
+		where ordering.mnum = #{mnum} and ordering.ostatus_mikey >= 802;
+		
+	</select>
+	
+	<select id="mwOrderspecs" parameterType="int" resultType="MwOrderSpec">
+		select onum, osnum, menu.fname, common.keyvalue, fcount, osprice
+		from order_spec 
+		join menu on order_spec.fnum = menu.fnum
+		join common on order_spec.foption_mikey = common.miner
+		where onum = #{onum};
+	</select>
+</mapper>

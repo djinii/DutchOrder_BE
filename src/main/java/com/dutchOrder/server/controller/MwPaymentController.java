@@ -29,10 +29,13 @@ public class MwPaymentController {
 	@Autowired
     private JavaMailSender javaMailSender;
 
-    @GetMapping("/api/paymentInfo")
-    public ResponseEntity<List<PaymentInfo>> getPaymentInfo() {
+	@ResponseBody
+    @PostMapping("/api/paymentInfo")
+    public ResponseEntity<List<PaymentInfo>> getPaymentInfo(@RequestBody PaymentInfo paymentInfo) {
     	System.out.println("결제컨트롤러 결제정보받아오기 시작...");
-        List<PaymentInfo> paymentInfoList = paymentService.getPaymentInfo();
+    	int onum = paymentInfo.getOnum();
+    	System.out.println("주문번호: "+onum);
+        List<PaymentInfo> paymentInfoList = paymentService.getPaymentInfo(onum);
         System.out.println("받아온 결제정보리스트: "+paymentInfoList.toString());
         return ResponseEntity.ok(paymentInfoList);
     }
