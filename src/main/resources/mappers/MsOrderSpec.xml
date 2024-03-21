@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.MsOrderDao">
+
+	<select id="msOrderList"
+		resultType="com.dutchOrder.server.model.OrderSpec">
+		SELECT o.*, os.osnum, m.fname
+		FROM ordering o
+		JOIN order_spec os ON o.onum = os.osnum
+		JOIN menu m ON os.fnum = m.fnum
+		WHERE o.bnum = #{bnum}
+		ORDER BY o.odate DESC;
+
+
+	</select>
+
+	<update id="msOrderSpecUpdate"
+		parameterType="com.dutchOrder.server.model.OrderSpec">
+		UPDATE ordering
+		SET ostatus_mikey = #{ostatus_mikey}
+		WHERE mnum = #{mnum}
+	</update>
+
+</mapper>

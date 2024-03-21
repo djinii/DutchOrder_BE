@@ -21,14 +21,14 @@ public class DJMainController {
 
 	private final DJMainService ms;
 	
-	@GetMapping("/client/home")
-	List<Address> getUserAddr(@CookieValue("mnum") int mnum){
-		System.out.println("MainController - /main");
-		List<Address> listAddr = null;
-		listAddr = ms.listAddr(mnum);
-
-		return listAddr;
-	}
+//	@GetMapping("/client/home")
+//	List<Address> getUserAddr(@CookieValue("mnum") int mnum){
+//		System.out.println("MainController - /main");
+//		List<Address> listAddr = null;
+//		listAddr = ms.listAddr(mnum);
+//
+//		return listAddr;
+//	}
 	
 	@GetMapping("/shoplist")
 	public List<Shop> getShopList(@RequestParam("category") String fcategory_mikey) {

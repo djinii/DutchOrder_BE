@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.MsShopMapper">
+
+
+
+	<select id="mapShopDetail"
+		resultType="com.dutchOrder.server.model.Shop">
+		SELECT sname, start_time, end_time, bnum, fcategory_mikey,
+		sstatus_mikey, stel, saddr
+		FROM shop;
+	</select>
+
+
+	<select id="mapShopDetailByMnum"
+		resultType="com.dutchOrder.server.model.Shop">
+		SELECT s.sname, s.start_time, s.end_time, s.bnum,
+		s.fcategory_mikey,
+		s.sstatus_mikey, s.stel, s.saddr, s.simg1 , m.mname
+		FROM shop s
+		JOIN member m ON s.mnum = m.mnum
+		WHERE s.mnum = #{mnum}
+
+	</select>
+
+	<select id="mapGetShopStatus" parameterType="int"
+		resultType="com.dutchOrder.server.model.Shop">
+		SELECT sstatus_makey, sstatus_mikey, bnum
+		FROM shop
+		WHERE bnum = #{bnum}
+	</select>
+
+	<update id="mapShopStatusUpdate"
+		parameterType="com.dutchOrder.server.model.Shop">
+		UPDATE shop SET sstatus_mikey = #{sstatus_mikey} WHERE
+		bnum = #{bnum}
+	</update>
+
+	<update id="updateShopTime"
+		parameterType="com.dutchOrder.server.model.Shop">
+		UPDATE shop
+		SET start_time = #{start_time},
+		end_time =
+		#{end_time}
+		WHERE bnum = #{bnum}
+	</update>
+
+
+	<select id="mapMsgetMemberStatus" parameterType="int"
+		resultType="com.dutchOrder.server.model.Shop">
+		SELECT bstaus_makey,
+		bstaus_mikey, mnum from shop where mnum
+		= #{mnum}
+	</select>
+
+	<insert id="mapMsShopReg"
+		parameterType="com.dutchOrder.server.model.Shop">
+		INSERT INTO shop (bnum, fcategory_makey,
+		fcategory_mikey, saddr, stel,
+		sname, start_time, end_time,
+		sstatus_makey, sstatus_mikey, mnum, bid,
+		bstaus_makey, bstaus_mikey,
+		simg1, simg2, simg3, sconfirm)
+		VALUES (
+		(SELECT COALESCE(MAX(a.bnum),0)
+		+ 1 FROM shop a),
+		#{fcategory_makey},
+		#{fcategory_mikey},
+		#{saddr},
+		#{stel},
+		#{sname},
+		#{start_time},
+		#{end_time},
+		#{sstatus_makey},
+		#{sstatus_mikey},
+		#{mnum},
+		#{bid},
+		#{bstaus_makey},
+		#{bstaus_mikey},
+		#{simg1},
+		#{simg2},
+		#{simg3},
+		#{sconfirm}
+		);
+	</insert>
+
+	<select id="mapBFileSelect"
+		resultType="com.dutchOrder.server.model.Shop">
+		SELECT mnum, bfnum, bftype_makey, bftype_mikey FROM
+		business_file WHERE
+		mnum = #{mnum}
+	</select>
+
+	<insert id="mapBFileInsert"
+		parameterType="com.dutchOrder.server.model.Shop">
+		INSERT INTO business_file (mnum, bfnum, bftype_makey,
+		bftype_mikey,
+		bfimg1)
+		values ( #{mnum}, (SELECT COALESCE(MAX(a.bfnum),0)
+		+ 1 FROM business_file a), #{bftype_makey}, #{bftype_mikey},
+		#{bfimg1});
+
+	</insert>
+	    <!-- 가게이름 중복 검사 -->
+    <select id="findSnameCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM shop WHERE sname = #{sname}
+    </select>
+	
+	    <!-- 사업자번호 중복 검사 -->
+    <select id="findBidCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM shop WHERE bid = #{bid}
+    </select>
+
+
+</mapper>

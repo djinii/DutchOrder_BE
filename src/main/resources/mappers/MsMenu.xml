@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dutchOrder.server.dao.MsMenuDao">
+
+	<select id="msMenuList"
+		resultType="com.dutchOrder.server.model.Menu">
+		SELECT bnum, fnum, foption, fprice, fimg, finfo, fname
+		FROM
+		menu
+
+	</select>
+	<select id="mapMenuDetailBybnum" parameterType="int"
+		resultType="com.dutchOrder.server.model.Menu">
+		SELECT * FROM menu 
+		WHERE bnum = #{bnum}
+
+	</select>
+
+	<insert id="mapMenuInsert"
+		parameterType="com.dutchOrder.server.model.Menu">
+		INSERT INTO menu (bnum, fname, fprice, finfo, fimg,
+		fnum,
+		foption)
+		VALUES (#{bnum}, #{fname}, #{fprice}, #{finfo},
+		#{fimg},(SELECT
+		COALESCE(MAX(m.fnum), 0) + 1 FROM menu m), #{foption})
+
+	</insert>
+
+	<update id="mapMenuUpdate"
+		parameterType="com.dutchOrder.server.model.Menu">
+		UPDATE menu
+		SET
+		fname = #{fname},
+		finfo = #{finfo},
+		fprice =
+		#{fprice},
+		foption = #{foption},
+		fimg = #{fimg}
+		WHERE fnum = #{fnum}
+	</update>
+
+	<delete id="mapMemuDelete"
+		parameterType="com.dutchOrder.server.model.Menu">
+		DELETE
+		FROM menu
+		WHERE fnum = #{fnum}
+	</delete>
+
+
+
+</mapper>

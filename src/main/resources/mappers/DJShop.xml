@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dutchOrder.server.dao.C_MainDao">
+<mapper namespace="com.dutchOrder.server.dao.DJMainDao">
 	
 	<select id="mapShopList" parameterType="string" resultType="com.dutchOrder.server.model.Shop">
 		select bnum, sname, fcategory_mikey, saddr,stel, start_time, end_time, sstatus_mikey
