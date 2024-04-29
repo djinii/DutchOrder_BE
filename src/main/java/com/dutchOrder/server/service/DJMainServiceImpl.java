@@ -36,7 +36,7 @@ public class DJMainServiceImpl implements DJMainService {
 	}
 
 	@Override
-	public Menu menuInfo(String fnum) {
+	public Menu menuInfo(int fnum) {
 		
 		System.out.println("[Service] menuInfo ~~");
 		Menu menuInfo = md.menuInfo(fnum);
@@ -61,5 +61,33 @@ public class DJMainServiceImpl implements DJMainService {
 		mtel = md.getMtel(mnum);
 		
 		return mtel;
+	}
+
+	
+//	메인에서 사용할 모든 리스트 꺼내는거
+	@Override
+	public List<Shop> listShops() {
+		
+		List<Shop> listShops = null;
+		try {
+			listShops = md.listShops();
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return listShops;
+	}
+
+	@Override
+	public List<Menu> listMenu(int bnum) {
+		List<Menu> menus = null;
+		
+		try {
+			menus = md.listMenu(bnum);
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return menus;
 	}
 }

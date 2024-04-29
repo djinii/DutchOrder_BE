@@ -12,9 +12,13 @@ public interface DJMainService {
 
 	Shop shopInfo(String sname);
 
-	Menu menuInfo(String fnum);
+	Menu menuInfo(int fnum);
 
 	List<Address> listAddr(int mnum);
 	
 	String getMtel(int mnum);
+
+	List<Shop> listShops();
+
+	List<Menu> listMenu(int bnum);
 }

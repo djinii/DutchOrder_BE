@@ -11,9 +11,11 @@ public interface DJMainDao {
 
 	List<Menu> listMenu(int bnum);
 
-	Menu menuInfo(String fnum);
+	Menu menuInfo(int fnum);
 
 	List<Address> listAddr(int mnum);
 	
 	String getMtel(int mnum);
+
+	List<Shop> listShops();
 }

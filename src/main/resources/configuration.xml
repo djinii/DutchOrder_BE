@@ -11,5 +11,6 @@
    		<typeAlias alias="MyFriend" type="com.dutchOrder.server.model.MyFriend"/>
    		<typeAlias alias="Member" type="com.dutchOrder.server.model.Member"/>
    		<typeAlias alias="MwOrdering" type="com.dutchOrder.server.model.MwOrdering"/>
+   		<typeAlias alias="Menu" type="com.dutchOrder.server.model.Menu"/>
    </typeAliases>
 </configuration>

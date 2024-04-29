@@ -31,7 +31,7 @@ public class DJOrderController {
 		return mtel;	
 	}
 	
-	@PostMapping("/ordPlaced")
+	@PostMapping("/client/ordPlaced")
     public int setOrdering(@RequestBody CartReq req, @CookieValue("mnum") int mnum) {
 		int onum = 0;
 		try {

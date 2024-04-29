@@ -17,7 +17,7 @@
 	    from menu
 	    where bnum = #{bnum};
 	</select>
-	<select id="mapMenuInfo" parameterType="string" resultType="com.dutchOrder.server.model.Menu">
+	<select id="mapMenuInfo" parameterType="int" resultType="com.dutchOrder.server.model.Menu">
 	    select bnum, fnum, fname, fprice, finfo, foption
 	    from menu
 	    where fnum = #{fnum};

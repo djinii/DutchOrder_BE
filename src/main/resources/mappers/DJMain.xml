@@ -14,4 +14,9 @@
 		where mnum = #{mnum};
 	</select>
 	
+	<select id="mapAllShopList" resultType="Shop">
+		select *
+		from Shop
+	</select>
+	
 </mapper>

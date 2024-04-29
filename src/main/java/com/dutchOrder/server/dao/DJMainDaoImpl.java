@@ -46,17 +46,17 @@ public class DJMainDaoImpl implements DJMainDao {
 	@Override
 	public List<Menu> listMenu(int bnum){
 		
-		List<Menu> listMenu = null;
+		List<Menu> menus = null;
 		try {
-			listMenu = session.selectList("mapMenuList",bnum);			
+			menus = session.selectList("mapMenuList",bnum);			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
 		
-		return listMenu;
+		return menus;
 	}
 	@Override
-	public Menu menuInfo(String fnum) {
+	public Menu menuInfo(int fnum) {
 		Menu menuInfo = null;
 		System.out.println("dao_menuInfo");
 		try {
@@ -93,5 +93,17 @@ public class DJMainDaoImpl implements DJMainDao {
 		
 		}
 		return mtel;
+	}
+	@Override
+	public List<Shop> listShops() {
+		List<Shop> listShops = null;
+		System.out.println("dao start...");
+		try {
+			listShops = session.selectList("mapAllShopList");
+			System.out.println("[dao] sucess get list from Mybatis -> " +listShops);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return listShops;
 	}
 }
