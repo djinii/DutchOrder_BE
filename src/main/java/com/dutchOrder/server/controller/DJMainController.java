@@ -68,18 +68,19 @@ public class DJMainController {
 		
 		return listShop;
 	}
+
 	
 	
 //	@GetMapping("/client/shopInfo")
-	@GetMapping("/")
-	public Shop getShopInfo(@RequestParam("spec") String sname) {
-		System.out.println("[controller] getShopInfo ~ " + sname);
-		
-		Shop shopInfo = ms.shopInfo(sname);
-		
-		System.out.println(shopInfo + "[controller]  shop 나 여기???");
-		return shopInfo;
-	}
+//	@GetMapping("/")
+//	public Shop getShopInfo(@RequestParam("spec") String sname) {
+//		System.out.println("[controller] getShopInfo ~ " + sname);
+//		
+//		Shop shopInfo = ms.shopInfo(sname);
+//		
+//		System.out.println(shopInfo + "[controller]  shop 나 여기???");
+//		return shopInfo;
+//	}
 	
 	@GetMapping("/client/shopInfo")
 	public Map<String, Object> getShop(@RequestParam("spec") String sname) {
@@ -103,6 +104,16 @@ public class DJMainController {
 		System.out.println(shopInfo + "[controller]  shop 나 여기???");
 		return shopMap;
 	}
+	
+//	@GetMapping("/client/shopInfo")
+//	public Shop getShopInfo(@RequestParam("spec") String sname) {
+//		System.out.println("[controller] getShopInfo ~ " + sname);
+//		
+//		Shop shopInfo = ms.shopInfo(sname);
+//		
+//		System.out.println(shopInfo + "[controller]  shop 나 여기???");
+//		return shopInfo;
+//	}
 	
 	@GetMapping("/client/shopInfo/itemView")
 	public Menu getMenuInfo(@RequestParam("fdeT") String fnumStr) {
