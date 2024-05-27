@@ -3,13 +3,15 @@ package com.dutchOrder.server.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Repository;
 
 import com.dutchOrder.server.model.Address;
 import com.dutchOrder.server.model.Menu;
+import com.dutchOrder.server.model.SearchCriteria;
 import com.dutchOrder.server.model.Shop;
 
+import jakarta.websocket.OnClose;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -18,6 +20,7 @@ public class DJMainDaoImpl implements DJMainDao {
 	
 	private final SqlSession session;
 	
+	// 사용안함
 	@Override
 	public List<Shop> listShop(String fcategory_mikey) {
 		
@@ -69,18 +72,7 @@ public class DJMainDaoImpl implements DJMainDao {
 		return menuInfo;
 		
 	}
-	@Override
-	public List<Address> listAddr(int mnum) {
-		List<Address> listAddr = null;
-		try {
-			System.out.println("@@@@@@");
-			listAddr = session.selectList("mapAddrList", mnum);
-			System.out.println("dao -> " + listAddr);
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return listAddr;
-	}
+
 	
 	
 	@Override
@@ -106,4 +98,59 @@ public class DJMainDaoImpl implements DJMainDao {
 		}
 		return listShops;
 	}
+	
+	
+	//------------------------------------------------------------------------------------------------
+	// adnum 생성
+	@Override
+	public String createAdNum(int mnum) {					
+		String adnum = null;
+		try {
+			adnum = session.selectOne("createAdNum", mnum);
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return adnum;
+	}
+	
+	// 회원 주소 저장
+	@Override
+	public int regAddress(Address address) {					
+		int result = 0;
+		try {
+			result = session.insert("regAddress", address);
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	// 회원의 주소 리스트
+	@Override
+	public List<Address> myAddrList(String mnum) {
+		List<Address> myAddrList = null;
+		try {
+			myAddrList = session.selectList("myAddrList", mnum);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return myAddrList;
+	}
+	
+	// 배달주소 주변 가게 리스트
+	@Override
+	public List<Shop> nearbyShops(SearchCriteria searchCriteria){
+		List<Shop> nearbyShops = null;
+		try {
+			nearbyShops = session.selectList("nearbyShops", searchCriteria);
+			System.out.println("nearbyShops   >>>>>>>.  " + nearbyShops);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return nearbyShops;
+	}
+	
+	
 }

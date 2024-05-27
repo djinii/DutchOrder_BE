@@ -21,7 +21,7 @@ public class DJOrderController {
 	
 	@GetMapping("/ordPlaced")
 	public String getMtel(@CookieValue("mnum") int mnum) {
-		System.out.println("dao start -> " + mnum);
+		System.out.println("OrderService Controller start -> " + mnum);
 		String mtel = "";
 		try {
 			mtel = ms.getMtel(mnum);

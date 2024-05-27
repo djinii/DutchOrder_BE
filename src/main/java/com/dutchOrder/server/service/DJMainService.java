@@ -1,5 +1,6 @@
 package com.dutchOrder.server.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.dutchOrder.server.model.Address;
@@ -14,11 +15,17 @@ public interface DJMainService {
 
 	Menu menuInfo(int fnum);
 
-	List<Address> listAddr(int mnum);
 	
 	String getMtel(int mnum);
 
 	List<Shop> listShops();
 
 	List<Menu> listMenu(int bnum);
+	
+	//---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- //
+	int regAddress(Address address);						// 회원의 주소 저장 
+	List<Address> myAddrList(String mnum);					// 회원의 주소 리스트
+	
+	List<Shop> nearbyShops(Double x, Double y);	// 주변 가게 리스트
+	
 }

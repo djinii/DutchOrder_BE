@@ -33,11 +33,13 @@ public class MwEmailServiceImpl implements MwEmailService {
 		// 이메일 수신자 주소 설정
 		message.setTo(email);
 		// 이메일 제목 설정
-		message.setSubject("더치오더 이메일 인증");
+		message.setSubject("더치오더 : 회원가입 인증번호 안내");
 		// 인증코드 생성 메소드 실행
 		String eccode = sendCode();
 		// 이메일 본문 내용 설정
 		message.setText("인증 코드: "+eccode);
+		message.setText("인증 번호 확인 후\n"
+				+ "이메일 인증을 완료해 주세요.\n [ "+eccode + " ]");
 		// 이메일메시지를 자바메일을 통해 전송
 		mailSender.send(message);
 		med.ecSave(email, eccode);

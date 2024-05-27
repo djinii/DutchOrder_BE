@@ -12,5 +12,7 @@
    		<typeAlias alias="Member" type="com.dutchOrder.server.model.Member"/>
    		<typeAlias alias="MwOrdering" type="com.dutchOrder.server.model.MwOrdering"/>
    		<typeAlias alias="Menu" type="com.dutchOrder.server.model.Menu"/>
+   		<typeAlias alias="Address" type="com.dutchOrder.server.model.Address"/>
+   		<typeAlias alias="SearchCriteria" type="com.dutchOrder.server.model.SearchCriteria"/>
    </typeAliases>
 </configuration>

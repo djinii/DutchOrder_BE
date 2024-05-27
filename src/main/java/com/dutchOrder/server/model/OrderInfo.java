@@ -9,7 +9,8 @@ public class OrderInfo {
 	private int mnum;				// 회원번호
 	private int bnum;				// 사업자 일련번호
 	private int onum;				// 주문 일련번호
-	private String oaddr;			// 배달주소
+	private String oaddr;			// 배달주소-> 더이상 존재 안함
+	private int oadnum;			// 배달주소 고유번호
 	private String otel;				// 주문용 연락처
 	private String omsg;			// 요청사항
 	private Timestamp odate;		// 주문날짜

@@ -2,11 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dutchOrder.server.dao.DJMainDao">
 	
-	<select id="mapAddrList" parameterType="int" resultType="com.dutchOrder.server.model.Address">
-		select mnum, adnum, adaddr
-		from address
-		where mnum = #{mnum};
-	</select>
+
 	
 	<select id="mapMtel" parameterType="int" resultType="string">
 		select mtel
@@ -19,4 +15,38 @@
 		from Shop
 	</select>
 	
+	<!-- 해당 회원의 주소 adnum의 최대값 찾기 -->
+	<select id="createAdNum" parameterType="int" resultType="String">
+		SELECT CONCAT(CAST(#{mnum} AS CHAR), LPAD(IFNULL(COUNT(ad.mnum) + 1, 1), 4, '0'))
+		FROM address ad
+		WHERE ad.mnum = #{mnum};
+	</select>
+
+	<!-- 주소 저장 -->
+	<insert id="regAddress" parameterType="Address">
+		INSERT INTO address(mnum, adnum, adaddr, adaddr_spec, ad_x, ad_y, adLatest_date)
+		VALUES (#{mnum},#{adnum}, #{adaddr}, #{adaddr_spec},#{ad_x}, #{ad_y}, #{adLatest_date});
+	</insert>
+	
+	<!-- 회원 주소 목록 -->	
+	<select id="myAddrList" parameterType="String" resultType="Address">
+		SELECT * 
+		FROM address ad
+		WHERE mnum = #{mnum}
+		ORDER BY ad.adLatest_date DESC;
+	</select>
+	
+	<!-- 근처 가게 리스트 -->
+	<select id="nearbyShops" parameterType = "SearchCriteria" resultType="Shop">
+		SELECT s.sname, s.start_time, s.end_time, s.fcategory_mikey
+		FROM shop s
+		JOIN address ad ON ad.mnum = s.bnum
+		WHERE ad.mnum IN (
+			SELECT a.mnum 
+			FROM address a
+			WHERE a.ad_x BETWEEN #{min_x} AND #{max_x} 
+			AND a.ad_y BETWEEN #{min_y} AND #{max_y}
+		)
+		AND s.sstatus_mikey = 401;
+	</select>
 </mapper>
