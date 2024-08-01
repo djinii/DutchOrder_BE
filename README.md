@@ -1,3 +1,6 @@
+**※ 더치오더 (Dutch Order) Back-end Repository** <br>&nbsp;&nbsp;&nbsp;&nbsp;해당 레파지토리는 더치오더 (Dutch Order)프로젝트의 백엔드 코드 입니다. <br><br>
+
+
 # 더치오더 (Dutch Order)
 더치오더(Dutch Order)는 공동 배달 주문을 간편하게 하고, 더치페이 요청 서비스를 통해 정산을 간소화하는 웹 애플리케이션입니다.<br><br>
 
@@ -68,7 +71,7 @@
 - 공지사항 관리 (등록, 수정, 삭제)
 <br><br>
 
-## 📎 프로젝트 관련 자료
+## 🔗 프로젝트 관련 자료
 1. [백엔드 레파지토리](https://github.com/djinii/DutchOrder_BE.git) 
 2. [프론트엔드 레파지토리](https://github.com/djinii/DutchOrder_FE.git)
 3. [프로젝트 자료](https://www.canva.com/design/DAGAAKWmbZo/36JYw6Rd5sM5SyTZ2ZKzaA/edit?utm_content=DAGAAKWmbZo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) (실행 화면 및 기능 설명)
